@@ -59,11 +59,11 @@ export function Hero() {
               View Projects <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
-          <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2">
+          <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2" asChild>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               Download Resume <Download className="h-4 w-4" />
-            </Button>
-          </Link>
+            </a>
+          </Button>
           <Link href="#contact">
             <Button size="lg" variant="ghost" className="w-full sm:w-auto gap-2">
               Contact Me <Mail className="h-4 w-4" />
