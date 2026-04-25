@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Database, LayoutTemplate, Server, Settings, Terminal } from "lucide-react";
+import { Database, LayoutTemplate, Server, Settings, Terminal, Bot } from "lucide-react";
 
 export function Skills() {
   const { skills } = portfolioData;
@@ -17,6 +17,11 @@ export function Skills() {
       title: "Database",
       icon: <Database className="h-6 w-6 text-accent" />,
       items: skills.database,
+    },
+    {
+      title: "AI Agents",
+      icon: <Bot className="h-6 w-6 text-purple-500" />,
+      items: skills.ai,
     },
     {
       title: "Automation",
@@ -55,7 +60,7 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 bg-background">
+    <section id="skills" className="py-24 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,10 +84,10 @@ export function Skills() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow"
+              className="glass rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-muted rounded-lg">
+                <div className="p-3 bg-muted/50 rounded-lg">
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-foreground">
@@ -93,7 +98,7 @@ export function Skills() {
                 {category.items.map((skill, skillIdx) => (
                   <span
                     key={skillIdx}
-                    className="px-3 py-1.5 bg-muted/50 text-muted-foreground text-sm rounded-full border border-border/50"
+                    className="px-3 py-1.5 bg-background/50 text-foreground text-sm rounded-full border border-border/50 shadow-sm"
                   >
                     {skill}
                   </span>

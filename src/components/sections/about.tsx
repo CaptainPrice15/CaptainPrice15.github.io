@@ -8,7 +8,7 @@ export function About() {
   const { story, highlights } = portfolioData.about;
 
   return (
-    <section id="about" className="py-24 bg-muted/50">
+    <section id="about" className="py-24 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-card border border-border p-8 rounded-2xl shadow-sm"
+            className="glass p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all"
           >
             <h3 className="text-xl font-bold mb-6 text-foreground">Key Focus Areas</h3>
             <ul className="space-y-6">

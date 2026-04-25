@@ -9,7 +9,7 @@ export function Contact() {
   const { email, linkedin, phone } = portfolioData.contact;
 
   return (
-    <section id="contact" className="py-24 bg-muted/50 border-t border-border">
+    <section id="contact" className="py-24 bg-transparent border-t border-glass-border">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

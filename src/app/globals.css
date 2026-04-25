@@ -3,27 +3,29 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
+  --background: #f0f4f8; /* Soft light blue-gray */
   --foreground: #0f172a; /* slate-900 */
   --primary: #2563eb; /* blue-600 */
   --primary-foreground: #ffffff;
-  --card: #f8fafc; /* slate-50 */
-  --border: #e2e8f0; /* slate-200 */
-  --muted: #f1f5f9; /* slate-100 */
+  --card: rgba(255, 255, 255, 0.6); /* Translucent white */
+  --border: rgba(226, 232, 240, 0.6); /* Translucent slate-200 */
+  --muted: rgba(241, 245, 249, 0.7); /* Translucent slate-100 */
   --muted-foreground: #64748b; /* slate-500 */
   --accent: #7c3aed; /* violet-600 */
+  --glass-border: rgba(255, 255, 255, 0.5);
 }
 
 .dark {
-  --background: #020617; /* slate-950 */
+  --background: #09090b; /* Very dark grayish-blue */
   --foreground: #f8fafc; /* slate-50 */
   --primary: #3b82f6; /* blue-500 */
   --primary-foreground: #ffffff;
-  --card: #0f172a; /* slate-900 */
-  --border: #1e293b; /* slate-800 */
-  --muted: #0f172a; /* slate-900 */
+  --card: rgba(15, 23, 42, 0.5); /* Translucent slate-900 */
+  --border: rgba(30, 41, 59, 0.5); /* Translucent slate-800 */
+  --muted: rgba(15, 23, 42, 0.6); /* Translucent slate-900 */
   --muted-foreground: #94a3b8; /* slate-400 */
   --accent: #8b5cf6; /* violet-500 */
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -44,4 +46,33 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15), transparent 25%);
+  pointer-events: none;
+}
+
+.dark body::before {
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+}
+
+.glass {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }

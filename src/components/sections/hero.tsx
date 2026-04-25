@@ -10,8 +10,8 @@ export function Hero() {
   const { name, title, headline, subtext } = portfolioData.hero;
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 bg-transparent">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
       
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10 mx-auto text-center">
         <motion.div

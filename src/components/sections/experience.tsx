@@ -50,7 +50,7 @@ export function Experience() {
                     <div className="hidden md:block absolute left-[-44px] top-4 h-full w-0.5 bg-border mt-2"></div>
                   )}
 
-                  <div className="bg-card border border-border p-6 rounded-xl hover:border-primary/30 transition-colors shadow-sm">
+                  <div className="glass p-6 rounded-xl hover:border-primary/50 transition-all hover:shadow-lg hover:-translate-y-1">
                     <div className="flex items-center gap-3 mb-2">
                       <Briefcase className="h-5 w-5 text-muted-foreground" />
                       <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>

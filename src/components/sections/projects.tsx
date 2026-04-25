@@ -17,7 +17,7 @@ export function Projects() {
     : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="projects" className="py-24 bg-muted/30">
+    <section id="projects" className="py-24 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
