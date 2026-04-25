@@ -52,15 +52,27 @@ export const portfolioData = {
   experience: [
     {
       company: "Cognizant Technology Solutions",
-      role: "Team Lead",
-      period: "2023 - Present",
-      description: "Leading a dedicated production support team for a US retail client. Focused on NCR POS systems, system reliability, SLA management, and process automation.",
+      role: "Support Team Lead",
+      period: "Jun 2025 - Present",
+      description: "Leading a dedicated production support team for a US retail client. Focused on team management, project delivery, system reliability, and SLA management.",
     },
     {
       company: "Cognizant Technology Solutions",
-      role: "Enterprise Support Engineer",
-      period: "2020 - 2023",
-      description: "Provided critical tier-2/3 support for enterprise retail applications. Developed automation scripts to handle routine maintenance and data extraction tasks.",
+      role: "Software Engineer",
+      period: "Oct 2023 - May 2025",
+      description: "Developed and maintained enterprise applications using .NET Framework and C#. Focused on backend services, reliable architecture, and feature enhancements.",
+    },
+    {
+      company: "Cognizant Technology Solutions",
+      role: "Programming Analyst",
+      period: "Sep 2022 - Oct 2023",
+      description: "Provided critical support for enterprise retail applications. Contributed to automation scripts and data extraction tasks to handle routine maintenance.",
+    },
+    {
+      company: "Cognizant Technology Solutions",
+      role: "Programmer Analyst Trainee",
+      period: "Sep 2021 - Sep 2022",
+      description: "Started career with comprehensive training in enterprise software development. Assisted senior engineers in debugging and testing production systems.",
     }
   ],
   contact: {
