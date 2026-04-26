@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioData } from "@/data/portfolio";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{name}</span>.
+            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{name}</span>.
             <br className="hidden sm:block" />
           </h1>
           <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground/80 mb-6 max-w-4xl mx-auto leading-tight">
@@ -59,6 +59,11 @@ export function Hero() {
               View Projects <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
+          <Button size="lg" variant="default" className="w-full sm:w-auto gap-2 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <a href="https://tools.gourab.app" target="_blank" rel="noopener noreferrer">
+              Tools App <Wrench className="h-4 w-4" />
+            </a>
+          </Button>
           <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2" asChild>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               Download Resume <Download className="h-4 w-4" />

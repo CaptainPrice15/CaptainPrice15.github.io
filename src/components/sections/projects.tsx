@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Code, FolderGit2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export function Projects() {
   const { projects } = portfolioData;

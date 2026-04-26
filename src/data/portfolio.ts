@@ -8,8 +8,9 @@ export const portfolioData = {
   about: {
     story: "I am a Software Engineer and Team Lead with 4.5 years of experience specializing in enterprise systems, production support, and automation. Currently leading a production support team for a major US retail client working on NCR POS systems. I focus on system reliability, operational efficiency, and building automation tools that save time and reduce errors.",
     highlights: [
-      "Leadership: Guiding a production support team, ensuring SLA adherence and smooth operations.",
-      "Automation Mindset: Leveraging Python and PowerShell to automate repetitive tasks and build reliable pipelines.",
+      "Leadership: Guiding a production support team of engineers, ensuring strict SLA adherence, incident resolution, and smooth continuous operations for enterprise applications.",
+      "Automation Mindset: Leveraging Python and PowerShell to automate repetitive tasks, reduce manual toil, and build reliable deployment and reporting pipelines.",
+      "Agentic AI Expertise: Building and utilizing AI-driven tools (Claude, Codex, Gemini) for code generation, task automation, and intelligent system monitoring.",
       "System Reliability: Implementing robust monitoring solutions using ELK/Kibana to proactively identify and resolve issues.",
     ],
   },

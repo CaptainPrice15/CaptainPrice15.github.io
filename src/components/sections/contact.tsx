@@ -18,10 +18,10 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-            Let's build something impactful.
+            Let&apos;s build something impactful.
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
+            Whether you have a question, a project idea, or just want to say hi, I&apos;ll try my best to get back to you!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
