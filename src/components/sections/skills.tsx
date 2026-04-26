@@ -70,7 +70,7 @@ export function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
-          <div className="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+          <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
         </motion.div>
 
         <motion.div
@@ -84,25 +84,29 @@ export function Skills() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="glass rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1"
+              className="glass glass-hover rounded-2xl p-6 md:p-8 relative overflow-hidden group"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-muted/50 rounded-lg">
-                  {category.icon}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 group-hover:scale-110 transition-transform duration-300">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                    {category.title}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.items.map((skill, skillIdx) => (
-                  <span
-                    key={skillIdx}
-                    className="px-3 py-1.5 bg-background/50 text-foreground text-sm rounded-full border border-border/50 shadow-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                <div className="flex flex-wrap gap-2">
+                  {category.items.map((skill, skillIdx) => (
+                    <span
+                      key={skillIdx}
+                      className="px-3 py-1.5 bg-background/40 backdrop-blur-md text-foreground text-sm font-medium rounded-full border border-border/50 shadow-sm hover:border-primary/30 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

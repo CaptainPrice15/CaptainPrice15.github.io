@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail, Wrench } from "lucide-react";
+import { ArrowRight, Download, Mail, Wrench, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioData } from "@/data/portfolio";
 import Link from "next/link";
@@ -10,27 +10,30 @@ export function Hero() {
   const { name, title, headline, subtext } = portfolioData.hero;
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 bg-transparent">
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
-      
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 bg-transparent pt-32">
+      {/* Animated Glowing Orbs Background */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] mix-blend-screen animate-pulse pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] mix-blend-screen animate-pulse delay-1000 pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-primary/10 to-accent/10 rounded-full blur-[100px] opacity-50 pointer-events-none"></div>
+
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10 mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-sm font-medium mb-8 backdrop-blur-sm"
         >
-          <h2 className="text-primary font-mono text-sm sm:text-base font-semibold tracking-wider uppercase mb-4">
-            {title}
-          </h2>
+          <Sparkles className="h-4 w-4 text-accent" />
+          <span className="text-foreground/80">{title}</span>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6">
-            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{name}</span>.
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground mb-6 leading-tight">
+            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient">{name}</span>.
             <br className="hidden sm:block" />
           </h1>
           <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground/80 mb-6 max-w-4xl mx-auto leading-tight">
@@ -41,9 +44,9 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
             {subtext}
           </p>
         </motion.div>
@@ -51,29 +54,31 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
           <Link href="#projects">
-            <Button size="lg" className="w-full sm:w-auto gap-2">
-              View Projects <ArrowRight className="h-4 w-4" />
+            <Button size="lg" className="w-full sm:w-auto gap-2 rounded-full h-14 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+              View Projects <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>
-          <Button size="lg" variant="default" className="w-full sm:w-auto gap-2 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+          <Button size="lg" variant="default" className="w-full sm:w-auto gap-2 bg-gradient-to-r from-accent to-purple-600 text-white hover:opacity-90 rounded-full h-14 px-8 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all hover:-translate-y-1" asChild>
             <a href="https://tools.gourab.app" target="_blank" rel="noopener noreferrer">
-              Tools App <Wrench className="h-4 w-4" />
+              Tools App <Wrench className="h-5 w-5" />
             </a>
           </Button>
-          <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2" asChild>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              Download Resume <Download className="h-4 w-4" />
-            </a>
-          </Button>
-          <Link href="#contact">
-            <Button size="lg" variant="ghost" className="w-full sm:w-auto gap-2">
-              Contact Me <Mail className="h-4 w-4" />
+          <div className="flex gap-4 w-full sm:w-auto">
+            <Button size="lg" variant="outline" className="flex-1 sm:w-auto gap-2 rounded-full h-14 px-6 border-border/50 hover:bg-muted/50 backdrop-blur-sm transition-all" asChild>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                Resume <Download className="h-4 w-4" />
+              </a>
             </Button>
-          </Link>
+            <Link href="#contact" className="flex-1 sm:flex-none">
+              <Button size="lg" variant="ghost" className="w-full sm:w-auto gap-2 rounded-full h-14 px-6 hover:bg-muted/50 transition-all">
+                Contact <Mail className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

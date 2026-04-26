@@ -47,9 +47,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   position: relative;
+  overflow-x: hidden;
 }
 
-body::before {
+/* Modern Animated Background */
+body::before, body::after {
   content: "";
   position: fixed;
   top: 0;
@@ -57,22 +59,51 @@ body::before {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: 
-    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(79, 70, 229, 0.08), transparent 25%);
   pointer-events: none;
+}
+
+body::before {
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(79, 70, 229, 0.06), transparent 40%);
+  animation: bgPulse 15s ease-in-out infinite alternate;
+}
+
+body::after {
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDE1MCwgMTUwLCAxNTAsIDAuMSkiPjwvY2lyY2xlPgo8L3N2Zz4=');
+  opacity: 0.5;
 }
 
 .dark body::before {
   background: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.12), transparent 40%);
+}
+
+.dark body::after {
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIj48L2NpcmNsZT4KPC9zdmc+');
+}
+
+@keyframes bgPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
 }
 
 .glass {
   background: var(--card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Card Hover */
+.glass-hover {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
 }
