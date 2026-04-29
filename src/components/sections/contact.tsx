@@ -38,18 +38,17 @@ export function Contact() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1" 
+              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" 
               onClick={() => window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank')}
             >
               <Mail className="h-5 w-5" /> Say Hello
             </Button>
             <Button 
               size="lg" 
-              variant="outline" 
-              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full border-border/50 hover:bg-muted/50 backdrop-blur-sm transition-all hover:-translate-y-1" 
+              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" 
               onClick={() => window.open(linkedin, '_blank')}
             >
-              <User className="h-5 w-5 text-primary" /> Connect on LinkedIn
+              <User className="h-5 w-5" /> Connect on LinkedIn
             </Button>
           </div>
 
