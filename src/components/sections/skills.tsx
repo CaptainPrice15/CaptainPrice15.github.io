@@ -40,6 +40,16 @@ export function Skills() {
     },
   ];
 
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, type: "spring" as any, bounce: 0.2 } 
+    },
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,11 +61,13 @@ export function Skills() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95, filter: "blur(8px)" },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.6, type: "spring" as any, bounce: 0.2 },
     },
   };
 
@@ -63,10 +75,10 @@ export function Skills() {
     <section id="skills" className="py-24 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUpVariant}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
@@ -77,7 +89,7 @@ export function Skills() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {categories.map((category, idx) => (

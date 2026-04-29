@@ -7,14 +7,24 @@ import { Briefcase } from "lucide-react";
 export function Experience() {
   const { experience } = portfolioData;
 
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, type: "spring" as any, bounce: 0.2 } 
+    },
+  };
+
   return (
     <section id="experience" className="py-24 bg-transparent relative">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-4xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUpVariant}
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Timeline</h2>
@@ -25,10 +35,10 @@ export function Experience() {
           {experience.map((exp, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: idx * 0.1, type: "spring" as any, bounce: 0.2 }}
               className="relative pl-8 md:pl-0"
             >
               <div className="md:grid md:grid-cols-5 md:gap-8 items-start">

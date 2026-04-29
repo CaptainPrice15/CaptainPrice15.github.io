@@ -15,10 +15,10 @@ export function Contact() {
 
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-4xl text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, type: "spring" as any, bounce: 0.2 }}
           className="glass p-8 sm:p-12 md:p-16 rounded-3xl border border-border/50 shadow-2xl relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-30 pointer-events-none"></div>

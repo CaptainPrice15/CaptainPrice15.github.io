@@ -15,14 +15,42 @@ export function Projects() {
     ? projects 
     : projects.filter((p) => p.type === filter);
 
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.8, type: "spring" as any, bounce: 0.2 } 
+    },
+  };
+
+  const projectVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 30, filter: "blur(8px)" },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { duration: 0.6, type: "spring" as any, bounce: 0.2 } 
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.9, 
+      y: -20, 
+      filter: "blur(8px)",
+      transition: { duration: 0.3, type: "spring" as any } 
+    }
+  };
+
   return (
     <section id="projects" className="py-24 bg-transparent relative">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUpVariant}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
@@ -46,15 +74,15 @@ export function Projects() {
         </motion.div>
 
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
+          <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+                variants={projectVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
                 className="glass glass-hover rounded-2xl overflow-hidden flex flex-col h-full group relative"
               >
                 {/* Decorative glowing gradient inside the card */}

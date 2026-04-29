@@ -32,7 +32,7 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+      transition={{ duration: 0.6, type: "spring" as any, stiffness: 80, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6 px-4 transition-all duration-300 ${
         scrolled ? "pt-2 sm:pt-4" : ""
       }`}
@@ -44,7 +44,7 @@ export function Navbar() {
       >
         <div className="flex items-center justify-between">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold tracking-tight hover:text-primary transition-colors flex items-center gap-1">
+            <Link href="/" className="text-xl font-bold tracking-tight hover:text-primary transition-colors flex items-center gap-1 hover:scale-105 active:scale-95 duration-300">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                 Gourab
               </span>
@@ -58,7 +58,7 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background/80 rounded-full transition-all duration-300"
+                  className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background/80 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   {link.name}
                 </Link>
@@ -70,7 +70,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-full hover:bg-muted/50"
+              className="rounded-full hover:bg-muted/50 hover:scale-105 active:scale-95 transition-all duration-300"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               aria-label="Toggle theme"
             >
@@ -82,7 +82,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full hover:bg-muted/50"
+                className="rounded-full hover:bg-muted/50 hover:scale-105 active:scale-95 transition-all duration-300"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -96,10 +96,10 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -20, scale: 0.95, filter: "blur(10px)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="absolute top-20 left-4 right-4 md:hidden border border-border/50 bg-background/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl"
           >
             <div className="flex flex-col space-y-2">
