@@ -87,20 +87,20 @@ export function Hero() {
               View Projects <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>
-          <Button size="lg" variant="default" className="w-full sm:w-auto gap-2 bg-gradient-to-r from-accent to-purple-600 text-white hover:opacity-90 rounded-full h-14 px-8 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" asChild>
+          <Button size="lg" className="w-full sm:w-auto gap-2 rounded-full h-14 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" asChild>
             <a href="https://tools.gourab.app" target="_blank" rel="noopener noreferrer">
               Tools App <Wrench className="h-5 w-5" />
             </a>
           </Button>
           <div className="flex gap-4 w-full sm:w-auto">
-            <Button size="lg" variant="outline" className="flex-1 sm:w-auto gap-2 rounded-full h-14 px-6 border-border/50 hover:bg-muted/50 backdrop-blur-sm transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" asChild>
+            <Button size="lg" className="flex-1 sm:w-auto gap-2 rounded-full h-14 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95" asChild>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                Resume <Download className="h-4 w-4" />
+                Resume <Download className="h-5 w-5" />
               </a>
             </Button>
             <Link href="#contact" className="flex-1 sm:flex-none">
-              <Button size="lg" variant="ghost" className="w-full sm:w-auto gap-2 rounded-full h-14 px-6 hover:bg-muted/50 transition-all hover:scale-105 active:scale-95">
-                Contact <Mail className="h-4 w-4" />
+              <Button size="lg" className="w-full sm:w-auto gap-2 rounded-full h-14 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 hover:scale-105 active:scale-95">
+                Contact <Mail className="h-5 w-5" />
               </Button>
             </Link>
           </div>
