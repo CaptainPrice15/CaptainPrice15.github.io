@@ -1,12 +1,79 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Code, FolderGit2 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { fadeUp, scaleIn } from "@/lib/motion-variants";
-import { cardHoverOverlay } from "@/lib/utils";
+
+function ProjectCard({ project }: { project: any }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: React.MouseEvent<HTMLDivElement>) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return (
+    <motion.div
+      layout
+      variants={scaleIn}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      onMouseMove={handleMouseMove}
+      className="glass glass-hover rounded-2xl overflow-hidden flex flex-col h-full group relative"
+    >
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              600px circle at ${mouseX}px ${mouseY}px,
+              rgba(59, 130, 246, 0.1),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+      <div className="p-6 md:p-8 flex-grow flex flex-col relative z-10">
+        <div className="flex justify-between items-start mb-6">
+          <div className="p-3 bg-primary/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
+            <FolderGit2 className="h-8 w-8 text-primary" />
+          </div>
+          <div className="flex gap-2">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1" aria-label="GitHub Repository">
+              <Code className="h-5 w-5" />
+            </a>
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1" aria-label="Live Demo">
+              <ExternalLink className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+        <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all">
+          {project.title}
+        </h3>
+        <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
+          {project.tech.map((tech: string, idx: number) => (
+            <span key={idx} className="text-xs font-medium text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/20">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Projects() {
   const { projects } = portfolioData;
@@ -49,46 +116,7 @@ export function Projects() {
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                variants={scaleIn}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="glass glass-hover rounded-2xl overflow-hidden flex flex-col h-full group relative"
-              >
-                <div className={cardHoverOverlay}></div>
-
-                <div className="p-6 md:p-8 flex-grow flex flex-col relative z-10">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <FolderGit2 className="h-8 w-8 text-primary" />
-                    </div>
-                    <div className="flex gap-2">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1" aria-label="GitHub Repository">
-                        <Code className="h-5 w-5" />
-                      </a>
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1" aria-label="Live Demo">
-                        <ExternalLink className="h-5 w-5" />
-                      </a>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
-                    {project.tech.map((tech, idx) => (
-                      <span key={idx} className="text-xs font-medium text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/20">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              <ProjectCard key={project.id} project={project} />
             ))}
           </AnimatePresence>
         </motion.div>
