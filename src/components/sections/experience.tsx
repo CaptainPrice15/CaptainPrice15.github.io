@@ -3,33 +3,17 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { Briefcase } from "lucide-react";
+import { SectionHeading } from "@/components/section-heading";
+import { springTransition } from "@/lib/motion-variants";
+import { glassClasses, cardHoverOverlay } from "@/lib/utils";
 
 export function Experience() {
   const { experience } = portfolioData;
 
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)",
-      transition: { duration: 0.8, type: "spring" as any, bounce: 0.2 } 
-    },
-  };
-
   return (
     <section id="experience" className="py-24 bg-transparent relative">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-4xl relative z-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUpVariant}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Timeline</h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
-        </motion.div>
+        <SectionHeading title="Experience Timeline" />
 
         <div className="space-y-12">
           {experience.map((exp, idx) => (
@@ -38,12 +22,11 @@ export function Experience() {
               initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: idx * 0.1, type: "spring" as any, bounce: 0.2 }}
+              transition={{ ...springTransition, delay: idx * 0.1 }}
               className="relative pl-8 md:pl-0"
             >
               <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
                 <div className="md:col-span-1 flex flex-col md:items-end mb-4 md:mb-0 relative">
-                  {/* Timeline line and dot for mobile */}
                   <div className="absolute left-[-31px] top-1 md:hidden h-full w-0.5 bg-border/50"></div>
                   <div className="absolute left-[-35px] top-1 md:hidden h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>
                   
@@ -53,15 +36,13 @@ export function Experience() {
                 </div>
                 
                 <div className="md:col-span-4 relative">
-                  {/* Timeline dot for desktop */}
                   <div className="hidden md:block absolute left-[-49px] top-2 h-3 w-3 rounded-full bg-primary ring-4 ring-background shadow-[0_0_10px_rgba(37,99,235,0.5)] z-10"></div>
-                  {/* Timeline line for desktop */}
                   {idx !== experience.length - 1 && (
                     <div className="hidden md:block absolute left-[-44px] top-4 h-[calc(100%+3rem)] w-0.5 bg-gradient-to-b from-primary/50 to-transparent mt-2"></div>
                   )}
 
-                  <div className="glass glass-hover p-6 md:p-8 rounded-2xl relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className={`${glassClasses} p-6 md:p-8 rounded-2xl`}>
+                    <div className={cardHoverOverlay}></div>
                     
                     <div className="relative z-10">
                       <div className="flex items-center gap-3 mb-2">

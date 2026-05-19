@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/sections/hero";
+import { Stats } from "@/components/sections/stats";
 
 const About = dynamic(() => import("@/components/sections/about").then((mod) => mod.About));
 const Skills = dynamic(() => import("@/components/sections/skills").then((mod) => mod.Skills));
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <Stats />
         <About />
         <Skills />
         <Projects />

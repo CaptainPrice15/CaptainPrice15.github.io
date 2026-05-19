@@ -11,13 +11,33 @@ export function Navbar() {
   const { setTheme, theme } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("");
 
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    const observers: IntersectionObserver[] = [];
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(section);
+      observers.push(observer);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observers.forEach((o) => o.disconnect());
+    };
   }, []);
 
   const navLinks = [
@@ -32,7 +52,7 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, type: "spring" as any, stiffness: 80, damping: 20 }}
+      transition={{ duration: 0.6, type: "spring", stiffness: 80, damping: 20 } as const}
       className={`fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 sm:pt-6 px-4 transition-all duration-300 ${
         scrolled ? "pt-2 sm:pt-4" : ""
       }`}
@@ -54,15 +74,22 @@ export function Navbar() {
           
           <div className="hidden md:block">
             <div className="flex items-center space-x-1 lg:space-x-4 bg-muted/30 px-4 py-1.5 rounded-full border border-border/40">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-background/80 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${
+                      isActive
+                        ? "bg-primary/10 text-primary shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-background/80"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -103,16 +130,23 @@ export function Navbar() {
             className="absolute top-20 left-4 right-4 md:hidden border border-border/50 bg-background/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl"
           >
             <div className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="block px-4 py-3 rounded-xl text-base font-medium text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

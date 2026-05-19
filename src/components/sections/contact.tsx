@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { Mail, User, Phone, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { springTransition } from "@/lib/motion-variants";
+import { buttonGradientClasses } from "@/lib/utils";
 
 export function Contact() {
   const { email, linkedin, phone } = portfolioData.contact;
@@ -18,7 +20,7 @@ export function Contact() {
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: "spring" as any, bounce: 0.2 }}
+          transition={{ ...springTransition }}
           className="glass p-8 sm:p-12 md:p-16 rounded-3xl border border-border/50 shadow-2xl relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-30 pointer-events-none"></div>
@@ -38,14 +40,14 @@ export function Contact() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-accent text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-accent/40 transition-all duration-300 hover:-translate-y-1 hover:scale-110 active:scale-95" 
+              className={`w-full sm:w-auto h-14 text-lg px-8 gap-3 ${buttonGradientClasses}`}
               onClick={() => window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank')}
             >
               <Mail className="h-5 w-5" /> Say Hello
             </Button>
             <Button 
               size="lg" 
-              className="w-full sm:w-auto h-14 text-lg px-8 gap-3 rounded-full bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-accent text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-accent/40 transition-all duration-300 hover:-translate-y-1 hover:scale-110 active:scale-95" 
+              className={`w-full sm:w-auto h-14 text-lg px-8 gap-3 ${buttonGradientClasses}`}
               onClick={() => window.open(linkedin, '_blank')}
             >
               <User className="h-5 w-5" /> Connect on LinkedIn

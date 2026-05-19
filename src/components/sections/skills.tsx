@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { Database, LayoutTemplate, Server, Settings, Terminal, Bot } from "lucide-react";
+import { SectionHeading } from "@/components/section-heading";
+import { staggerFast, staggerItems } from "@/lib/motion-variants";
+import { glassClasses, cardHoverOverlay } from "@/lib/utils";
 
 export function Skills() {
   const { skills } = portfolioData;
@@ -40,53 +43,13 @@ export function Skills() {
     },
   ];
 
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)",
-      transition: { duration: 0.8, type: "spring" as any, bounce: 0.2 } 
-    },
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95, filter: "blur(8px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 0.6, type: "spring" as any, bounce: 0.2 },
-    },
-  };
-
   return (
     <section id="skills" className="py-24 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeUpVariant}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills & Technologies</h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
-        </motion.div>
+        <SectionHeading title="Skills & Technologies" subtitle="What I work with" />
 
         <motion.div
-          variants={containerVariants}
+          variants={staggerFast}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
@@ -95,10 +58,10 @@ export function Skills() {
           {categories.map((category, idx) => (
             <motion.div
               key={idx}
-              variants={itemVariants}
-              className="glass glass-hover rounded-2xl p-6 md:p-8 relative overflow-hidden group"
+              variants={staggerItems}
+              className={glassClasses}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className={cardHoverOverlay}></div>
               
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-6">
