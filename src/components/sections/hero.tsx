@@ -130,7 +130,7 @@ export function Hero() {
               {/* Profile Avatar Container */}
               <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-primary/10 to-accent/10 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden animate-float">
                 <Image 
-                  src="/profile.jpg" 
+                  src="/profile.JPG" 
                   alt="Gourab Das Profile" 
                   fill 
                   className="object-cover"
