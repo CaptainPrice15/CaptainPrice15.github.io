@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const buttonGradientClasses =
-  "bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-accent text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-accent/40 transition-all duration-300 hover:-translate-y-1 hover:scale-110 active:scale-95";
+  "bg-gradient-to-r from-primary to-primary hover:from-primary hover:to-accent text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-accent/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]";
 
 export const glassClasses =
   "glass glass-hover rounded-2xl p-6 md:p-8 relative overflow-hidden group";

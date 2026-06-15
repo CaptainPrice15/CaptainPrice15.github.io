@@ -1,56 +1,68 @@
 "use client";
 
+import * as React from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Database, LayoutTemplate, Server, Settings, Terminal, Bot } from "lucide-react";
+import {
+  Database,
+  Server,
+  Settings,
+  Terminal,
+  Bot,
+  Activity,
+} from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
-import { fadeUp } from "@/lib/motion-variants";
+import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { glassClasses, cardHoverOverlay } from "@/lib/utils";
+import type { SkillCategory } from "@/lib/types";
 
-export function Skills() {
-  const { skills } = portfolioData;
+const iconMap: Record<string, React.ReactNode> = {
+  backend: <Server className="h-6 w-6 text-primary" />,
+  database: <Database className="h-6 w-6 text-accent" />,
+  ai: <Bot className="h-6 w-6 text-purple-500" />,
+  automation: <Terminal className="h-6 w-6 text-blue-400" />,
+  monitoring: <Activity className="h-6 w-6 text-emerald-400" />,
+  tools: <Settings className="h-6 w-6 text-orange-400" />,
+};
 
-  const categories = [
-    {
-      title: "Backend & APIs",
-      icon: <Server className="h-6 w-6 text-primary" />,
-      items: skills.backend,
-    },
-    {
-      title: "Database",
-      icon: <Database className="h-6 w-6 text-accent" />,
-      items: skills.database,
-    },
-    {
-      title: "AI Agents",
-      icon: <Bot className="h-6 w-6 text-purple-500" />,
-      items: skills.ai,
-    },
-    {
-      title: "Automation",
-      icon: <Terminal className="h-6 w-6 text-blue-400" />,
-      items: skills.automation,
-    },
-    {
-      title: "Monitoring",
-      icon: <LayoutTemplate className="h-6 w-6 text-emerald-400" />,
-      items: skills.monitoring,
-    },
-    {
-      title: "Tools & OS",
-      icon: <Settings className="h-6 w-6 text-orange-400" />,
-      items: skills.tools,
-    },
-  ];
+const categories: SkillCategory[] = [
+  {
+    title: "Backend & APIs",
+    icon: iconMap.backend,
+    items: portfolioData.skills.backend,
+  },
+  {
+    title: "Database",
+    icon: iconMap.database,
+    items: portfolioData.skills.database,
+  },
+  {
+    title: "AI Agents",
+    icon: iconMap.ai,
+    items: portfolioData.skills.ai,
+  },
+  {
+    title: "Automation",
+    icon: iconMap.automation,
+    items: portfolioData.skills.automation,
+  },
+  {
+    title: "Monitoring",
+    icon: iconMap.monitoring,
+    items: portfolioData.skills.monitoring,
+  },
+  {
+    title: "Tools & OS",
+    icon: iconMap.tools,
+    items: portfolioData.skills.tools,
+  },
+];
 
-  // Split into two rows for the marquee
-  const row1 = categories.slice(0, 3);
-  const row2 = categories.slice(3, 6);
+function SkillCard({ category }: { category: SkillCategory }) {
+  return (
+    <div className={`${glassClasses} group/card`}>
+      <div className={cardHoverOverlay} />
 
-  const SkillCard = ({ category }: { category: any }) => (
-    <div className={`w-[350px] md:w-[400px] flex-shrink-0 ${glassClasses} group/card`}>
-      <div className={cardHoverOverlay}></div>
-      
       <div className="relative z-10">
         <div className="flex items-center gap-4 mb-6">
           <div className="p-3 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 group-hover/card:scale-110 transition-transform duration-300">
@@ -64,7 +76,7 @@ export function Skills() {
           {category.items.map((skill: string, skillIdx: number) => (
             <span
               key={skillIdx}
-              className="px-3 py-1.5 bg-background/40 backdrop-blur-md text-foreground text-sm font-medium rounded-full border border-border/50 shadow-sm hover:border-primary/30 transition-colors"
+              className="px-3 py-1.5 bg-background/40 backdrop-blur-md text-foreground text-sm font-medium rounded-full border border-border/50 shadow-sm hover:border-primary/30 hover:bg-primary/5 transition-colors"
             >
               {skill}
             </span>
@@ -73,38 +85,28 @@ export function Skills() {
       </div>
     </div>
   );
+}
 
+export function Skills() {
   return (
-    <section id="skills" className="py-24 bg-transparent overflow-hidden">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl mb-12">
+    <section id="skills" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-transparent">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
         <SectionHeading title="Skills & Technologies" subtitle="What I work with" />
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerFast}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12"
+        >
+          {categories.map((category) => (
+            <motion.div key={category.title} variants={fadeUp}>
+              <SkillCard category={category} />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={fadeUp}
-        className="flex flex-col gap-6 relative"
-      >
-        {/* Gradient Masks for smooth fading on edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-background to-transparent z-20"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-background to-transparent z-20"></div>
-
-        {/* Row 1 - Scroll Left */}
-        <div className="flex w-max gap-6 animate-marquee hover:[animation-play-state:paused]">
-          {[...row1, ...row1, ...row1, ...row1].map((category, idx) => (
-            <SkillCard key={`r1-${idx}`} category={category} />
-          ))}
-        </div>
-
-        {/* Row 2 - Scroll Right */}
-        <div className="flex w-max gap-6 animate-marquee-reverse hover:[animation-play-state:paused] -ml-[100px] md:-ml-[200px]">
-          {[...row2, ...row2, ...row2, ...row2].map((category, idx) => (
-            <SkillCard key={`r2-${idx}`} category={category} />
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }

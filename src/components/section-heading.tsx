@@ -16,7 +16,7 @@ export function SectionHeading({
           {subtitle}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{title}</h2>
       <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
     </div>
   );

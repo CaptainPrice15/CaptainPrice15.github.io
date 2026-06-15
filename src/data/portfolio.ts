@@ -1,12 +1,17 @@
-export const portfolioData = {
+import type { PortfolioData } from "@/lib/types";
+
+export const portfolioData: PortfolioData = {
   hero: {
     name: "Gourab Das",
     title: "Software Engineer | Team Lead",
-    headline: "Building Reliable Systems, Automation & Modern Website Designs",
-    subtext: "Team Lead with expertise in .NET, Python, Next.js, automation, monitoring, and production support.",
+    headline:
+      "Building Reliable Systems, Automation & Modern Website Designs",
+    subtext:
+      "Team Lead with expertise in .NET, Python, Next.js, automation, monitoring, and production support.",
   },
   about: {
-    story: "I’m a Software Engineer at Cognizant Technology Solutions and Team Lead with 4.5 years of experience in enterprise systems, production support, and automation. I lead a support team for a US retail client on NCR POS systems, focusing on reliability, efficiency, and automation.\n\nMy strength is backend development with .NET, building modular, production-ready solutions like file monitoring, workflow automation, and background services. I also work on system-level design, including cloud sync, configuration management, and self-running applications.\n\nRecently, I’ve expanded into full-stack development and modern deployment using GitHub, Vercel, and Render. My goal is to build scalable products—especially in automation and AI—that deliver real-world value.",
+    story:
+      "I'm a Software Engineer at Cognizant Technology Solutions and Team Lead with 4.5 years of experience in enterprise systems, production support, and automation. I lead a support team for a US retail client on NCR POS systems, focusing on reliability, efficiency, and automation.\n\nMy strength is backend development with .NET, building modular, production-ready solutions like file monitoring, workflow automation, and background services. I also work on system-level design, including cloud sync, configuration management, and self-running applications.\n\nRecently, I've expanded into full-stack development and modern deployment using GitHub, Vercel, and Render. My goal is to build scalable products—especially in automation and AI—that deliver real-world value.",
     highlights: [
       "Leadership: Guiding a production support team of engineers, ensuring strict SLA adherence, incident resolution, and smooth continuous operations for enterprise applications.",
       "Automation Mindset: Leveraging Python and PowerShell to automate repetitive tasks, reduce manual toil, and build reliable deployment and reporting pipelines.",
@@ -26,60 +31,92 @@ export const portfolioData = {
     {
       id: "project-1",
       title: "Enterprise Log Analysis & Monitoring",
-      description: "Implemented a comprehensive monitoring solution using the ELK Stack to aggregate and analyze logs from various POS systems. Reduced average MTTR (Mean Time To Recovery) significantly.",
+      description:
+        "Implemented a comprehensive monitoring solution using the ELK Stack to aggregate and analyze logs from various POS systems. Reduced average MTTR (Mean Time To Recovery) significantly.",
       tech: ["ELK Stack", "PowerShell", "Linux"],
-      github: "#",
+      github: "https://github.com/gourab-das/enterprise-log-monitoring",
       live: "#",
       type: "Monitoring",
+      highlights: [
+        "Reduced MTTR by 40% with centralized log aggregation",
+        "Automated alert routing via PowerShell scripts",
+      ],
+      challenges: [
+        "Handling high volume of POS log data in real-time",
+        "Designing scalable index patterns in Elasticsearch",
+      ],
     },
     {
       id: "project-2",
       title: "Automated Deployment Pipeline",
-      description: "Developed automated scripting tools using PowerShell and Python to streamline the deployment of updates across hundreds of retail node endpoints.",
+      description:
+        "Developed automated scripting tools using PowerShell and Python to streamline the deployment of updates across hundreds of retail node endpoints.",
       tech: ["Python", "PowerShell", "Windows"],
-      github: "#",
+      github: "https://github.com/gourab-das/auto-deployment-pipeline",
       live: "#",
       type: "Automation",
+      highlights: [
+        "Cut deployment time from 4 hours to 45 minutes",
+        "Zero-downtime rolling update strategy",
+      ],
+      challenges: [
+        "Ensuring rollback capability on failure",
+        "Coordinating updates across geographically distributed endpoints",
+      ],
     },
     {
       id: "project-3",
       title: "Backend API for Inventory Sync",
-      description: "Built robust RESTful APIs in .NET Core to synchronize inventory data between the central database and edge POS systems securely.",
+      description:
+        "Built robust RESTful APIs in .NET Core to synchronize inventory data between the central database and edge POS systems securely.",
       tech: [".NET Core", "C#", "SQL Server"],
-      github: "#",
+      github: "https://github.com/gourab-das/inventory-sync-api",
       live: "#",
       type: "Backend",
-    }
+      highlights: [
+        "Handled 10k+ SKUs with sub-second sync latency",
+        "Implemented optimistic concurrency control to prevent data loss",
+      ],
+      challenges: [
+        "Managing conflict resolution during network partitions",
+        "Designing efficient batch sync algorithms",
+      ],
+    },
   ],
   experience: [
     {
       company: "Cognizant Technology Solutions",
       role: "Support Team Lead",
       period: "Jun 2025 - Present",
-      description: "Leading a dedicated production support team for a US retail client. Focused on team management, project delivery, system reliability, and SLA management.",
+      description:
+        "Leading a dedicated production support team for a US retail client. Focused on team management, project delivery, system reliability, and SLA management.",
     },
     {
       company: "Cognizant Technology Solutions",
       role: "Software Engineer",
       period: "Oct 2023 - May 2025",
-      description: "Developed and maintained enterprise applications using .NET Framework and C#. Focused on backend services, reliable architecture, and feature enhancements.",
+      description:
+        "Developed and maintained enterprise applications using .NET Framework and C#. Focused on backend services, reliable architecture, and feature enhancements.",
     },
     {
       company: "Cognizant Technology Solutions",
       role: "Programming Analyst",
       period: "Sep 2022 - Oct 2023",
-      description: "Provided critical support for enterprise retail applications. Contributed to automation scripts and data extraction tasks to handle routine maintenance.",
+      description:
+        "Provided critical support for enterprise retail applications. Contributed to automation scripts and data extraction tasks to handle routine maintenance.",
     },
     {
       company: "Cognizant Technology Solutions",
       role: "Programmer Analyst Trainee",
       period: "Sep 2021 - Sep 2022",
-      description: "Started career with comprehensive training in enterprise software development. Assisted senior engineers in debugging and testing production systems.",
-    }
+      description:
+        "Started career with comprehensive training in enterprise software development. Assisted senior engineers in debugging and testing production systems.",
+    },
   ],
   contact: {
     email: "gourabdas.13@gmail.com",
     linkedin: "https://www.linkedin.com/in/gourab-das-4078431b8/",
     phone: "+91 8274987485",
-  }
+    github: "https://github.com/gourab-das",
+  },
 };

@@ -4,7 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
+import { BackToTop } from "@/components/back-to-top";
 import { Analytics } from "@vercel/analytics/react";
+import { siteConfig } from "@/lib/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,12 +19,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Gourab Das | Software Engineer & Team Lead",
-    template: "%s | Gourab Das",
+    default: `${siteConfig.name} | ${siteConfig.title}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Portfolio of Gourab Das — Team Lead and Software Engineer specializing in system reliability, automation, .NET, Python, and enterprise-scale solutions.",
+  description: siteConfig.description,
   keywords: [
     "Gourab Das",
     "Software Engineer",
@@ -32,16 +34,48 @@ export const metadata: Metadata = {
     "Next.js",
     "Portfolio",
     "Cognizant",
+    "Automation",
+    "Full Stack Developer",
   ],
-  authors: [{ name: "Gourab Das" }],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
   openGraph: {
-    title: "Gourab Das | Software Engineer & Team Lead",
-    description:
-      "Building reliable systems, automation & modern website designs.",
     type: "website",
     locale: "en_US",
+    url: siteConfig.url,
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | ${siteConfig.title}`,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  robots: { index: true, follow: true },
+  manifest: "/manifest.webmanifest",
 };
+
+function JsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: siteConfig.name,
+    jobTitle: siteConfig.title,
+    email: siteConfig.email,
+    url: siteConfig.url,
+    sameAs: [siteConfig.links.linkedin, siteConfig.links.github],
+    knowsAbout: [".NET", "Python", "Automation", "System Reliability", "Next.js"],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 export default function RootLayout({
   children,
@@ -50,12 +84,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <JsonLd />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-primary-foreground focus:shadow-lg"
+          >
+            Skip to main content
+          </a>
           <ScrollProgress />
           {children}
+          <BackToTop />
           <Footer />
         </ThemeProvider>
         <Analytics />
