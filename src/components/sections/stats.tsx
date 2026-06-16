@@ -64,23 +64,23 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
 
 export function Stats() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-transparent -mt-8 relative z-10">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
+    <section className="py-8 sm:py-10 md:py-16 bg-transparent -mt-8 relative z-10">
+      <div className="container px-3 sm:px-6 lg:px-8 mx-auto">
         <motion.div
           variants={staggerFast}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto"
+          viewport={{ once: true, margin: "-30px" }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 max-w-4xl mx-auto"
         >
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
               variants={fadeUp}
-              className="glass rounded-2xl p-4 sm:p-6 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
+              className="glass rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
             >
-              <div className="flex justify-center mb-3 text-primary group-hover:scale-110 transition-transform duration-300">
-                <div className="p-2.5 bg-primary/10 rounded-xl">
+              <div className="flex justify-center mb-2 sm:mb-3 text-primary group-hover:scale-110 transition-transform duration-300">
+                <div className="p-1.5 sm:p-2.5 bg-primary/10 rounded-lg sm:rounded-xl">
                   {stat.icon}
                 </div>
               </div>

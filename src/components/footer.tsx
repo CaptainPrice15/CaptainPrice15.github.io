@@ -12,21 +12,21 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-8 sm:py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-6 sm:py-10 md:py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
           <div className="text-center md:text-left">
-            <span className="text-xl font-bold tracking-tight">
+            <span className="text-lg sm:text-xl font-bold tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                 Gourab
               </span>
               <span className="text-primary">.</span>
             </span>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
               Building reliable systems & modern experiences
             </p>
           </div>
 
-          <div className="flex justify-center md:justify-end items-center gap-3 sm:gap-4">
+          <div className="flex justify-center md:justify-end items-center gap-2 sm:gap-4">
             <a
               href={linkedin}
               target="_blank"
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Gourab Das. All rights reserved.</p>
           <button
             onClick={scrollToTop}

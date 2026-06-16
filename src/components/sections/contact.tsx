@@ -134,9 +134,9 @@ export function Contact() {
   const { email, linkedin, phone } = portfolioData.contact;
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-transparent relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent relative overflow-hidden">
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-[100px] opacity-50 pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-[80px] sm:blur-[100px] opacity-50 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -144,9 +144,9 @@ export function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ ...springTransition }}
-          className="glass p-6 sm:p-8 md:p-12 lg:p-16 rounded-3xl border border-border/50 shadow-2xl relative overflow-hidden"
+          className="glass p-5 sm:p-8 md:p-12 lg:p-16 rounded-2xl sm:rounded-3xl border border-border/50 shadow-2xl relative overflow-hidden"
         >
           <div
             className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-30 pointer-events-none"
@@ -154,18 +154,18 @@ export function Contact() {
           />
 
           <div className="relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
               <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+              <span className="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400">
                 Available for opportunities
               </span>
             </div>
 
-            <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-6 text-primary">
-              <MessageSquare className="h-8 w-8" />
+            <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-primary/10 rounded-full mb-4 sm:mb-6 text-primary">
+              <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 sm:mb-4 text-foreground tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3 md:mb-4 text-foreground tracking-tight">
               Let&apos;s build something{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                 impactful
@@ -173,27 +173,27 @@ export function Contact() {
               .
             </h2>
 
-            <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
               Whether you have a question, a project idea, or just want to say hi, I&apos;ll try my best to get back to you!
             </p>
 
-            <div className="max-w-lg mx-auto mb-6 sm:mb-10">
+            <div className="max-w-lg mx-auto mb-6 sm:mb-10 px-2 sm:px-0">
               <ContactForm />
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-6 sm:mb-10">
               <Button
                 size="lg"
-                className={`w-full sm:w-auto h-12 sm:h-14 text-base sm:text-lg px-6 sm:px-8 gap-3 ${buttonGradientClasses} rounded-full`}
+                className={`w-full sm:w-auto h-11 sm:h-14 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-8 gap-2 sm:gap-3 ${buttonGradientClasses} rounded-full`}
                 asChild
               >
                 <a href={`mailto:${email}`}>
-                  <Mail className="h-5 w-5" /> Say Hello
+                  <Mail className="h-4 w-4 sm:h-5 sm:w-5" /> Say Hello
                 </a>
               </Button>
               <Button
                 size="lg"
-                className={`w-full sm:w-auto h-12 sm:h-14 text-base sm:text-lg px-6 sm:px-8 gap-3 ${buttonGradientClasses} rounded-full`}
+                className={`w-full sm:w-auto h-11 sm:h-14 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-8 gap-2 sm:gap-3 ${buttonGradientClasses} rounded-full`}
                 asChild
               >
                 <a href={linkedin} target="_blank" rel="noopener noreferrer">
@@ -202,7 +202,7 @@ export function Contact() {
               </Button>
             </div>
 
-            <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-medium">
+            <div className="pt-6 sm:pt-8 border-t border-border/50 flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium">
               <CopyButton text={email} label="email address" />
               <span className="hidden md:inline text-border/50" aria-hidden="true">|</span>
               <CopyButton text={phone} label="phone number" />

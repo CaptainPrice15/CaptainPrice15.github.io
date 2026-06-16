@@ -115,18 +115,18 @@ export function Projects() {
     filter === "All" ? projects : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="projects" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-transparent relative">
+    <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent relative">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto relative z-10">
         <SectionHeading title="Featured Projects" className="mb-0" />
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           variants={fadeUp}
         >
           <div
-            className="flex flex-wrap justify-center gap-2 mb-12 mt-8"
+            className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 mt-6 sm:mt-8 px-2"
             role="tablist"
             aria-label="Filter projects by category"
           >
@@ -148,7 +148,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />

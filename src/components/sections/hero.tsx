@@ -58,7 +58,7 @@ export function Hero() {
         aria-hidden="true"
       />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[400px] sm:h-[600px] md:h-[800px] bg-gradient-to-tr from-primary/10 to-accent/10 rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px] opacity-30 sm:opacity-50 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] md:w-[800px] h-[320px] sm:h-[500px] md:h-[800px] bg-gradient-to-tr from-primary/10 to-accent/10 rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px] opacity-30 sm:opacity-50 pointer-events-none"
         aria-hidden="true"
       />
 
@@ -79,27 +79,27 @@ export function Hero() {
             </motion.div>
 
             <motion.div variants={heroItem}>
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-3 sm:mb-5 leading-tight">
                 Hi, I&apos;m{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient">
                   {name}
                 </span>
                 .
               </h1>
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground/80 mb-4 sm:mb-6 max-w-4xl lg:mx-0 mx-auto leading-tight min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem]">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground/80 mb-3 sm:mb-5 max-w-4xl lg:mx-0 mx-auto leading-tight min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem]">
                 <Typewriter text={headline} delay={500} />
               </div>
             </motion.div>
 
             <motion.div variants={heroItem}>
-              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl lg:mx-0 mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-2xl lg:mx-0 mx-auto leading-relaxed px-2 sm:px-0">
                 {subtext}
               </p>
             </motion.div>
 
             <motion.div
               variants={heroItem}
-              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4"
+              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"
             >
               <Button
                 size="lg"
@@ -156,7 +156,7 @@ export function Hero() {
             variants={heroItem}
             className="hidden lg:flex justify-center items-center relative"
           >
-            <div className="relative w-[400px] h-[400px]">
+            <div className="relative w-[350px] xl:w-[400px] h-[350px] xl:h-[400px]">
               <div
                 className="absolute inset-0 rounded-full border-2 border-primary/20 border-dashed animate-[spin_20s_linear_infinite]"
                 aria-hidden="true"

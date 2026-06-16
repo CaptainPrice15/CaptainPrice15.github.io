@@ -11,19 +11,19 @@ export function About() {
   const { story, highlights } = portfolioData.about;
 
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-transparent">
+    <section id="about" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
         <SectionHeading title="About Me" />
 
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center max-w-5xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInLeft}
           >
-            <h3 className="text-2xl font-bold mb-6 text-foreground">The Journey</h3>
-            <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap max-w-prose">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">The Journey</h3>
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed whitespace-pre-wrap max-w-prose">
               {story}
             </p>
           </motion.div>
@@ -33,7 +33,7 @@ export function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={slideInRight}
-            className={`${glassClasses} p-6 sm:p-8 md:p-10 rounded-3xl`}
+            className={`${glassClasses} !p-5 sm:!p-7 md:!p-10 rounded-2xl sm:rounded-3xl`}
           >
             <div className={cardHoverOverlay} aria-hidden="true" />
 

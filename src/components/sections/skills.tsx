@@ -89,7 +89,7 @@ function SkillCard({ category }: { category: SkillCategory }) {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-transparent">
+    <section id="skills" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
         <SectionHeading title="Skills & Technologies" subtitle="What I work with" />
 
@@ -98,7 +98,7 @@ export function Skills() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerFast}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8 md:mt-12"
         >
           {categories.map((category) => (
             <motion.div key={category.title} variants={fadeUp}>
