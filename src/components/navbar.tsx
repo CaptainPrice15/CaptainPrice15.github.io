@@ -82,9 +82,14 @@ export function Navbar() {
       }`}
     >
       <nav
-        className={`w-full max-w-5xl transition-all duration-500 rounded-full border border-border/50 bg-background/70 backdrop-blur-md shadow-lg ${
-          scrolled ? "py-2 px-4 shadow-xl border-primary/20" : "py-3 px-6"
+        className={`w-full max-w-5xl transition-all duration-500 rounded-full border border-border/50 bg-background/70 backdrop-blur-md ${
+          scrolled ? "py-2 px-4 border-primary/20" : "py-3 px-6"
         }`}
+        style={{
+          boxShadow: scrolled
+            ? "0 4px 12px rgba(37,99,235,0.12), 0 16px 40px rgba(109,40,217,0.08), 0 0 0 1px rgba(37,99,235,0.06)"
+            : "0 2px 8px rgba(37,99,235,0.08), 0 8px 24px rgba(37,99,235,0.05)",
+        }}
       >
         <div className="flex items-center justify-between">
           <div className="flex-shrink-0">

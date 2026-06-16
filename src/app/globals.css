@@ -129,9 +129,11 @@ body::after {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   box-shadow:
-    0 4px 6px -1px rgba(37, 99, 235, 0.06),
-    0 10px 20px -5px rgba(37, 99, 235, 0.05),
-    0 20px 40px -10px rgba(37, 99, 235, 0.04);
+    0 2px 4px rgba(37, 99, 235, 0.08),
+    0 8px 16px -4px rgba(37, 99, 235, 0.10),
+    0 20px 40px -8px rgba(37, 99, 235, 0.08),
+    0 40px 80px -16px rgba(109, 40, 217, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .glass-hover {
@@ -139,43 +141,50 @@ body::after {
 }
 
 .glass-hover:hover {
-  transform: translateY(-5px) scale(1.02);
-  border-color: rgba(37, 99, 235, 0.35);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(37, 99, 235, 0.4);
   box-shadow:
-    0 10px 20px -5px rgba(37, 99, 235, 0.10),
-    0 25px 50px -12px rgba(109, 40, 217, 0.08),
-    0 0 0 1px rgba(37, 99, 235, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 4px 8px rgba(37, 99, 235, 0.12),
+    0 16px 32px -4px rgba(37, 99, 235, 0.15),
+    0 32px 64px -8px rgba(109, 40, 217, 0.12),
+    0 48px 96px -16px rgba(109, 40, 217, 0.08),
+    0 0 0 1px rgba(37, 99, 235, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .dark .glass {
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.3),
-    0 10px 20px -5px rgba(0, 0, 0, 0.25),
-    0 20px 40px -10px rgba(0, 0, 0, 0.2);
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 8px 16px -4px rgba(0, 0, 0, 0.35),
+    0 20px 40px -8px rgba(0, 0, 0, 0.3),
+    0 40px 80px -16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .dark .glass-hover:hover {
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
   box-shadow:
-    0 10px 20px -5px rgba(0, 0, 0, 0.4),
-    0 25px 50px -12px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(59, 130, 246, 0.1);
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    0 16px 32px -4px rgba(59, 130, 246, 0.15),
+    0 32px 64px -8px rgba(139, 92, 246, 0.12),
+    0 48px 96px -16px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(59, 130, 246, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Card shadows — extra depth without crushing designs */
 .card-shadow {
   box-shadow:
-    0 1px 3px rgba(37, 99, 235, 0.06),
-    0 4px 10px rgba(37, 99, 235, 0.05),
-    0 8px 20px rgba(37, 99, 235, 0.03);
+    0 2px 4px rgba(37, 99, 235, 0.08),
+    0 8px 16px -4px rgba(37, 99, 235, 0.10),
+    0 20px 40px -8px rgba(109, 40, 217, 0.06);
 }
 
 .card-shadow-hover {
   box-shadow:
-    0 2px 6px rgba(37, 99, 235, 0.08),
-    0 8px 20px rgba(109, 40, 217, 0.07),
-    0 16px 40px rgba(37, 99, 235, 0.05);
+    0 4px 8px rgba(37, 99, 235, 0.12),
+    0 16px 32px -4px rgba(37, 99, 235, 0.14),
+    0 32px 64px -8px rgba(109, 40, 217, 0.10),
+    0 48px 80px -16px rgba(37, 99, 235, 0.06);
 }
 
 /* ============================================
@@ -197,21 +206,24 @@ body::after {
   /* Slightly smaller shadows on mobile so borders stay crisp */
   .card-shadow {
     box-shadow:
-      0 1px 3px rgba(37, 99, 235, 0.06),
-      0 2px 6px rgba(37, 99, 235, 0.04);
+      0 1px 3px rgba(37, 99, 235, 0.08),
+      0 4px 10px rgba(37, 99, 235, 0.06),
+      0 10px 20px rgba(109, 40, 217, 0.04);
   }
 
   .card-shadow-hover {
     box-shadow:
-      0 2px 4px rgba(37, 99, 235, 0.08),
-      0 6px 12px rgba(37, 99, 235, 0.05);
+      0 2px 6px rgba(37, 99, 235, 0.10),
+      0 8px 16px rgba(37, 99, 235, 0.08),
+      0 16px 28px rgba(109, 40, 217, 0.06);
   }
 
   .glass-hover:active {
     transform: scale(0.98);
     box-shadow:
-      0 2px 4px rgba(37, 99, 235, 0.08),
-      0 6px 12px rgba(37, 99, 235, 0.05);
+      0 1px 2px rgba(37, 99, 235, 0.10),
+      0 4px 8px rgba(37, 99, 235, 0.08),
+      0 10px 20px rgba(109, 40, 217, 0.05);
     transition-duration: 0.15s;
   }
 }

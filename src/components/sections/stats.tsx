@@ -77,7 +77,7 @@ export function Stats() {
             <motion.div
               key={idx}
               variants={fadeUp}
-              className="glass rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
+              className="glass glass-hover rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
             >
               <div className="flex justify-center mb-2 sm:mb-3 text-primary group-hover:scale-110 transition-transform duration-300">
                 <div className="p-1.5 sm:p-2.5 bg-primary/10 rounded-lg sm:rounded-xl">
