@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail, Wrench } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioData } from "@/data/portfolio";
 import { siteConfig } from "@/lib/site-config";
@@ -11,26 +11,37 @@ import { buttonGradientClasses } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-function Typewriter({ text, delay = 0 }: { text: string; delay?: number }) {
+const rotatingPhrases = [
+  "Building Reliable Systems",
+  "Automating at Scale",
+  "Designing Modern Web Experiences",
+  "Leading Production Teams",
+];
+
+function Typewriter({ phrases, delay = 0 }: { phrases: string[]; delay?: number }) {
   const [displayText, setDisplayText] = useState("");
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setDisplayText("");
-      let i = 0;
-      const timer = setInterval(() => {
-        if (i < text.length) {
-          setDisplayText((prev) => prev + text.charAt(i));
-          i++;
-        } else {
-          clearInterval(timer);
+      const current = phrases[phraseIndex];
+      if (!isDeleting) {
+        setDisplayText(current.slice(0, displayText.length + 1));
+        if (displayText.length + 1 === current.length) {
+          setTimeout(() => setIsDeleting(true), 2200);
         }
-      }, 50);
-      return () => clearInterval(timer);
-    }, delay);
+      } else {
+        setDisplayText(current.slice(0, displayText.length - 1));
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        }
+      }
+    }, isDeleting ? 30 : 60);
 
     return () => clearTimeout(timeout);
-  }, [text, delay]);
+  }, [displayText, isDeleting, phraseIndex, phrases]);
 
   return (
     <span>
@@ -38,27 +49,23 @@ function Typewriter({ text, delay = 0 }: { text: string; delay?: number }) {
       <motion.span
         animate={{ opacity: [0, 1, 0] }}
         transition={{ repeat: Infinity, duration: 0.8 }}
-        className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle"
+        className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 align-middle rounded-full"
       />
     </span>
   );
 }
 
 export function Hero() {
-  const { name, title, headline, subtext } = portfolioData.hero;
+  const { name, title } = portfolioData.hero;
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden py-16 sm:py-20 bg-transparent pt-28 sm:pt-32">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden section !pt-28 sm:!pt-32 !pb-16 sm:!pb-20">
       <div
-        className="absolute top-1/4 left-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-primary/20 rounded-full blur-[60px] sm:blur-[80px] md:blur-[120px] mix-blend-screen animate-pulse pointer-events-none"
+        className="absolute top-1/3 left-1/4 w-64 sm:w-80 md:w-[420px] h-64 sm:h-80 md:h-[420px] bg-primary/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-1/4 right-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-accent/20 rounded-full blur-[60px] sm:blur-[80px] md:blur-[120px] mix-blend-screen animate-pulse delay-1000 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[500px] md:w-[800px] h-[320px] sm:h-[500px] md:h-[800px] bg-gradient-to-tr from-primary/10 to-accent/10 rounded-full blur-[60px] sm:blur-[80px] md:blur-[100px] opacity-30 sm:opacity-50 pointer-events-none"
+        className="absolute bottom-1/3 right-1/4 w-56 sm:w-72 md:w-[360px] h-56 sm:h-72 md:h-[360px] bg-accent/8 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -68,32 +75,32 @@ export function Hero() {
         animate="visible"
         variants={staggerContainer}
       >
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-10 sm:gap-14 lg:gap-20 items-center max-w-6xl mx-auto">
           <div className="text-center lg:text-left">
             <motion.div
               variants={heroBadge}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-sm font-medium mb-8 backdrop-blur-sm"
+              className="eyebrow mb-6 sm:mb-8 justify-center lg:justify-start"
             >
-              <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-foreground/80">{title}</span>
+              <span className="eyebrow-dot" aria-hidden="true" />
+              {title}
             </motion.div>
 
             <motion.div variants={heroItem}>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-3 sm:mb-5 leading-tight">
-                Hi, I&apos;m{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient">
-                  {name}
-                </span>
-                .
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-4 sm:mb-6 leading-[1.1]">
+                Hi, I'm{" "}
+                <span className="gradient-text">{name}</span>.
               </h1>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground/80 mb-3 sm:mb-5 max-w-4xl lg:mx-0 mx-auto leading-tight min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem]">
-                <Typewriter text={headline} delay={500} />
-              </div>
             </motion.div>
 
             <motion.div variants={heroItem}>
-              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-2xl lg:mx-0 mx-auto leading-relaxed px-2 sm:px-0">
-                {subtext}
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground/70 mb-4 sm:mb-6 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] leading-snug">
+                <Typewriter phrases={rotatingPhrases} delay={300} />
+              </p>
+            </motion.div>
+
+            <motion.div variants={heroItem}>
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-xl lg:mx-0 mx-auto leading-relaxed px-4 sm:px-0">
+                {portfolioData.hero.subtext}
               </p>
             </motion.div>
 
@@ -103,74 +110,61 @@ export function Hero() {
             >
               <Button
                 size="lg"
-                className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-14 px-8`}
+                className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-12 sm:h-14 px-7 sm:px-8`}
                 asChild
               >
                 <Link href="#projects">
-                  View Projects <ArrowRight className="h-5 w-5" />
+                  View Projects <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
               </Button>
               <Button
                 size="lg"
-                className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-14 px-8`}
+                variant="outline"
+                className="w-full sm:w-auto gap-2 rounded-full h-12 sm:h-14 px-7 sm:px-8 border-border/60 hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
                 asChild
               >
                 <Link href="#contact">
-                  Contact Me <Mail className="h-5 w-5" />
+                  <Mail className="h-4 w-4 sm:h-5 sm:w-5" /> Get in Touch
                 </Link>
               </Button>
-              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-4 mt-3 sm:mt-0">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground gap-2"
-                  asChild
-                >
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Download className="h-4 w-4" /> Resume
-                  </a>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground gap-2"
-                  asChild
-                >
-                  <a
-                    href={siteConfig.links.tools}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Wrench className="h-4 w-4" /> Tools App
-                  </a>
-                </Button>
-              </div>
+            </motion.div>
+
+            <motion.div
+              variants={heroItem}
+              className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground font-medium px-4 sm:px-0"
+            >
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                4.5+ years experience
+              </span>
+              <span className="text-border/40" aria-hidden="true">&middot;</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                Cognizant
+              </span>
+              <span className="text-border/40" aria-hidden="true">&middot;</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+                Team Lead
+              </span>
             </motion.div>
           </div>
 
           <motion.div
             variants={heroItem}
-            className="hidden lg:flex justify-center items-center relative"
+            className="hidden lg:flex justify-center items-center"
           >
-            <div className="relative w-[350px] xl:w-[400px] h-[350px] xl:h-[400px]">
+            <div className="relative w-[280px] xl:w-[320px] h-[280px] xl:h-[320px]">
               <div
-                className="absolute inset-0 rounded-full border-2 border-primary/20 border-dashed animate-[spin_20s_linear_infinite]"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute inset-4 rounded-full border-2 border-accent/20 border-dashed animate-[spin_15s_linear_infinite_reverse]"
+                className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl pointer-events-none"
                 aria-hidden="true"
               />
 
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.85, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.8, type: "spring" }}
-                className="absolute inset-8 rounded-full bg-gradient-to-tr from-primary/10 to-accent/10 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden animate-float"
+                transition={{ delay: 0.6, duration: 0.8, type: "spring" }}
+                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-glass-border glass animate-float shadow-xl"
               >
                 <Image
                   src="/profile.jpg"
@@ -178,7 +172,7 @@ export function Hero() {
                   fill
                   className="object-cover"
                   priority
-                  sizes="400px"
+                  sizes="320px"
                 />
               </motion.div>
             </div>

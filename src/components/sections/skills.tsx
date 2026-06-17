@@ -13,70 +13,114 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { fadeUp, staggerFast } from "@/lib/motion-variants";
-import { glassClasses, cardHoverOverlay } from "@/lib/utils";
+import { sectionContainer } from "@/lib/utils";
 import type { SkillCategory } from "@/lib/types";
 
-const iconMap: Record<string, React.ReactNode> = {
-  backend: <Server className="h-6 w-6 text-primary" />,
-  database: <Database className="h-6 w-6 text-accent" />,
-  ai: <Bot className="h-6 w-6 text-purple-500" />,
-  automation: <Terminal className="h-6 w-6 text-blue-400" />,
-  monitoring: <Activity className="h-6 w-6 text-emerald-400" />,
-  tools: <Settings className="h-6 w-6 text-orange-400" />,
+const categoryMeta: Record<string, { icon: React.ReactNode; badge: string; desc: string }> = {
+  backend: {
+    icon: <Server className="h-5 w-5 text-primary" />,
+    badge: "badge-blue",
+    desc: "Building APIs and services",
+  },
+  database: {
+    icon: <Database className="h-5 w-5 text-purple-500" />,
+    badge: "badge-purple",
+    desc: "Data modeling and storage",
+  },
+  ai: {
+    icon: <Bot className="h-5 w-5 text-purple-500" />,
+    badge: "badge-purple",
+    desc: "AI-driven development",
+  },
+  automation: {
+    icon: <Terminal className="h-5 w-5 text-amber-600" />,
+    badge: "badge-amber",
+    desc: "Scripts and pipelines",
+  },
+  monitoring: {
+    icon: <Activity className="h-5 w-5 text-emerald-600" />,
+    badge: "badge-emerald",
+    desc: "Observability and alerting",
+  },
+  tools: {
+    icon: <Settings className="h-5 w-5 text-slate-500" />,
+    badge: "badge-slate",
+    desc: "Platforms and tooling",
+  },
 };
 
 const categories: SkillCategory[] = [
   {
     title: "Backend & APIs",
-    icon: iconMap.backend,
+    icon: categoryMeta.backend.icon,
     items: portfolioData.skills.backend,
   },
   {
     title: "Database",
-    icon: iconMap.database,
+    icon: categoryMeta.database.icon,
     items: portfolioData.skills.database,
   },
   {
     title: "AI Agents",
-    icon: iconMap.ai,
+    icon: categoryMeta.ai.icon,
     items: portfolioData.skills.ai,
   },
   {
     title: "Automation",
-    icon: iconMap.automation,
+    icon: categoryMeta.automation.icon,
     items: portfolioData.skills.automation,
   },
   {
     title: "Monitoring",
-    icon: iconMap.monitoring,
+    icon: categoryMeta.monitoring.icon,
     items: portfolioData.skills.monitoring,
   },
   {
     title: "Tools & OS",
-    icon: iconMap.tools,
+    icon: categoryMeta.tools.icon,
     items: portfolioData.skills.tools,
   },
 ];
 
+function getBadgeClass(title: string): string {
+  for (const [key, meta] of Object.entries(categoryMeta)) {
+    if (title.toLowerCase().includes(key)) return meta.badge;
+  }
+  return "badge-slate";
+}
+
+function getCategoryDesc(title: string): string {
+  for (const [key, meta] of Object.entries(categoryMeta)) {
+    if (title.toLowerCase().includes(key)) return meta.desc;
+  }
+  return "";
+}
+
 function SkillCard({ category }: { category: SkillCategory }) {
+  const badgeClass = getBadgeClass(category.title);
+  const desc = getCategoryDesc(category.title);
+
   return (
-    <div className={`${glassClasses} group/card`}>
-      <div className={cardHoverOverlay} />
+    <div className="glass glass-hover rounded-xl sm:rounded-2xl p-5 sm:p-6 relative overflow-hidden group">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       <div className="relative z-10">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 group-hover/card:scale-110 transition-transform duration-300">
+        <div className="flex items-center gap-3 mb-1.5">
+          <div className="p-2.5 bg-primary/5 rounded-xl border border-border/40 group-hover:scale-110 transition-transform duration-300">
             {category.icon}
           </div>
-          <h3 className="text-xl font-bold text-foreground group-hover/card:text-primary transition-colors duration-300">
+          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
             {category.title}
           </h3>
         </div>
-        <div className="flex flex-wrap gap-2">
+        {desc && (
+          <p className="text-xs text-muted-foreground mb-4 ml-[52px]">{desc}</p>
+        )}
+        <div className="flex flex-wrap gap-2 mt-4">
           {category.items.map((skill: string, skillIdx: number) => (
             <span
               key={skillIdx}
-              className="px-3 py-1.5 bg-background/40 backdrop-blur-md text-foreground text-sm font-medium rounded-full border border-border/50 shadow-sm hover:border-primary/30 hover:bg-primary/5 transition-colors"
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full border ${badgeClass} transition-all hover:scale-[1.03]`}
             >
               {skill}
             </span>
@@ -89,16 +133,16 @@ function SkillCard({ category }: { category: SkillCategory }) {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
-        <SectionHeading title="Skills & Technologies" subtitle="What I work with" />
+    <section id="skills" className="section bg-transparent">
+      <div className={`${sectionContainer} max-w-6xl`}>
+        <SectionHeading title="Skills & Technologies" eyebrow="What I work with" />
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={staggerFast}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8 md:mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mt-6 sm:mt-8"
         >
           {categories.map((category) => (
             <motion.div key={category.title} variants={fadeUp}>

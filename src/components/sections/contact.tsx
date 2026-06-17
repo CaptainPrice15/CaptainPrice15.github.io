@@ -3,10 +3,11 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, User, MessageSquare, Copy, Check, Send } from "lucide-react";
+import { Mail, User, MessageSquare, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { springTransition } from "@/lib/motion-variants";
-import { buttonGradientClasses } from "@/lib/utils";
+import { buttonGradientClasses, sectionContainer } from "@/lib/utils";
+import { SectionHeading } from "@/components/section-heading";
 
 function CopyButton({ text, label }: { text: string; label: string }) {
   const [copied, setCopied] = React.useState(false);
@@ -31,20 +32,50 @@ function CopyButton({ text, label }: { text: string; label: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group w-full text-left"
       aria-label={`${copied ? "Copied" : "Copy"} ${label}`}
     >
-      <div className="p-2 bg-muted rounded-full group-hover:bg-primary/10 transition-colors">
+      <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors">
         {copied ? (
-          <Check className="h-4 w-4 text-emerald-500" />
+          <Check className="h-4 w-4 text-success" />
         ) : (
-          <Copy className="h-4 w-4" />
+          <Copy className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
         )}
       </div>
-      <span className="text-sm">{text}</span>
+      <div className="min-w-0 flex-1">
+        <span className="text-xs text-muted-foreground font-medium block">{label}</span>
+        <span className="text-sm text-foreground font-medium truncate block">{text}</span>
+      </div>
     </button>
   );
 }
+
+const contactLinks = [
+  {
+    icon: <Mail className="h-4 w-4" />,
+    label: "Email",
+    href: "mailto:gourabdas.13@gmail.com",
+    display: "gourabdas.13@gmail.com",
+  },
+  {
+    icon: <Link className="h-4 w-4" />,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/gourab-das-4078431b8/",
+    display: "Gourab Das",
+  },
+  {
+    icon: <Phone className="h-4 w-4" />,
+    label: "Phone",
+    href: "tel:+918274987485",
+    display: "+91 8274987485",
+  },
+  {
+    icon: <Code className="h-4 w-4" />,
+    label: "GitHub",
+    href: "https://github.com/gourab-das",
+    display: "gourab-das",
+  },
+];
 
 function ContactForm() {
   const [formState, setFormState] = React.useState({
@@ -77,7 +108,7 @@ function ContactForm() {
             required
             value={formState.name}
             onChange={(e) => setFormState((s) => ({ ...s, name: e.target.value }))}
-            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
             placeholder="Your name"
           />
         </div>
@@ -91,7 +122,7 @@ function ContactForm() {
             required
             value={formState.email}
             onChange={(e) => setFormState((s) => ({ ...s, email: e.target.value }))}
-            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
             placeholder="you@email.com"
           />
         </div>
@@ -106,7 +137,7 @@ function ContactForm() {
           rows={4}
           value={formState.message}
           onChange={(e) => setFormState((s) => ({ ...s, message: e.target.value }))}
-          className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all resize-none"
+          className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all resize-none"
           placeholder="Tell me about your project or idea..."
         />
       </div>
@@ -118,11 +149,11 @@ function ContactForm() {
       >
         {status === "sent" ? (
           <>
-            <Check className="h-5 w-5" /> Opening email client...
+            <Check className="h-4 w-4" /> Opening email client...
           </>
         ) : (
           <>
-            <Send className="h-5 w-5" /> Send Message
+            <Send className="h-4 w-4" /> Send Message
           </>
         )}
       </Button>
@@ -131,81 +162,61 @@ function ContactForm() {
 }
 
 export function Contact() {
-  const { email, linkedin, phone } = portfolioData.contact;
-
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent relative overflow-hidden">
+    <section id="contact" className="section bg-transparent relative overflow-hidden">
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[300px] sm:h-[400px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-[80px] sm:blur-[100px] opacity-50 pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] sm:w-[700px] h-[300px] bg-gradient-to-b from-primary/[0.04] to-transparent rounded-full blur-[100px] pointer-events-none"
         aria-hidden="true"
       />
 
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-4xl relative z-10">
+      <div className={`${sectionContainer} max-w-4xl relative z-10`}>
+        <SectionHeading
+          title="Let's Connect"
+          eyebrow="Get in touch"
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ ...springTransition }}
-          className="glass p-5 sm:p-8 md:p-12 lg:p-16 rounded-2xl sm:rounded-3xl border border-border/50 shadow-2xl relative overflow-hidden"
+          className="mt-6 sm:mt-8"
         >
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-30 pointer-events-none"
-            aria-hidden="true"
-          />
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
+            <div className="space-y-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+                Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
+              </p>
 
-          <div className="relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
-              <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400">
-                Available for opportunities
-              </span>
+              <div className="space-y-3">
+                {contactLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group"
+                  >
+                    <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors text-muted-foreground group-hover:text-primary">
+                      {link.icon}
+                    </div>
+                    <div>
+                      <span className="text-xs text-muted-foreground font-medium block">{link.label}</span>
+                      <span className="text-sm text-foreground font-medium">{link.display}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <div className="pt-4 flex flex-col sm:flex-row justify-center sm:justify-start gap-3">
+                <CopyButton text={portfolioData.contact.email} label="Copy email" />
+                <CopyButton text={portfolioData.contact.phone} label="Copy phone" />
+              </div>
             </div>
 
-            <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-primary/10 rounded-full mb-4 sm:mb-6 text-primary">
-              <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8" />
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 sm:mb-3 md:mb-4 text-foreground tracking-tight">
-              Let&apos;s build something{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                impactful
-              </span>
-              .
-            </h2>
-
-            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-              Whether you have a question, a project idea, or just want to say hi, I&apos;ll try my best to get back to you!
-            </p>
-
-            <div className="max-w-lg mx-auto mb-6 sm:mb-10 px-2 sm:px-0">
+            <div className="glass p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
+              <h3 className="text-lg font-bold text-foreground mb-4">Send a message</h3>
               <ContactForm />
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-6 sm:mb-10">
-              <Button
-                size="lg"
-                className={`w-full sm:w-auto h-11 sm:h-14 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-8 gap-2 sm:gap-3 ${buttonGradientClasses} rounded-full`}
-                asChild
-              >
-                <a href={`mailto:${email}`}>
-                  <Mail className="h-4 w-4 sm:h-5 sm:w-5" /> Say Hello
-                </a>
-              </Button>
-              <Button
-                size="lg"
-                className={`w-full sm:w-auto h-11 sm:h-14 text-sm sm:text-base lg:text-lg px-5 sm:px-6 lg:px-8 gap-2 sm:gap-3 ${buttonGradientClasses} rounded-full`}
-                asChild
-              >
-                <a href={linkedin} target="_blank" rel="noopener noreferrer">
-                  <User className="h-5 w-5" /> Connect on LinkedIn
-                </a>
-              </Button>
-            </div>
-
-            <div className="pt-6 sm:pt-8 border-t border-border/50 flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium">
-              <CopyButton text={email} label="email address" />
-              <span className="hidden md:inline text-border/50" aria-hidden="true">|</span>
-              <CopyButton text={phone} label="phone number" />
             </div>
           </div>
         </motion.div>

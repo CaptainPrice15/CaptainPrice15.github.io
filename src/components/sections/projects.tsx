@@ -3,23 +3,28 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { ExternalLink, Code, FolderGit2 } from "lucide-react";
+import { ExternalLink, Code, FolderGit2, TrendingUp } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { fadeUp, scaleIn } from "@/lib/motion-variants";
+import { sectionContainer } from "@/lib/utils";
 import type { Project } from "@/lib/types";
 
-function ProjectCard({ project }: { project: Project }) {
-  const cardRef = React.useRef<HTMLDivElement>(null);
+const projectGradients: Record<string, string> = {
+  Monitoring: "from-blue-500/20 via-cyan-500/10 to-indigo-500/20",
+  Automation: "from-amber-500/20 via-orange-500/10 to-yellow-500/20",
+  Backend: "from-emerald-500/20 via-green-500/10 to-teal-500/20",
+};
 
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: React.MouseEvent<HTMLDivElement>) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    currentTarget.style.setProperty("--mouse-x", `${clientX - left}px`);
-    currentTarget.style.setProperty("--mouse-y", `${clientY - top}px`);
-  }
+const projectAccentColors: Record<string, string> = {
+  Monitoring: "text-blue-500",
+  Automation: "text-amber-500",
+  Backend: "text-emerald-500",
+};
+
+function ProjectCard({ project }: { project: Project }) {
+  const gradient = projectGradients[project.type] || "from-primary/20 via-accent/10 to-primary/20";
+  const accentColor = projectAccentColors[project.type] || "text-primary";
+  const metricHighlight = project.highlights?.[0];
 
   return (
     <motion.div
@@ -28,73 +33,78 @@ function ProjectCard({ project }: { project: Project }) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      onMouseMove={handleMouseMove}
-      ref={cardRef}
       className="glass glass-hover rounded-2xl overflow-hidden flex flex-col h-full group relative"
     >
       <div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-        style={
-          {
-            background:
-              "radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.1), transparent 80%)",
-          } as React.CSSProperties
-        }
-      />
-      <div className="p-5 sm:p-6 md:p-8 flex-grow flex flex-col relative z-10">
-        <div className="flex justify-between items-start mb-6">
-          <div className="p-3 bg-primary/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
-            <FolderGit2 className="h-8 w-8 text-primary" />
-          </div>
-          <div className="flex gap-2">
-            {project.github !== "#" && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1"
-                aria-label="View source code on GitHub"
-              >
-                <Code className="h-5 w-5" />
-              </a>
-            )}
-            {project.live !== "#" && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1"
-                aria-label="View live demo"
-              >
-                <ExternalLink className="h-5 w-5" />
-              </a>
-            )}
-          </div>
+        className={`relative h-40 sm:h-48 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
+      >
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0ibm9uZSI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxLjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMCkiPjwvY2lyY2xlPgo8L3N2Zz4=')] opacity-40" aria-hidden="true" />
+        <div className="p-4 bg-background/20 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg group-hover:scale-110 transition-transform duration-500">
+          <FolderGit2 className={`h-10 w-10 ${accentColor}`} />
         </div>
-        <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent transition-all">
+
+        {metricHighlight && (
+          <div className="absolute top-3 right-3 bg-background/80 backdrop-blur-md rounded-full px-3 py-1.5 text-xs font-bold border border-border/40 flex items-center gap-1.5 shadow-sm">
+            <TrendingUp className="h-3.5 w-3.5 text-success" />
+            <span className={accentColor}>
+              {metricHighlight.replace(/^Reduced |^Cut |^Handled /, "").split(" ").slice(0, 3).join(" ")}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="p-5 sm:p-6 flex-grow flex flex-col relative z-10">
+        <div className="flex justify-end items-start -mt-10 mb-3 gap-2 relative z-20">
+          {project.github !== "#" && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
+              aria-label="View source code on GitHub"
+            >
+              <Code className="h-4 w-4" />
+            </a>
+          )}
+          {project.live !== "#" && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
+              aria-label="View live demo"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+        </div>
+
+        <h3 className="text-lg sm:text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
           {project.title}
         </h3>
         <p className="text-muted-foreground text-sm mb-4 flex-grow leading-relaxed">
           {project.description}
         </p>
+
         {project.highlights && project.highlights.length > 0 && (
-          <ul className="space-y-1 mb-4">
+          <ul className="space-y-1.5 mb-4">
             {project.highlights.map((h, i) => (
               <li
                 key={i}
                 className="text-xs text-muted-foreground flex items-start gap-2"
               >
-                <span className="mt-1.5 h-1 w-1 rounded-full bg-primary flex-shrink-0" />
+                <span className={`mt-1.5 h-1.5 w-1.5 rounded-full flex-shrink-0 ${projectAccentColors[project.type]?.replace('text-', 'bg-') || 'bg-primary'}`} />
                 {h}
               </li>
             ))}
           </ul>
         )}
-        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
+
+        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/40">
           {project.tech.map((tech: string, idx: number) => (
             <span
               key={idx}
-              className="text-xs font-medium text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/20"
+              className="text-xs font-medium text-accent bg-accent/8 px-2.5 py-1 rounded-full border border-accent/15"
             >
               {tech}
             </span>
@@ -115,9 +125,9 @@ export function Projects() {
     filter === "All" ? projects : projects.filter((p) => p.type === filter);
 
   return (
-    <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-transparent relative">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto relative z-10">
-        <SectionHeading title="Featured Projects" className="mb-0" />
+    <section id="projects" className="section bg-transparent relative">
+      <div className={sectionContainer}>
+        <SectionHeading title="Featured Projects" eyebrow="My work" />
 
         <motion.div
           initial="hidden"
@@ -136,10 +146,10 @@ export function Projects() {
                 onClick={() => setFilter(category)}
                 role="tab"
                 aria-selected={filter === category}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   filter === category
-                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
-                    : "bg-background/50 border border-border/50 text-muted-foreground hover:bg-muted hover:text-foreground backdrop-blur-sm"
+                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                    : "bg-muted/50 border border-border/40 text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 {category}
@@ -148,7 +158,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />

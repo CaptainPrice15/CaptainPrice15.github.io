@@ -1,70 +1,54 @@
-"use client";
-
-import { ArrowUp, GitFork, ExternalLink, Mail } from "lucide-react";
+import { ExternalLink, Link, Mail, Code } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {
   const { email, linkedin, github } = portfolioData.contact;
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-6 sm:py-10 md:py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
-          <div className="text-center md:text-left">
-            <span className="text-lg sm:text-xl font-bold tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                Gourab
-              </span>
+    <footer className="relative border-t border-border/30 bg-background/40 backdrop-blur-sm">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-8 sm:py-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+          <div className="text-center sm:text-left">
+            <span className="text-base sm:text-lg font-bold tracking-tight">
+              <span className="gradient-text">Gourab</span>
               <span className="text-primary">.</span>
             </span>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
               Building reliable systems & modern experiences
             </p>
           </div>
 
-          <div className="flex justify-center md:justify-end items-center gap-2 sm:gap-4">
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all hover:-translate-y-1"
-              aria-label="LinkedIn Profile"
-            >
-              <ExternalLink className="h-5 w-5" />
-            </a>
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all hover:-translate-y-1"
+              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               aria-label="GitHub Profile"
             >
-              <GitFork className="h-5 w-5" />
+              <Code className="h-4 w-4" />
+            </a>
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              aria-label="LinkedIn Profile"
+            >
+              <ExternalLink className="h-4 w-4" />
             </a>
             <a
               href={`mailto:${email}`}
-              className="p-2.5 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all hover:-translate-y-1"
+              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               aria-label="Send Email"
             >
-              <Mail className="h-5 w-5" />
+              <Mail className="h-4 w-4" />
             </a>
           </div>
         </div>
 
-        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Gourab Das. All rights reserved.</p>
-          <button
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors group"
-            aria-label="Scroll back to top"
-          >
-            Back to top
-            <ArrowUp className="h-4 w-4 group-hover:-translate-y-1 transition-transform" />
-          </button>
+        <div className="mt-6 pt-5 border-t border-border/20 text-center text-xs text-muted-foreground">
+          &copy; {new Date().getFullYear()} Gourab Das. All rights reserved.
         </div>
       </div>
     </footer>
