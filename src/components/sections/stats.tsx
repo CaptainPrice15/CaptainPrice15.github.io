@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { Code2, Award, Briefcase, HeartHandshake } from "lucide-react";
+import { Card3D } from "@/components/card-3d";
 
 const stats = [
   { icon: <Briefcase className="h-6 w-6" />, value: 4.5, suffix: "+", label: "Years Experience" },
@@ -74,21 +75,22 @@ export function Stats() {
           className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 max-w-4xl mx-auto"
         >
           {stats.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              variants={fadeUp}
-              className="glass glass-hover rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
-            >
-              <div className="flex justify-center mb-2 sm:mb-3 text-primary group-hover:scale-110 transition-transform duration-300">
-                <div className="p-1.5 sm:p-2.5 bg-primary/10 rounded-lg sm:rounded-xl">
-                  {stat.icon}
+            <Card3D key={idx} maxRotation={8} shineIntensity={0.1} glare={true}>
+              <motion.div
+                variants={fadeUp}
+                className="glass glass-hover rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-8 text-center relative overflow-hidden group hover:border-primary/20 transition-colors"
+              >
+                <div className="flex justify-center mb-2 sm:mb-3 text-primary group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-1.5 sm:p-2.5 bg-primary/10 rounded-lg sm:rounded-xl depth-layer-1">
+                    {stat.icon}
+                  </div>
                 </div>
-              </div>
-              <CountUpNumber value={stat.value} suffix={stat.suffix} />
-              <div className="text-sm text-muted-foreground font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
+                <CountUpNumber value={stat.value} suffix={stat.suffix} />
+                <div className="text-sm text-muted-foreground font-medium depth-layer-1">
+                  {stat.label}
+                </div>
+              </motion.div>
+            </Card3D>
           ))}
         </motion.div>
       </div>

@@ -1,0 +1,3061 @@
+{
+  "nodes": [
+    {
+      "id": "eslint_config_mjs",
+      "label": "eslint.config.mjs",
+      "file_type": "code",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_env_d_ts",
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config_config",
+      "label": "Next.js Project Configuration",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "postcss_config_mjs",
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_layout_tsx",
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "layout_rootlayout",
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L80",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "src_app_manifest_ts",
+      "label": "manifest.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "manifest_manifest",
+      "label": "manifest()",
+      "file_type": "code",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_app_not_found_tsx",
+      "label": "not-found.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "not_found_notfound",
+      "label": "NotFound()",
+      "file_type": "code",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "src_app_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "page_home",
+      "label": "Home()",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L62"
+    },
+    {
+      "id": "src_app_robots_ts",
+      "label": "robots.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "robots_robots",
+      "label": "robots()",
+      "file_type": "code",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_app_sitemap_ts",
+      "label": "sitemap.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sitemap_sitemap",
+      "label": "sitemap()",
+      "file_type": "code",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_components_back_to_top_tsx",
+      "label": "back-to-top.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "back_to_top_backtotop",
+      "label": "BackToTop()",
+      "file_type": "code",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_components_scroll_progress_tsx",
+      "label": "scroll-progress.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "scroll_progress_scrollprogress",
+      "label": "ScrollProgress()",
+      "file_type": "code",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_components_theme_provider_tsx",
+      "label": "theme-provider.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "theme_provider_themeprovider",
+      "label": "ThemeProvider()",
+      "file_type": "code",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_components_sections_stats_tsx",
+      "label": "stats.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "stats_countupnumber",
+      "label": "CountUpNumber()",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_components_ui_button_tsx",
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\ui\\button.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_data_portfolio_ts",
+      "label": "portfolio.ts",
+      "file_type": "code",
+      "source_file": "src\\data\\portfolio.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_motion_variants_ts",
+      "label": "motion-variants.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\motion-variants.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_site_config_ts",
+      "label": "site-config.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\site-config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_types_ts",
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\types.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_use_reduced_motion_ts",
+      "label": "use-reduced-motion.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "use_reduced_motion_subscribe",
+      "label": "subscribe()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "use_reduced_motion_getsnapshot",
+      "label": "getSnapshot()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "use_reduced_motion_getserversnapshot",
+      "label": "getServerSnapshot()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "use_reduced_motion_usereducedmotion",
+      "label": "useReducedMotion()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L19"
+    },
+    {
+      "id": "agents_nextjs_agent_rules",
+      "label": "Next.js Agent Rules",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "1-5",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "agents_nextjs_breaking_changes_rationale",
+      "label": "Rationale: Next.js Breaking Changes",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "4",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "claude_agents_reference",
+      "label": "CLAUDE.md Agent Rules Reference",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_personal_portfolio",
+      "label": "Personal Portfolio Project Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "1-51",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_tools_app_update",
+      "label": "Tools App Hero Link Update",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "7",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_focus_areas_update",
+      "label": "Focus Areas: Leadership & Agentic AI",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "8",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_tech_stack",
+      "label": "Portfolio Tech Stack",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "40-47",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_experience_timeline",
+      "label": "Career Experience Timeline Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "17",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_gourab_das",
+      "label": "Gourab Das Portfolio Owner",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "50",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_gourab_das",
+      "label": "Gourab Das Profile",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_cognizant_experience",
+      "label": "Cognizant Technology Solutions Work Experience",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_team_lead_role",
+      "label": "Enterprise Support Engineer (Team Lead)",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_education",
+      "label": "B.Tech CSE Education",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_software_tools",
+      "label": "Software, Tools & Domain Expertise",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_automations_scripts",
+      "label": "Key Automations & Scripts",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "resume_resume_document",
+      "label": "Resume Document",
+      "file_type": "paper",
+      "source_file": "public/resume.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_document_icon",
+      "label": "Document Icon",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_vector_paths",
+      "label": "SVG Vector Paths",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_folded_corner",
+      "label": "Folded Corner Detail",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_text_lines",
+      "label": "Text Lines Detail",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_viewbox_attribute",
+      "label": "viewBox Attribute",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "file_fill_attribute",
+      "label": "fill Attribute",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "globe_globe_icon",
+      "label": "Globe Icon",
+      "file_type": "image",
+      "source_file": "public/globe.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "globe_globe",
+      "label": "Globe Icon SVG",
+      "file_type": "image",
+      "source_file": "public/globe.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "next_logo",
+      "label": "Next.js Logo",
+      "file_type": "image",
+      "source_file": "public/next.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Vercel",
+      "contributor": null
+    },
+    {
+      "id": "profile_image",
+      "label": "Gourab Das Profile Picture",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Gourab Das",
+      "contributor": null
+    },
+    {
+      "id": "profile_gourab_das",
+      "label": "Gourab Das",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "profile_attire",
+      "label": "Formal Casual Attire (Dark Blazer & White Turtleneck)",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "profile_accessories",
+      "label": "Accessories (Smartwatch & Bracelet)",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "profile_background",
+      "label": "Fairy Lights Pathway Background",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "vercel_logo",
+      "label": "Vercel Logo",
+      "file_type": "image",
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Vercel",
+      "contributor": null
+    },
+    {
+      "id": "window_window_icon",
+      "label": "Window Icon",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "window_svg_file",
+      "label": "window.svg",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "window_mockup",
+      "label": "Window Mockup",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "window_frame",
+      "label": "Window Frame",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "window_controls",
+      "label": "Window Control Buttons",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "footer_footer",
+      "label": "Footer",
+      "type": "component",
+      "file": "src/components/footer.tsx",
+      "description": "Footer component showing brand, social links, and copyright"
+    },
+    {
+      "id": "navbar_navbar",
+      "label": "Navbar",
+      "type": "component",
+      "file": "src/components/navbar.tsx",
+      "description": "Responsive navbar with scroll detection, theme toggle, mobile menu, and active section tracking"
+    },
+    {
+      "id": "section_heading_sectionheading",
+      "label": "SectionHeading",
+      "type": "component",
+      "file": "src/components/section-heading.tsx",
+      "description": "Reusable section heading with title, eyebrow, subtitle, and gradient underline"
+    },
+    {
+      "id": "about_about",
+      "label": "About",
+      "type": "component",
+      "file": "src/components/sections/about.tsx",
+      "description": "About section with journey text, career stats, and key focus areas"
+    },
+    {
+      "id": "contact_contact",
+      "label": "Contact",
+      "type": "component",
+      "file": "src/components/sections/contact.tsx",
+      "description": "Contact section with contact links, copy buttons, and message form"
+    },
+    {
+      "id": "contact_contactform",
+      "label": "ContactForm",
+      "type": "component",
+      "file": "src/components/sections/contact.tsx",
+      "description": "Inline contact form with name, email, message fields; opens mailto link"
+    },
+    {
+      "id": "contact_copybutton",
+      "label": "CopyButton",
+      "type": "component",
+      "file": "src/components/sections/contact.tsx",
+      "description": "Button that copies text to clipboard with fallback"
+    },
+    {
+      "id": "experience_experience",
+      "label": "Experience",
+      "type": "component",
+      "file": "src/components/sections/experience.tsx",
+      "description": "Timeline section displaying work experience entries"
+    },
+    {
+      "id": "portfolio_portfoliodata",
+      "label": "portfolioData",
+      "type": "data",
+      "file": "src/data/portfolio.ts",
+      "description": "Central data module providing about, contact, and experience content"
+    },
+    {
+      "id": "ui_button",
+      "label": "Button",
+      "type": "component",
+      "file": "src/components/ui/button.tsx",
+      "description": "Shared UI Button component from shadcn/ui"
+    },
+    {
+      "id": "utils_cn",
+      "label": "cn",
+      "type": "utility",
+      "file": "src/lib/utils.ts",
+      "description": "Tailwind class merging utility"
+    },
+    {
+      "id": "utils_glassclasses",
+      "label": "glassClasses",
+      "type": "utility",
+      "file": "src/lib/utils.ts",
+      "description": "Glassmorphism CSS class string"
+    },
+    {
+      "id": "utils_sectioncontainer",
+      "label": "sectionContainer",
+      "type": "utility",
+      "file": "src/lib/utils.ts",
+      "description": "Section container width/padding class string"
+    },
+    {
+      "id": "utils_buttongradient",
+      "label": "buttonGradientClasses",
+      "type": "utility",
+      "file": "src/lib/utils.ts",
+      "description": "Gradient button style class string"
+    },
+    {
+      "id": "utils_cardhoveroverlay",
+      "label": "cardHoverOverlay",
+      "type": "utility",
+      "file": "src/lib/utils.ts",
+      "description": "Card hover overlay class string"
+    },
+    {
+      "id": "motion_variants",
+      "label": "motion-variants",
+      "type": "utility",
+      "file": "src/lib/motion-variants.ts",
+      "description": "Shared framer-motion animation variant objects"
+    },
+    {
+      "id": "pattern_glasscard",
+      "label": "GlassCard pattern",
+      "type": "pattern",
+      "file": "src/components/",
+      "description": "Reused glassmorphism card aesthetic with backdrop blur, border, and muted background"
+    },
+    {
+      "id": "pattern_gradienttext",
+      "label": "GradientText pattern",
+      "type": "pattern",
+      "file": "src/components/",
+      "description": "Gradient text styling used on brand name across components"
+    },
+    {
+      "id": "pattern_scrollanimation",
+      "label": "ScrollAnimation pattern",
+      "type": "pattern",
+      "file": "src/components/",
+      "description": "Motion divs with whileInView for scroll-triggered entrance animations"
+    },
+    {
+      "id": "pattern_sectionheading",
+      "label": "SectionHeading pattern",
+      "type": "pattern",
+      "file": "src/components/",
+      "description": "All sections use SectionHeading component with title and eyebrow"
+    },
+    {
+      "id": "hero_tsx",
+      "label": "hero.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/hero.tsx"
+    },
+    {
+      "id": "projects_tsx",
+      "label": "projects.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/projects.tsx"
+    },
+    {
+      "id": "skills_tsx",
+      "label": "skills.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/skills.tsx"
+    },
+    {
+      "id": "utils_ts",
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "hero_component",
+      "label": "Hero",
+      "file_type": "component",
+      "source_file": "src/components/sections/hero.tsx"
+    },
+    {
+      "id": "typewriter_component",
+      "label": "Typewriter",
+      "file_type": "component",
+      "source_file": "src/components/sections/hero.tsx"
+    },
+    {
+      "id": "projects_component",
+      "label": "Projects",
+      "file_type": "component",
+      "source_file": "src/components/sections/projects.tsx"
+    },
+    {
+      "id": "project_card_component",
+      "label": "ProjectCard",
+      "file_type": "component",
+      "source_file": "src/components/sections/projects.tsx"
+    },
+    {
+      "id": "skills_component",
+      "label": "Skills",
+      "file_type": "component",
+      "source_file": "src/components/sections/skills.tsx"
+    },
+    {
+      "id": "skill_card_component",
+      "label": "SkillCard",
+      "file_type": "component",
+      "source_file": "src/components/sections/skills.tsx"
+    },
+    {
+      "id": "cn_utility",
+      "label": "cn()",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "button_gradient_classes_util",
+      "label": "buttonGradientClasses",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "glass_classes_util",
+      "label": "glassClasses",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "card_hover_overlay_util",
+      "label": "cardHoverOverlay",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "section_container_util",
+      "label": "sectionContainer",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "motion_variants_module",
+      "label": "motion-variants.ts",
+      "file_type": "code",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "stagger_container_variant",
+      "label": "staggerContainer",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "hero_item_variant",
+      "label": "heroItem",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "hero_badge_variant",
+      "label": "heroBadge",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "fade_up_variant",
+      "label": "fadeUp",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "scale_in_variant",
+      "label": "scaleIn",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "stagger_fast_variant",
+      "label": "staggerFast",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "section_heading_component",
+      "label": "SectionHeading",
+      "file_type": "component",
+      "source_file": "src/components/section-heading.tsx"
+    },
+    {
+      "id": "button_component",
+      "label": "Button",
+      "file_type": "component",
+      "source_file": "src/components/ui/button.tsx"
+    },
+    {
+      "id": "portfolio_data_module",
+      "label": "portfolio.ts",
+      "file_type": "code",
+      "source_file": "src/data/portfolio.ts"
+    },
+    {
+      "id": "site_config_module",
+      "label": "site-config.ts",
+      "file_type": "code",
+      "source_file": "src/lib/site-config.ts"
+    },
+    {
+      "id": "types_module",
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src/lib/types.ts"
+    },
+    {
+      "id": "section_layout_pattern",
+      "label": "Section Layout Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "glass_card_pattern",
+      "label": "Glass Card Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "glass_panel_pattern",
+      "label": "Glass Panel Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "button_gradient_pattern",
+      "label": "Button Gradient Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "staggered_animation_pattern",
+      "label": "Staggered Animation Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "filter_tab_pattern",
+      "label": "Filter Tab Navigation Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "animated_presence_pattern",
+      "label": "AnimatePresence Layout Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "typewriter_pattern",
+      "label": "Typewriter Effect Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "decorative_blur_pattern",
+      "label": "Decorative Blur Background Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "client_component_pattern",
+      "label": "use client Directive Pattern",
+      "file_type": "pattern",
+      "source_file": null
+    },
+    {
+      "id": "category_meta_config",
+      "label": "categoryMeta Config Map",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/skills.tsx"
+    },
+    {
+      "id": "project_gradients_config",
+      "label": "projectGradients Config Map",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/projects.tsx"
+    },
+    {
+      "id": "rotating_phrases_config",
+      "label": "rotatingPhrases Array",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/hero.tsx"
+    },
+    {
+      "id": "god_node_gourab_das_profile",
+      "label": "Gourab Das Profile (6 edges)",
+      "file_type": "graph_god_node",
+      "source_file": null
+    },
+    {
+      "id": "community_hero_section",
+      "label": "Community: Hero Section Component",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_projects_section",
+      "label": "Community: Projects Section Component",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_skills_section",
+      "label": "Community: Skills Section Component",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_core_tailwind_utils",
+      "label": "Community: Core Tailwind Utilities",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_framer_motion_transitions",
+      "label": "Community: Framer Motion Transitions",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_section_heading",
+      "label": "Community: Section Heading Subcomponent",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_static_portfolio_data",
+      "label": "Community: Static Portfolio Data",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_typescript_types",
+      "label": "Community: TypeScript Types definitions",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_ui_button",
+      "label": "Community: UI Button Component",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_site_metadata",
+      "label": "Community: Site Metadata Configurations",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "community_developer_profile_visuals",
+      "label": "Community: Developer Profile Visuals",
+      "file_type": "graph_community",
+      "source_file": null
+    },
+    {
+      "id": "knowledge_gap_isolated_node",
+      "label": "Knowledge Gap: 18 isolated nodes",
+      "file_type": "graph_insight",
+      "source_file": null
+    },
+    {
+      "id": "hyperedge_gourab_das_career",
+      "label": "Hyperedges: Career Profile (6 nodes, 0.95)",
+      "file_type": "graph_hyperedge",
+      "source_file": null
+    },
+    {
+      "id": "hyperedge_nextjs_env_rules",
+      "label": "Hyperedges: Next.js Env Config (4 nodes, 0.90)",
+      "file_type": "graph_hyperedge",
+      "source_file": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "eslint_config_mjs",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "eslint_config_mjs",
+      "target": "core_web_vitals",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "eslint_config_mjs",
+      "target": "typescript",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "next_env_d_ts",
+      "target": "next_types_routes_d_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "next-env.d.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_manifest_ts",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_manifest_ts",
+      "target": "site_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_manifest_ts",
+      "target": "manifest_manifest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_not_found_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_not_found_tsx",
+      "target": "link",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_not_found_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_not_found_tsx",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_not_found_tsx",
+      "target": "not_found_notfound",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "dynamic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "navbar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "hero",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "stats",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "page_home",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_robots_ts",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_robots_ts",
+      "target": "site_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_robots_ts",
+      "target": "robots_robots",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_sitemap_ts",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_sitemap_ts",
+      "target": "site_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_sitemap_ts",
+      "target": "sitemap_sitemap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_back_to_top_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_back_to_top_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_back_to_top_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_back_to_top_tsx",
+      "target": "back_to_top_backtotop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_scroll_progress_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_scroll_progress_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_scroll_progress_tsx",
+      "target": "scroll_progress_scrollprogress",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_theme_provider_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_theme_provider_tsx",
+      "target": "next_themes",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_theme_provider_tsx",
+      "target": "theme_provider_themeprovider",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_stats_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_stats_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_stats_tsx",
+      "target": "motion_variants",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_stats_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_sections_stats_tsx",
+      "target": "stats_countupnumber",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_button_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\button.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_button_tsx",
+      "target": "react_slot",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\button.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_button_tsx",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\ui\\button.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_data_portfolio_ts",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\data\\portfolio.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_motion_variants_ts",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\motion-variants.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_types_ts",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\types.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_subscribe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_getsnapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_getserversnapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_usereducedmotion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_nextjs_breaking_changes_rationale",
+      "target": "agents_nextjs_agent_rules",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "4",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_nextjs_agent_rules",
+      "target": "readme_tech_stack",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "claude_agents_reference",
+      "target": "agents_nextjs_agent_rules",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "1",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_tools_app_update",
+      "target": "readme_personal_portfolio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "7",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_focus_areas_update",
+      "target": "readme_personal_portfolio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "8",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_tech_stack",
+      "target": "readme_personal_portfolio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "40-47",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_experience_timeline",
+      "target": "readme_personal_portfolio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "17",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_gourab_das",
+      "target": "readme_personal_portfolio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "50",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_gourab_das",
+      "target": "resume_gourab_das",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_focus_areas_update",
+      "target": "resume_automations_scripts",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_focus_areas_update",
+      "target": "resume_team_lead_role",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.88,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_experience_timeline",
+      "target": "resume_team_lead_role",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.92,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme_tools_app_update",
+      "target": "resume_automations_scripts",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 0.5
+    },
+    {
+      "source": "resume_team_lead_role",
+      "target": "resume_cognizant_experience",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "resume_cognizant_experience",
+      "target": "resume_gourab_das",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "resume_education",
+      "target": "resume_gourab_das",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "resume_software_tools",
+      "target": "resume_gourab_das",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "resume_automations_scripts",
+      "target": "resume_gourab_das",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "file_vector_paths",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "file_folded_corner",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "file_text_lines",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_vector_paths",
+      "target": "file_viewbox_attribute",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_vector_paths",
+      "target": "file_fill_attribute",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "window_window_icon",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "globe_globe_icon",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "file_document_icon",
+      "target": "resume_resume_document",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "next_logo",
+      "target": "vercel_logo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/next.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "next_logo",
+      "target": "next_config_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/next.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_image",
+      "target": "profile_gourab_das",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_gourab_das",
+      "target": "profile_attire",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_gourab_das",
+      "target": "profile_accessories",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_image",
+      "target": "profile_background",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_gourab_das",
+      "target": "readme_gourab_das",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "profile_gourab_das",
+      "target": "resume_gourab_das",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "vercel_logo",
+      "target": "next_logo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "vercel_logo",
+      "target": "src_app_layout_tsx",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "vercel_logo",
+      "target": "layout_rootlayout",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "window_svg_file",
+      "target": "window_mockup",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "window_mockup",
+      "target": "window_frame",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "window_mockup",
+      "target": "window_controls",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "window_svg_file",
+      "target": "globe_svg",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "window_svg_file",
+      "target": "file_svg",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "about_about",
+      "target": "section_heading_sectionheading",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About renders SectionHeading with title and eyebrow"
+    },
+    {
+      "source": "contact_contact",
+      "target": "section_heading_sectionheading",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact renders SectionHeading with title and eyebrow"
+    },
+    {
+      "source": "experience_experience",
+      "target": "section_heading_sectionheading",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Experience renders SectionHeading with title and eyebrow"
+    },
+    {
+      "source": "about_about",
+      "target": "utils_glassclasses",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About applies glassClasses to focus areas card"
+    },
+    {
+      "source": "about_about",
+      "target": "utils_sectioncontainer",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About uses sectionContainer for layout width"
+    },
+    {
+      "source": "about_about",
+      "target": "utils_cardhoveroverlay",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About renders cardHoverOverlay div in focus areas card"
+    },
+    {
+      "source": "about_about",
+      "target": "motion_variants",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About imports fadeUp, slideInLeft, slideInRight, staggerFast"
+    },
+    {
+      "source": "about_about",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "About reads portfolioData.about for story and highlights"
+    },
+    {
+      "source": "contact_contact",
+      "target": "utils_sectioncontainer",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact uses sectionContainer for layout width"
+    },
+    {
+      "source": "contact_contact",
+      "target": "utils_buttongradient",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact applies buttonGradientClasses to send button"
+    },
+    {
+      "source": "contact_contact",
+      "target": "motion_variants",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact imports springTransition for entrance animation"
+    },
+    {
+      "source": "contact_contact",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact reads portfolioData.contact for email"
+    },
+    {
+      "source": "contact_contact",
+      "target": "contact_contactform",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact renders ContactForm inside glass card"
+    },
+    {
+      "source": "contact_contact",
+      "target": "contact_copybutton",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Contact renders two CopyButton instances for email and phone"
+    },
+    {
+      "source": "contact_copybutton",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "CopyButton reads portfolioData.contact.email and .phone"
+    },
+    {
+      "source": "contact_contactform",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "ContactForm reads portfolioData.contact.email for mailto target"
+    },
+    {
+      "source": "contact_contactform",
+      "target": "ui_button",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "ContactForm renders Button as submit"
+    },
+    {
+      "source": "experience_experience",
+      "target": "utils_sectioncontainer",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Experience uses sectionContainer for layout width"
+    },
+    {
+      "source": "experience_experience",
+      "target": "motion_variants",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Experience imports springTransition for stagger animation"
+    },
+    {
+      "source": "experience_experience",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Experience reads portfolioData.experience array"
+    },
+    {
+      "source": "footer_footer",
+      "target": "portfolio_portfoliodata",
+      "type": "READS_DATA",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Footer reads portfolioData.contact for email, linkedin, github"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "ui_button",
+      "type": "RENDERS",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "Navbar renders Button for theme toggle and mobile menu"
+    },
+    {
+      "source": "section_heading_sectionheading",
+      "target": "utils_cn",
+      "type": "USES",
+      "relationship": "EXTRACTED",
+      "confidence_score": 1.0,
+      "description": "SectionHeading imports and uses cn from @/lib/utils"
+    },
+    {
+      "source": "about_about",
+      "target": "pattern_glasscard",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "About renders focus areas card using glassClasses utility"
+    },
+    {
+      "source": "contact_contact",
+      "target": "pattern_glasscard",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "Contact renders form card with glass class"
+    },
+    {
+      "source": "experience_experience",
+      "target": "pattern_glasscard",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "Each experience entry rendered in glass class card"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "pattern_glasscard",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.8,
+      "description": "Navbar uses bg-background/75 backdrop-blur-xl nav bar"
+    },
+    {
+      "source": "footer_footer",
+      "target": "pattern_glasscard",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.8,
+      "description": "Footer uses bg-background/40 backdrop-blur-sm wrapper"
+    },
+    {
+      "source": "about_about",
+      "target": "pattern_scrollanimation",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "Motion.divs with whileInView trigger slideIn/stagger on scroll"
+    },
+    {
+      "source": "contact_contact",
+      "target": "pattern_scrollanimation",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "Motion.div with whileInView triggers spring entrance on scroll"
+    },
+    {
+      "source": "experience_experience",
+      "target": "pattern_scrollanimation",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "Each entry has motion.div with whileInView and staggered delay"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "pattern_scrollanimation",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "Navbar motion.header animates on scroll via useMotionValueEvent"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "pattern_gradienttext",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "Navbar brand name uses gradient-text class"
+    },
+    {
+      "source": "footer_footer",
+      "target": "pattern_gradienttext",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.85,
+      "description": "Footer brand name uses gradient-text class"
+    },
+    {
+      "source": "about_about",
+      "target": "pattern_sectionheading",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "About uses SectionHeading following the eyebrow+title convention"
+    },
+    {
+      "source": "contact_contact",
+      "target": "pattern_sectionheading",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "Contact uses SectionHeading with eyebrow and title"
+    },
+    {
+      "source": "experience_experience",
+      "target": "pattern_sectionheading",
+      "type": "IMPLS",
+      "relationship": "INFERRED",
+      "confidence_score": 0.9,
+      "description": "Experience uses SectionHeading with eyebrow and title"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "about_about",
+      "type": "TRACKS_SECTION",
+      "relationship": "INFERRED",
+      "confidence_score": 0.7,
+      "description": "Navbar IntersectionObserver tracks #about for active link"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "experience_experience",
+      "type": "TRACKS_SECTION",
+      "relationship": "INFERRED",
+      "confidence_score": 0.7,
+      "description": "Navbar IntersectionObserver tracks #experience for active link"
+    },
+    {
+      "source": "navbar_navbar",
+      "target": "contact_contact",
+      "type": "TRACKS_SECTION",
+      "relationship": "INFERRED",
+      "confidence_score": 0.7,
+      "description": "Navbar IntersectionObserver tracks #contact for active link"
+    },
+    {
+      "source": "about_about",
+      "target": "contact_contact",
+      "type": "SHARES_DATA_MODULE",
+      "relationship": "INFERRED",
+      "confidence_score": 0.6,
+      "description": "Both read from portfolioData"
+    },
+    {
+      "source": "about_about",
+      "target": "experience_experience",
+      "type": "SHARES_DATA_MODULE",
+      "relationship": "INFERRED",
+      "confidence_score": 0.6,
+      "description": "Both read from portfolioData"
+    },
+    {
+      "source": "contact_contact",
+      "target": "experience_experience",
+      "type": "SHARES_DATA_MODULE",
+      "relationship": "INFERRED",
+      "confidence_score": 0.6,
+      "description": "Both read from portfolioData"
+    },
+    {
+      "source": "hero_tsx",
+      "target": "hero_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_tsx",
+      "target": "typewriter_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_tsx",
+      "target": "projects_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_tsx",
+      "target": "project_card_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_tsx",
+      "target": "skills_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_tsx",
+      "target": "skill_card_component",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "cn_utility",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "button_gradient_classes_util",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "glass_classes_util",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "card_hover_overlay_util",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "section_container_util",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "button_gradient_classes_util",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "stagger_container_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "hero_item_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "hero_badge_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "button_component",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "portfolio_data_module",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "site_config_module",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "rotating_phrases_config",
+      "relation": "reads",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "typewriter_component",
+      "target": "rotating_phrases_config",
+      "relation": "reads",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "section_container_util",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "fade_up_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "scale_in_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "section_heading_component",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "portfolio_data_module",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "types_module",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "scale_in_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "project_gradients_config",
+      "relation": "reads",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_component",
+      "target": "section_container_util",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_component",
+      "target": "fade_up_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_component",
+      "target": "stagger_fast_variant",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_component",
+      "target": "section_heading_component",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_component",
+      "target": "portfolio_data_module",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skill_card_component",
+      "target": "category_meta_config",
+      "relation": "reads",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_component",
+      "target": "glass_panel_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "hero_component",
+      "target": "button_gradient_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "hero_component",
+      "target": "staggered_animation_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "hero_component",
+      "target": "section_layout_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "hero_component",
+      "target": "decorative_blur_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "hero_component",
+      "target": "typewriter_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "hero_component",
+      "target": "client_component_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "typewriter_component",
+      "target": "typewriter_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "section_layout_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "projects_component",
+      "target": "filter_tab_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "projects_component",
+      "target": "animated_presence_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "projects_component",
+      "target": "client_component_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "project_card_component",
+      "target": "glass_card_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "skills_component",
+      "target": "section_layout_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "skills_component",
+      "target": "client_component_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skill_card_component",
+      "target": "glass_card_pattern",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "section_container_util",
+      "target": "section_layout_pattern",
+      "relation": "supports",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "section_heading_component",
+      "target": "section_layout_pattern",
+      "relation": "supports",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "staggered_animation_pattern",
+      "target": "motion_variants_module",
+      "relation": "depends_on",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "fade_up_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scale_in_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "stagger_container_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "stagger_fast_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_item_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "hero_badge_variant",
+      "target": "motion_variants_module",
+      "relation": "belongs_to",
+      "confidence": "INFERRED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_component",
+      "target": "section_container_util",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "skills_component",
+      "target": "section_container_util",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "projects_component",
+      "target": "fade_up_variant",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "skills_component",
+      "target": "fade_up_variant",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "projects_component",
+      "target": "section_heading_component",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "skills_component",
+      "target": "section_heading_component",
+      "relation": "shares_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "hero_tsx",
+      "target": "community_hero_section",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "projects_tsx",
+      "target": "community_projects_section",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "skills_tsx",
+      "target": "community_skills_section",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "utils_ts",
+      "target": "community_core_tailwind_utils",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "motion_variants_module",
+      "target": "community_framer_motion_transitions",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "section_heading_component",
+      "target": "community_section_heading",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "portfolio_data_module",
+      "target": "community_static_portfolio_data",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "types_module",
+      "target": "community_typescript_types",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "button_component",
+      "target": "community_ui_button",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "site_config_module",
+      "target": "community_site_metadata",
+      "relation": "belongs_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "portfolio_data_module",
+      "target": "god_node_gourab_das_profile",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "hero_component",
+      "target": "god_node_gourab_das_profile",
+      "relation": "displays",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7
+    },
+    {
+      "source": "knowledge_gap_isolated_node",
+      "target": "community_hero_section",
+      "relation": "impacts",
+      "confidence": "INFERRED",
+      "confidence_score": 0.5
+    },
+    {
+      "source": "knowledge_gap_isolated_node",
+      "target": "community_projects_section",
+      "relation": "impacts",
+      "confidence": "INFERRED",
+      "confidence_score": 0.5
+    },
+    {
+      "source": "knowledge_gap_isolated_node",
+      "target": "community_skills_section",
+      "relation": "impacts",
+      "confidence": "INFERRED",
+      "confidence_score": 0.5
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "nextjs_environment_rules",
+      "label": "Next.js Environment Configuration & Rules",
+      "nodes": [
+        "agents_nextjs_agent_rules",
+        "agents_nextjs_breaking_changes_rationale",
+        "claude_agents_reference",
+        "readme_tech_stack"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "gourab_das_career_profile",
+      "label": "Gourab Das Career Profile and Expertise",
+      "nodes": [
+        "readme_gourab_das",
+        "resume_gourab_das",
+        "resume_team_lead_role",
+        "resume_automations_scripts",
+        "readme_focus_areas_update",
+        "readme_experience_timeline"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md"
+    },
+    {
+      "id": "file_unified_icon_pack",
+      "label": "Unified Icon Pack",
+      "nodes": [
+        "file_document_icon",
+        "window_window_icon",
+        "globe_globe_icon"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/file.svg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Template Assets",
+      "nodes": [
+        "next_logo",
+        "vercel_logo"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/next.svg"
+    },
+    {
+      "id": "profile_branding",
+      "label": "Gourab Das Identity & Branding",
+      "nodes": [
+        "profile_image",
+        "profile_gourab_das",
+        "readme_gourab_das",
+        "resume_gourab_das"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Template Assets",
+      "nodes": [
+        "next_logo",
+        "vercel_logo"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/vercel.svg"
+    },
+    {
+      "id": "window_structure",
+      "label": "Window Visual Structure",
+      "nodes": [
+        "window_svg_file",
+        "window_mockup",
+        "window_frame",
+        "window_controls"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Assets",
+      "nodes": [
+        "window_svg_file",
+        "file_svg",
+        "globe_svg",
+        "vercel_svg",
+        "next_svg"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/window.svg"
+    },
+    {
+      "id": "section_composition_group",
+      "label": "Section Components Shared Architecture",
+      "nodes": [
+        "hero_component",
+        "projects_component",
+        "skills_component"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": null
+    },
+    {
+      "id": "shared_utility_dependency_group",
+      "label": "Shared Utility Dependencies (sectionContainer, SectionHeading, fadeUp)",
+      "nodes": [
+        "projects_component",
+        "skills_component",
+        "section_container_util",
+        "section_heading_component",
+        "fade_up_variant"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": null
+    },
+    {
+      "id": "motion_variant_catalog",
+      "label": "Motion Variant Catalog",
+      "nodes": [
+        "stagger_container_variant",
+        "hero_item_variant",
+        "hero_badge_variant",
+        "fade_up_variant",
+        "scale_in_variant",
+        "stagger_fast_variant",
+        "motion_variants_module"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "utility_string_constants",
+      "label": "Utility String Constants (buttonGradientClasses, glassClasses, sectionContainer)",
+      "nodes": [
+        "button_gradient_classes_util",
+        "glass_classes_util",
+        "card_hover_overlay_util",
+        "section_container_util",
+        "utils_ts"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/utils.ts"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

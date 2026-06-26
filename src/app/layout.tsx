@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
+import { AmbientBackground } from "@/components/ambient-background";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "@/lib/site-config";
 
@@ -91,16 +93,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-primary-foreground focus:shadow-lg"
-          >
-            Skip to main content
-          </a>
-          <ScrollProgress />
-          {children}
-          <BackToTop />
-          <Footer />
+          <AmbientBackground />
+          <SmoothScroll>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-primary focus:text-primary-foreground focus:shadow-lg"
+            >
+              Skip to main content
+            </a>
+            <ScrollProgress />
+            {children}
+            <BackToTop />
+            <Footer />
+          </SmoothScroll>
         </ThemeProvider>
         <Analytics />
       </body>

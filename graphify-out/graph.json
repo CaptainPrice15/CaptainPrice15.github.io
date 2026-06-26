@@ -1,0 +1,2071 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "motion_variant_catalog",
+        "label": "Motion Variant Catalog",
+        "nodes": [
+          "stagger_container_variant",
+          "hero_item_variant",
+          "hero_badge_variant",
+          "fade_up_variant",
+          "scale_in_variant",
+          "stagger_fast_variant",
+          "motion_variants_module"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "src/lib/motion-variants.ts"
+      },
+      {
+        "id": "utility_string_constants",
+        "label": "Utility String Constants (buttonGradientClasses, glassClasses, sectionContainer)",
+        "nodes": [
+          "button_gradient_classes_util",
+          "glass_classes_util",
+          "card_hover_overlay_util",
+          "section_container_util",
+          "utils_ts"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "src/lib/utils.ts"
+      },
+      {
+        "id": "nextjs_environment_rules",
+        "label": "Next.js Environment Configuration & Rules",
+        "nodes": [
+          "agents_nextjs_agent_rules",
+          "agents_nextjs_breaking_changes_rationale",
+          "claude_agents_reference",
+          "readme_tech_stack"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "AGENTS.md"
+      },
+      {
+        "id": "gourab_das_career_profile",
+        "label": "Gourab Das Career Profile and Expertise",
+        "nodes": [
+          "readme_gourab_das",
+          "resume_gourab_das",
+          "resume_team_lead_role",
+          "resume_automations_scripts",
+          "readme_focus_areas_update",
+          "readme_experience_timeline"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.95,
+        "source_file": "README.md"
+      },
+      {
+        "id": "file_unified_icon_pack",
+        "label": "Unified Icon Pack",
+        "nodes": [
+          "file_document_icon",
+          "window_window_icon",
+          "globe_globe_icon"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "public/file.svg"
+      },
+      {
+        "id": "nextjs_starter_assets",
+        "label": "Next.js Starter Template Assets",
+        "nodes": [
+          "next_logo",
+          "vercel_logo"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "public/next.svg"
+      },
+      {
+        "id": "profile_branding",
+        "label": "Gourab Das Identity & Branding",
+        "nodes": [
+          "profile_image",
+          "profile_gourab_das",
+          "readme_gourab_das",
+          "resume_gourab_das"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "public/profile.jpg"
+      },
+      {
+        "id": "nextjs_starter_assets",
+        "label": "Next.js Starter Template Assets",
+        "nodes": [
+          "next_logo",
+          "vercel_logo"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "public/vercel.svg"
+      },
+      {
+        "id": "window_structure",
+        "label": "Window Visual Structure",
+        "nodes": [
+          "window_svg_file",
+          "window_mockup",
+          "window_frame",
+          "window_controls"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "public/window.svg"
+      },
+      {
+        "id": "nextjs_starter_assets",
+        "label": "Next.js Starter Assets",
+        "nodes": [
+          "window_svg_file",
+          "file_svg",
+          "globe_svg",
+          "vercel_svg",
+          "next_svg"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "public/window.svg"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "eslint.config.mjs",
+      "file_type": "code",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1",
+      "id": "eslint_config_mjs",
+      "community": 20,
+      "norm_label": "eslint.config.mjs"
+    },
+    {
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1",
+      "id": "next_env_d_ts",
+      "community": 21,
+      "norm_label": "next-env.d.ts"
+    },
+    {
+      "label": "Next.js Project Configuration",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "next_config_config",
+      "community": 3,
+      "norm_label": "next.js project configuration"
+    },
+    {
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs",
+      "source_location": "L1",
+      "id": "postcss_config_mjs",
+      "community": 22,
+      "norm_label": "postcss.config.mjs"
+    },
+    {
+      "label": "_ast_extract.py",
+      "file_type": "code",
+      "source_file": "_ast_extract.py",
+      "source_location": "L1",
+      "id": "ast_extract_py",
+      "community": 23,
+      "norm_label": "_ast_extract.py"
+    },
+    {
+      "label": "_cache_check.py",
+      "file_type": "code",
+      "source_file": "_cache_check.py",
+      "source_location": "L1",
+      "id": "cache_check_py",
+      "community": 24,
+      "norm_label": "_cache_check.py"
+    },
+    {
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "src_app_layout_tsx",
+      "community": 3,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx",
+      "source_location": "L80",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "layout_rootlayout",
+      "community": 3,
+      "norm_label": "rootlayout()"
+    },
+    {
+      "label": "manifest.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L1",
+      "id": "src_app_manifest_ts",
+      "community": 6,
+      "norm_label": "manifest.ts"
+    },
+    {
+      "label": "manifest()",
+      "file_type": "code",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L6",
+      "id": "manifest_manifest",
+      "community": 6,
+      "norm_label": "manifest()"
+    },
+    {
+      "label": "not-found.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L1",
+      "id": "src_app_not_found_tsx",
+      "community": 7,
+      "norm_label": "not-found.tsx"
+    },
+    {
+      "label": "NotFound()",
+      "file_type": "code",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L8",
+      "id": "not_found_notfound",
+      "community": 7,
+      "norm_label": "notfound()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L1",
+      "id": "src_app_page_tsx",
+      "community": 8,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "Home()",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L62",
+      "id": "page_home",
+      "community": 8,
+      "norm_label": "home()"
+    },
+    {
+      "label": "robots.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L1",
+      "id": "src_app_robots_ts",
+      "community": 9,
+      "norm_label": "robots.ts"
+    },
+    {
+      "label": "robots()",
+      "file_type": "code",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L6",
+      "id": "robots_robots",
+      "community": 9,
+      "norm_label": "robots()"
+    },
+    {
+      "label": "sitemap.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L1",
+      "id": "src_app_sitemap_ts",
+      "community": 10,
+      "norm_label": "sitemap.ts"
+    },
+    {
+      "label": "sitemap()",
+      "file_type": "code",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L6",
+      "id": "sitemap_sitemap",
+      "community": 10,
+      "norm_label": "sitemap()"
+    },
+    {
+      "label": "back-to-top.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L1",
+      "id": "src_components_back_to_top_tsx",
+      "community": 11,
+      "norm_label": "back-to-top.tsx"
+    },
+    {
+      "label": "BackToTop()",
+      "file_type": "code",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L7",
+      "id": "back_to_top_backtotop",
+      "community": 11,
+      "norm_label": "backtotop()"
+    },
+    {
+      "label": "footer.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\footer.tsx",
+      "source_location": "L1",
+      "id": "src_components_footer_tsx",
+      "community": 12,
+      "norm_label": "footer.tsx"
+    },
+    {
+      "label": "Footer()",
+      "file_type": "code",
+      "source_file": "src\\components\\footer.tsx",
+      "source_location": "L4",
+      "id": "footer_footer",
+      "community": 12,
+      "norm_label": "footer()"
+    },
+    {
+      "label": "navbar.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\navbar.tsx",
+      "source_location": "L1",
+      "id": "src_components_navbar_tsx",
+      "community": 13,
+      "norm_label": "navbar.tsx"
+    },
+    {
+      "label": "Navbar()",
+      "file_type": "code",
+      "source_file": "src\\components\\navbar.tsx",
+      "source_location": "L10",
+      "id": "navbar_navbar",
+      "community": 13,
+      "norm_label": "navbar()"
+    },
+    {
+      "label": "scroll-progress.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L1",
+      "id": "src_components_scroll_progress_tsx",
+      "community": 14,
+      "norm_label": "scroll-progress.tsx"
+    },
+    {
+      "label": "ScrollProgress()",
+      "file_type": "code",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L6",
+      "id": "scroll_progress_scrollprogress",
+      "community": 14,
+      "norm_label": "scrollprogress()"
+    },
+    {
+      "label": "SectionHeading",
+      "file_type": "component",
+      "source_file": "src/components/section-heading.tsx",
+      "id": "section_heading_component",
+      "community": 25,
+      "norm_label": "sectionheading"
+    },
+    {
+      "label": "theme-provider.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L1",
+      "id": "src_components_theme_provider_tsx",
+      "community": 15,
+      "norm_label": "theme-provider.tsx"
+    },
+    {
+      "label": "ThemeProvider()",
+      "file_type": "code",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L6",
+      "id": "theme_provider_themeprovider",
+      "community": 15,
+      "norm_label": "themeprovider()"
+    },
+    {
+      "label": "about.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\about.tsx",
+      "source_location": "L1",
+      "id": "src_components_sections_about_tsx",
+      "community": 16,
+      "norm_label": "about.tsx"
+    },
+    {
+      "label": "getHighlightIcon()",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\about.tsx",
+      "source_location": "L17",
+      "id": "about_gethighlighticon",
+      "community": 16,
+      "norm_label": "gethighlighticon()"
+    },
+    {
+      "label": "contact.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\contact.tsx",
+      "source_location": "L1",
+      "id": "src_components_sections_contact_tsx",
+      "community": 17,
+      "norm_label": "contact.tsx"
+    },
+    {
+      "label": "handleCopy()",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\contact.tsx",
+      "source_location": "L15",
+      "id": "contact_handlecopy",
+      "community": 17,
+      "norm_label": "handlecopy()"
+    },
+    {
+      "label": "experience.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\experience.tsx",
+      "source_location": "L1",
+      "id": "src_components_sections_experience_tsx",
+      "community": 18,
+      "norm_label": "experience.tsx"
+    },
+    {
+      "label": "Experience()",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\experience.tsx",
+      "source_location": "L10",
+      "id": "experience_experience",
+      "community": 18,
+      "norm_label": "experience()"
+    },
+    {
+      "label": "hero.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/hero.tsx",
+      "id": "hero_tsx",
+      "community": 26,
+      "norm_label": "hero.tsx"
+    },
+    {
+      "label": "Hero",
+      "file_type": "component",
+      "source_file": "src/components/sections/hero.tsx",
+      "id": "hero_component",
+      "community": 27,
+      "norm_label": "hero"
+    },
+    {
+      "label": "Typewriter",
+      "file_type": "component",
+      "source_file": "src/components/sections/hero.tsx",
+      "id": "typewriter_component",
+      "community": 28,
+      "norm_label": "typewriter"
+    },
+    {
+      "label": "rotatingPhrases Array",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/hero.tsx",
+      "id": "rotating_phrases_config",
+      "community": 29,
+      "norm_label": "rotatingphrases array"
+    },
+    {
+      "label": "projects.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/projects.tsx",
+      "id": "projects_tsx",
+      "community": 30,
+      "norm_label": "projects.tsx"
+    },
+    {
+      "label": "Projects",
+      "file_type": "component",
+      "source_file": "src/components/sections/projects.tsx",
+      "id": "projects_component",
+      "community": 31,
+      "norm_label": "projects"
+    },
+    {
+      "label": "ProjectCard",
+      "file_type": "component",
+      "source_file": "src/components/sections/projects.tsx",
+      "id": "project_card_component",
+      "community": 32,
+      "norm_label": "projectcard"
+    },
+    {
+      "label": "projectGradients Config Map",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/projects.tsx",
+      "id": "project_gradients_config",
+      "community": 33,
+      "norm_label": "projectgradients config map"
+    },
+    {
+      "label": "skills.tsx",
+      "file_type": "code",
+      "source_file": "src/components/sections/skills.tsx",
+      "id": "skills_tsx",
+      "community": 34,
+      "norm_label": "skills.tsx"
+    },
+    {
+      "label": "Skills",
+      "file_type": "component",
+      "source_file": "src/components/sections/skills.tsx",
+      "id": "skills_component",
+      "community": 35,
+      "norm_label": "skills"
+    },
+    {
+      "label": "SkillCard",
+      "file_type": "component",
+      "source_file": "src/components/sections/skills.tsx",
+      "id": "skill_card_component",
+      "community": 36,
+      "norm_label": "skillcard"
+    },
+    {
+      "label": "categoryMeta Config Map",
+      "file_type": "configuration",
+      "source_file": "src/components/sections/skills.tsx",
+      "id": "category_meta_config",
+      "community": 37,
+      "norm_label": "categorymeta config map"
+    },
+    {
+      "label": "stats.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L1",
+      "id": "src_components_sections_stats_tsx",
+      "community": 19,
+      "norm_label": "stats.tsx"
+    },
+    {
+      "label": "CountUpNumber()",
+      "file_type": "code",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L15",
+      "id": "stats_countupnumber",
+      "community": 19,
+      "norm_label": "countupnumber()"
+    },
+    {
+      "label": "Button",
+      "file_type": "component",
+      "source_file": "src/components/ui/button.tsx",
+      "id": "button_component",
+      "community": 38,
+      "norm_label": "button"
+    },
+    {
+      "label": "portfolio.ts",
+      "file_type": "code",
+      "source_file": "src/data/portfolio.ts",
+      "id": "portfolio_data_module",
+      "community": 39,
+      "norm_label": "portfolio.ts"
+    },
+    {
+      "label": "motion-variants.ts",
+      "file_type": "code",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "motion_variants_module",
+      "community": 40,
+      "norm_label": "motion-variants.ts"
+    },
+    {
+      "label": "staggerContainer",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "stagger_container_variant",
+      "community": 41,
+      "norm_label": "staggercontainer"
+    },
+    {
+      "label": "heroItem",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "hero_item_variant",
+      "community": 42,
+      "norm_label": "heroitem"
+    },
+    {
+      "label": "heroBadge",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "hero_badge_variant",
+      "community": 43,
+      "norm_label": "herobadge"
+    },
+    {
+      "label": "fadeUp",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "fade_up_variant",
+      "community": 44,
+      "norm_label": "fadeup"
+    },
+    {
+      "label": "scaleIn",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "scale_in_variant",
+      "community": 45,
+      "norm_label": "scalein"
+    },
+    {
+      "label": "staggerFast",
+      "file_type": "motion_variant",
+      "source_file": "src/lib/motion-variants.ts",
+      "id": "stagger_fast_variant",
+      "community": 46,
+      "norm_label": "staggerfast"
+    },
+    {
+      "label": "site-config.ts",
+      "file_type": "code",
+      "source_file": "src/lib/site-config.ts",
+      "id": "site_config_module",
+      "community": 47,
+      "norm_label": "site-config.ts"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "src/lib/types.ts",
+      "id": "types_module",
+      "community": 48,
+      "norm_label": "types.ts"
+    },
+    {
+      "label": "use-reduced-motion.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L1",
+      "id": "src_lib_use_reduced_motion_ts",
+      "community": 2,
+      "norm_label": "use-reduced-motion.ts"
+    },
+    {
+      "label": "subscribe()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L5",
+      "id": "use_reduced_motion_subscribe",
+      "community": 2,
+      "norm_label": "subscribe()"
+    },
+    {
+      "label": "getSnapshot()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L11",
+      "id": "use_reduced_motion_getsnapshot",
+      "community": 2,
+      "norm_label": "getsnapshot()"
+    },
+    {
+      "label": "getServerSnapshot()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L15",
+      "id": "use_reduced_motion_getserversnapshot",
+      "community": 2,
+      "norm_label": "getserversnapshot()"
+    },
+    {
+      "label": "useReducedMotion()",
+      "file_type": "code",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L19",
+      "id": "use_reduced_motion_usereducedmotion",
+      "community": 2,
+      "norm_label": "usereducedmotion()"
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "src/lib/utils.ts",
+      "id": "utils_ts",
+      "community": 49,
+      "norm_label": "utils.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts",
+      "id": "cn_utility",
+      "community": 50,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "buttonGradientClasses",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts",
+      "id": "button_gradient_classes_util",
+      "community": 51,
+      "norm_label": "buttongradientclasses"
+    },
+    {
+      "label": "glassClasses",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts",
+      "id": "glass_classes_util",
+      "community": 52,
+      "norm_label": "glassclasses"
+    },
+    {
+      "label": "cardHoverOverlay",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts",
+      "id": "card_hover_overlay_util",
+      "community": 53,
+      "norm_label": "cardhoveroverlay"
+    },
+    {
+      "label": "sectionContainer",
+      "file_type": "utility",
+      "source_file": "src/lib/utils.ts",
+      "id": "section_container_util",
+      "community": 54,
+      "norm_label": "sectioncontainer"
+    },
+    {
+      "label": "Next.js Agent Rules",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "1-5",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "agents_nextjs_agent_rules",
+      "community": 0,
+      "norm_label": "next.js agent rules"
+    },
+    {
+      "label": "Rationale: Next.js Breaking Changes",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "4",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "agents_nextjs_breaking_changes_rationale",
+      "community": 0,
+      "norm_label": "rationale: next.js breaking changes"
+    },
+    {
+      "label": "CLAUDE.md Agent Rules Reference",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_agents_reference",
+      "community": 0,
+      "norm_label": "claude.md agent rules reference"
+    },
+    {
+      "label": "Personal Portfolio Project Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "1-51",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_personal_portfolio",
+      "community": 0,
+      "norm_label": "personal portfolio project overview"
+    },
+    {
+      "label": "Tools App Hero Link Update",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "7",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_tools_app_update",
+      "community": 0,
+      "norm_label": "tools app hero link update"
+    },
+    {
+      "label": "Focus Areas: Leadership & Agentic AI",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "8",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_focus_areas_update",
+      "community": 0,
+      "norm_label": "focus areas: leadership & agentic ai"
+    },
+    {
+      "label": "Portfolio Tech Stack",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "40-47",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_tech_stack",
+      "community": 0,
+      "norm_label": "portfolio tech stack"
+    },
+    {
+      "label": "Career Experience Timeline Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "17",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_experience_timeline",
+      "community": 0,
+      "norm_label": "career experience timeline overview"
+    },
+    {
+      "label": "Gourab Das Portfolio Owner",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "50",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_gourab_das",
+      "community": 0,
+      "norm_label": "gourab das portfolio owner"
+    },
+    {
+      "label": "Gourab Das Profile",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_gourab_das",
+      "community": 0,
+      "norm_label": "gourab das profile"
+    },
+    {
+      "label": "Cognizant Technology Solutions Work Experience",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_cognizant_experience",
+      "community": 0,
+      "norm_label": "cognizant technology solutions work experience"
+    },
+    {
+      "label": "Enterprise Support Engineer (Team Lead)",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_team_lead_role",
+      "community": 0,
+      "norm_label": "enterprise support engineer (team lead)"
+    },
+    {
+      "label": "B.Tech CSE Education",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_education",
+      "community": 0,
+      "norm_label": "b.tech cse education"
+    },
+    {
+      "label": "Software, Tools & Domain Expertise",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_software_tools",
+      "community": 0,
+      "norm_label": "software, tools & domain expertise"
+    },
+    {
+      "label": "Key Automations & Scripts",
+      "file_type": "document",
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_automations_scripts",
+      "community": 0,
+      "norm_label": "key automations & scripts"
+    },
+    {
+      "label": "Resume Document",
+      "file_type": "paper",
+      "source_file": "public/resume.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "resume_resume_document",
+      "community": 1,
+      "norm_label": "resume document"
+    },
+    {
+      "label": "Document Icon",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_document_icon",
+      "community": 1,
+      "norm_label": "document icon"
+    },
+    {
+      "label": "SVG Vector Paths",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_vector_paths",
+      "community": 1,
+      "norm_label": "svg vector paths"
+    },
+    {
+      "label": "Folded Corner Detail",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_folded_corner",
+      "community": 1,
+      "norm_label": "folded corner detail"
+    },
+    {
+      "label": "Text Lines Detail",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_text_lines",
+      "community": 1,
+      "norm_label": "text lines detail"
+    },
+    {
+      "label": "viewBox Attribute",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_viewbox_attribute",
+      "community": 1,
+      "norm_label": "viewbox attribute"
+    },
+    {
+      "label": "fill Attribute",
+      "file_type": "image",
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "file_fill_attribute",
+      "community": 1,
+      "norm_label": "fill attribute"
+    },
+    {
+      "label": "Globe Icon",
+      "file_type": "image",
+      "source_file": "public/globe.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "globe_globe_icon",
+      "community": 1,
+      "norm_label": "globe icon"
+    },
+    {
+      "label": "Globe Icon SVG",
+      "file_type": "image",
+      "source_file": "public/globe.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "globe_globe",
+      "community": 55,
+      "norm_label": "globe icon svg"
+    },
+    {
+      "label": "Next.js Logo",
+      "file_type": "image",
+      "source_file": "public/next.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Vercel",
+      "contributor": null,
+      "id": "next_logo",
+      "community": 3,
+      "norm_label": "next.js logo"
+    },
+    {
+      "label": "Gourab Das Profile Picture",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Gourab Das",
+      "contributor": null,
+      "id": "profile_image",
+      "community": 4,
+      "norm_label": "gourab das profile picture"
+    },
+    {
+      "label": "Gourab Das",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "profile_gourab_das",
+      "community": 4,
+      "norm_label": "gourab das"
+    },
+    {
+      "label": "Formal Casual Attire (Dark Blazer & White Turtleneck)",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "profile_attire",
+      "community": 4,
+      "norm_label": "formal casual attire (dark blazer & white turtleneck)"
+    },
+    {
+      "label": "Accessories (Smartwatch & Bracelet)",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "profile_accessories",
+      "community": 4,
+      "norm_label": "accessories (smartwatch & bracelet)"
+    },
+    {
+      "label": "Fairy Lights Pathway Background",
+      "file_type": "image",
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "profile_background",
+      "community": 4,
+      "norm_label": "fairy lights pathway background"
+    },
+    {
+      "label": "Vercel Logo",
+      "file_type": "image",
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Vercel",
+      "contributor": null,
+      "id": "vercel_logo",
+      "community": 3,
+      "norm_label": "vercel logo"
+    },
+    {
+      "label": "Window Icon",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "window_window_icon",
+      "community": 1,
+      "norm_label": "window icon"
+    },
+    {
+      "label": "window.svg",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "window_svg_file",
+      "community": 5,
+      "norm_label": "window.svg"
+    },
+    {
+      "label": "Window Mockup",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "window_mockup",
+      "community": 5,
+      "norm_label": "window mockup"
+    },
+    {
+      "label": "Window Frame",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "window_frame",
+      "community": 5,
+      "norm_label": "window frame"
+    },
+    {
+      "label": "Window Control Buttons",
+      "file_type": "image",
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "window_controls",
+      "community": 5,
+      "norm_label": "window control buttons"
+    }
+  ],
+  "links": [
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/next.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "next_logo",
+      "_tgt": "next_config_config",
+      "source": "next_config_config",
+      "target": "next_logo"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "vercel_logo",
+      "_tgt": "src_app_layout_tsx",
+      "source": "src_app_layout_tsx",
+      "target": "vercel_logo"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "vercel_logo",
+      "_tgt": "layout_rootlayout",
+      "source": "layout_rootlayout",
+      "target": "vercel_logo"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\manifest.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_app_manifest_ts",
+      "_tgt": "manifest_manifest",
+      "source": "src_app_manifest_ts",
+      "target": "manifest_manifest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\not-found.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "src_app_not_found_tsx",
+      "_tgt": "not_found_notfound",
+      "source": "src_app_not_found_tsx",
+      "target": "not_found_notfound",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "src_app_page_tsx",
+      "_tgt": "page_home",
+      "source": "src_app_page_tsx",
+      "target": "page_home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\robots.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_app_robots_ts",
+      "_tgt": "robots_robots",
+      "source": "src_app_robots_ts",
+      "target": "robots_robots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\sitemap.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_app_sitemap_ts",
+      "_tgt": "sitemap_sitemap",
+      "source": "src_app_sitemap_ts",
+      "target": "sitemap_sitemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\back-to-top.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "src_components_back_to_top_tsx",
+      "_tgt": "back_to_top_backtotop",
+      "source": "src_components_back_to_top_tsx",
+      "target": "back_to_top_backtotop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\footer.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_components_footer_tsx",
+      "_tgt": "footer_footer",
+      "source": "src_components_footer_tsx",
+      "target": "footer_footer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\navbar.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_components_navbar_tsx",
+      "_tgt": "navbar_navbar",
+      "source": "src_components_navbar_tsx",
+      "target": "navbar_navbar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\scroll-progress.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_components_scroll_progress_tsx",
+      "_tgt": "scroll_progress_scrollprogress",
+      "source": "src_components_scroll_progress_tsx",
+      "target": "scroll_progress_scrollprogress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\theme-provider.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "src_components_theme_provider_tsx",
+      "_tgt": "theme_provider_themeprovider",
+      "source": "src_components_theme_provider_tsx",
+      "target": "theme_provider_themeprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\about.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "src_components_sections_about_tsx",
+      "_tgt": "about_gethighlighticon",
+      "source": "src_components_sections_about_tsx",
+      "target": "about_gethighlighticon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\contact.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_components_sections_contact_tsx",
+      "_tgt": "contact_handlecopy",
+      "source": "src_components_sections_contact_tsx",
+      "target": "contact_handlecopy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\experience.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "src_components_sections_experience_tsx",
+      "_tgt": "experience_experience",
+      "source": "src_components_sections_experience_tsx",
+      "target": "experience_experience",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\sections\\stats.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_components_sections_stats_tsx",
+      "_tgt": "stats_countupnumber",
+      "source": "src_components_sections_stats_tsx",
+      "target": "stats_countupnumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "src_lib_use_reduced_motion_ts",
+      "_tgt": "use_reduced_motion_subscribe",
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_subscribe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "src_lib_use_reduced_motion_ts",
+      "_tgt": "use_reduced_motion_getsnapshot",
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_getsnapshot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "src_lib_use_reduced_motion_ts",
+      "_tgt": "use_reduced_motion_getserversnapshot",
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_getserversnapshot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\use-reduced-motion.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_src": "src_lib_use_reduced_motion_ts",
+      "_tgt": "use_reduced_motion_usereducedmotion",
+      "source": "src_lib_use_reduced_motion_ts",
+      "target": "use_reduced_motion_usereducedmotion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "4",
+      "weight": 1.0,
+      "_src": "agents_nextjs_breaking_changes_rationale",
+      "_tgt": "agents_nextjs_agent_rules",
+      "source": "agents_nextjs_agent_rules",
+      "target": "agents_nextjs_breaking_changes_rationale"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "agents_nextjs_agent_rules",
+      "_tgt": "readme_tech_stack",
+      "source": "agents_nextjs_agent_rules",
+      "target": "readme_tech_stack"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "1",
+      "weight": 1.0,
+      "_src": "claude_agents_reference",
+      "_tgt": "agents_nextjs_agent_rules",
+      "source": "agents_nextjs_agent_rules",
+      "target": "claude_agents_reference"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "7",
+      "weight": 1.0,
+      "_src": "readme_tools_app_update",
+      "_tgt": "readme_personal_portfolio",
+      "source": "readme_personal_portfolio",
+      "target": "readme_tools_app_update"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "8",
+      "weight": 1.0,
+      "_src": "readme_focus_areas_update",
+      "_tgt": "readme_personal_portfolio",
+      "source": "readme_personal_portfolio",
+      "target": "readme_focus_areas_update"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "40-47",
+      "weight": 1.0,
+      "_src": "readme_tech_stack",
+      "_tgt": "readme_personal_portfolio",
+      "source": "readme_personal_portfolio",
+      "target": "readme_tech_stack"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "17",
+      "weight": 1.0,
+      "_src": "readme_experience_timeline",
+      "_tgt": "readme_personal_portfolio",
+      "source": "readme_personal_portfolio",
+      "target": "readme_experience_timeline"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "50",
+      "weight": 1.0,
+      "_src": "readme_gourab_das",
+      "_tgt": "readme_personal_portfolio",
+      "source": "readme_personal_portfolio",
+      "target": "readme_gourab_das"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 0.5,
+      "_src": "readme_tools_app_update",
+      "_tgt": "resume_automations_scripts",
+      "source": "readme_tools_app_update",
+      "target": "resume_automations_scripts"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "readme_focus_areas_update",
+      "_tgt": "resume_automations_scripts",
+      "source": "readme_focus_areas_update",
+      "target": "resume_automations_scripts"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.88,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "readme_focus_areas_update",
+      "_tgt": "resume_team_lead_role",
+      "source": "readme_focus_areas_update",
+      "target": "resume_team_lead_role"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.92,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "readme_experience_timeline",
+      "_tgt": "resume_team_lead_role",
+      "source": "readme_experience_timeline",
+      "target": "resume_team_lead_role"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "readme_gourab_das",
+      "_tgt": "resume_gourab_das",
+      "source": "readme_gourab_das",
+      "target": "resume_gourab_das"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_gourab_das",
+      "_tgt": "readme_gourab_das",
+      "source": "readme_gourab_das",
+      "target": "profile_gourab_das"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0,
+      "_src": "resume_cognizant_experience",
+      "_tgt": "resume_gourab_das",
+      "source": "resume_gourab_das",
+      "target": "resume_cognizant_experience"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0,
+      "_src": "resume_education",
+      "_tgt": "resume_gourab_das",
+      "source": "resume_gourab_das",
+      "target": "resume_education"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0,
+      "_src": "resume_software_tools",
+      "_tgt": "resume_gourab_das",
+      "source": "resume_gourab_das",
+      "target": "resume_software_tools"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0,
+      "_src": "resume_automations_scripts",
+      "_tgt": "resume_gourab_das",
+      "source": "resume_gourab_das",
+      "target": "resume_automations_scripts"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_gourab_das",
+      "_tgt": "resume_gourab_das",
+      "source": "resume_gourab_das",
+      "target": "profile_gourab_das"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/resume.pdf",
+      "source_location": "page 1",
+      "weight": 1.0,
+      "_src": "resume_team_lead_role",
+      "_tgt": "resume_cognizant_experience",
+      "source": "resume_cognizant_experience",
+      "target": "resume_team_lead_role"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "resume_resume_document",
+      "source": "resume_resume_document",
+      "target": "file_document_icon"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "file_vector_paths",
+      "source": "file_document_icon",
+      "target": "file_vector_paths"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "file_folded_corner",
+      "source": "file_document_icon",
+      "target": "file_folded_corner"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "file_text_lines",
+      "source": "file_document_icon",
+      "target": "file_text_lines"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "window_window_icon",
+      "source": "file_document_icon",
+      "target": "window_window_icon"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_document_icon",
+      "_tgt": "globe_globe_icon",
+      "source": "file_document_icon",
+      "target": "globe_globe_icon"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_vector_paths",
+      "_tgt": "file_viewbox_attribute",
+      "source": "file_vector_paths",
+      "target": "file_viewbox_attribute"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/file.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "file_vector_paths",
+      "_tgt": "file_fill_attribute",
+      "source": "file_vector_paths",
+      "target": "file_fill_attribute"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/vercel.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "vercel_logo",
+      "_tgt": "next_logo",
+      "source": "next_logo",
+      "target": "vercel_logo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_image",
+      "_tgt": "profile_gourab_das",
+      "source": "profile_image",
+      "target": "profile_gourab_das"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_image",
+      "_tgt": "profile_background",
+      "source": "profile_image",
+      "target": "profile_background"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_gourab_das",
+      "_tgt": "profile_attire",
+      "source": "profile_gourab_das",
+      "target": "profile_attire"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/profile.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "profile_gourab_das",
+      "_tgt": "profile_accessories",
+      "source": "profile_gourab_das",
+      "target": "profile_accessories"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "window_svg_file",
+      "_tgt": "window_mockup",
+      "source": "window_svg_file",
+      "target": "window_mockup"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "window_mockup",
+      "_tgt": "window_frame",
+      "source": "window_mockup",
+      "target": "window_frame"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "window_mockup",
+      "_tgt": "window_controls",
+      "source": "window_mockup",
+      "target": "window_controls"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "motion_variant_catalog",
+      "label": "Motion Variant Catalog",
+      "nodes": [
+        "stagger_container_variant",
+        "hero_item_variant",
+        "hero_badge_variant",
+        "fade_up_variant",
+        "scale_in_variant",
+        "stagger_fast_variant",
+        "motion_variants_module"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/motion-variants.ts"
+    },
+    {
+      "id": "utility_string_constants",
+      "label": "Utility String Constants (buttonGradientClasses, glassClasses, sectionContainer)",
+      "nodes": [
+        "button_gradient_classes_util",
+        "glass_classes_util",
+        "card_hover_overlay_util",
+        "section_container_util",
+        "utils_ts"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/utils.ts"
+    },
+    {
+      "id": "nextjs_environment_rules",
+      "label": "Next.js Environment Configuration & Rules",
+      "nodes": [
+        "agents_nextjs_agent_rules",
+        "agents_nextjs_breaking_changes_rationale",
+        "claude_agents_reference",
+        "readme_tech_stack"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "gourab_das_career_profile",
+      "label": "Gourab Das Career Profile and Expertise",
+      "nodes": [
+        "readme_gourab_das",
+        "resume_gourab_das",
+        "resume_team_lead_role",
+        "resume_automations_scripts",
+        "readme_focus_areas_update",
+        "readme_experience_timeline"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "README.md"
+    },
+    {
+      "id": "file_unified_icon_pack",
+      "label": "Unified Icon Pack",
+      "nodes": [
+        "file_document_icon",
+        "window_window_icon",
+        "globe_globe_icon"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/file.svg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Template Assets",
+      "nodes": [
+        "next_logo",
+        "vercel_logo"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/next.svg"
+    },
+    {
+      "id": "profile_branding",
+      "label": "Gourab Das Identity & Branding",
+      "nodes": [
+        "profile_image",
+        "profile_gourab_das",
+        "readme_gourab_das",
+        "resume_gourab_das"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/profile.jpg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Template Assets",
+      "nodes": [
+        "next_logo",
+        "vercel_logo"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/vercel.svg"
+    },
+    {
+      "id": "window_structure",
+      "label": "Window Visual Structure",
+      "nodes": [
+        "window_svg_file",
+        "window_mockup",
+        "window_frame",
+        "window_controls"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "public/window.svg"
+    },
+    {
+      "id": "nextjs_starter_assets",
+      "label": "Next.js Starter Assets",
+      "nodes": [
+        "window_svg_file",
+        "file_svg",
+        "globe_svg",
+        "vercel_svg",
+        "next_svg"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/window.svg"
+    }
+  ]
+}

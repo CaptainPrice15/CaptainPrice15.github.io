@@ -1,154 +1,72 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
-import {
-  Database,
-  Server,
-  Settings,
-  Terminal,
-  Bot,
-  Activity,
-} from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
+import { SkillConstellation } from "./skill-constellation";
 import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { sectionContainer } from "@/lib/utils";
-import type { SkillCategory } from "@/lib/types";
-
-const categoryMeta: Record<string, { icon: React.ReactNode; badge: string; desc: string }> = {
-  backend: {
-    icon: <Server className="h-5 w-5 text-primary" />,
-    badge: "badge-blue",
-    desc: "Building APIs and services",
-  },
-  database: {
-    icon: <Database className="h-5 w-5 text-purple-500" />,
-    badge: "badge-purple",
-    desc: "Data modeling and storage",
-  },
-  ai: {
-    icon: <Bot className="h-5 w-5 text-purple-500" />,
-    badge: "badge-purple",
-    desc: "AI-driven development",
-  },
-  automation: {
-    icon: <Terminal className="h-5 w-5 text-amber-600" />,
-    badge: "badge-amber",
-    desc: "Scripts and pipelines",
-  },
-  monitoring: {
-    icon: <Activity className="h-5 w-5 text-emerald-600" />,
-    badge: "badge-emerald",
-    desc: "Observability and alerting",
-  },
-  tools: {
-    icon: <Settings className="h-5 w-5 text-slate-500" />,
-    badge: "badge-slate",
-    desc: "Platforms and tooling",
-  },
-};
-
-const categories: SkillCategory[] = [
-  {
-    title: "Backend & APIs",
-    icon: categoryMeta.backend.icon,
-    items: portfolioData.skills.backend,
-  },
-  {
-    title: "Database",
-    icon: categoryMeta.database.icon,
-    items: portfolioData.skills.database,
-  },
-  {
-    title: "AI Agents",
-    icon: categoryMeta.ai.icon,
-    items: portfolioData.skills.ai,
-  },
-  {
-    title: "Automation",
-    icon: categoryMeta.automation.icon,
-    items: portfolioData.skills.automation,
-  },
-  {
-    title: "Monitoring",
-    icon: categoryMeta.monitoring.icon,
-    items: portfolioData.skills.monitoring,
-  },
-  {
-    title: "Tools & OS",
-    icon: categoryMeta.tools.icon,
-    items: portfolioData.skills.tools,
-  },
-];
-
-function getBadgeClass(title: string): string {
-  for (const [key, meta] of Object.entries(categoryMeta)) {
-    if (title.toLowerCase().includes(key)) return meta.badge;
-  }
-  return "badge-slate";
-}
-
-function getCategoryDesc(title: string): string {
-  for (const [key, meta] of Object.entries(categoryMeta)) {
-    if (title.toLowerCase().includes(key)) return meta.desc;
-  }
-  return "";
-}
-
-function SkillCard({ category }: { category: SkillCategory }) {
-  const badgeClass = getBadgeClass(category.title);
-  const desc = getCategoryDesc(category.title);
-
-  return (
-    <div className="glass glass-hover rounded-xl sm:rounded-2xl p-5 sm:p-6 relative overflow-hidden group">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-      <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-1.5">
-          <div className="p-2.5 bg-primary/5 rounded-xl border border-border/40 group-hover:scale-110 transition-transform duration-300">
-            {category.icon}
-          </div>
-          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-            {category.title}
-          </h3>
-        </div>
-        {desc && (
-          <p className="text-xs text-muted-foreground mb-4 ml-[52px]">{desc}</p>
-        )}
-        <div className="flex flex-wrap gap-2 mt-4">
-          {category.items.map((skill: string, skillIdx: number) => (
-            <span
-              key={skillIdx}
-              className={`text-xs font-semibold px-3 py-1.5 rounded-full border ${badgeClass} transition-all hover:scale-[1.03]`}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function Skills() {
+  const [viewMode, setViewMode] = useState<"constellation" | "grid">("constellation");
+
   return (
-    <section id="skills" className="section bg-transparent">
+    <section id="skills" className="section bg-transparent relative overflow-hidden">
       <div className={`${sectionContainer} max-w-6xl`}>
-        <SectionHeading title="Skills & Technologies" eyebrow="What I work with" />
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <SectionHeading title="Skills & Technologies" eyebrow="What I work with" />
+
+          {/* View Toggle */}
+          <div className="flex items-center gap-1 p-1 rounded-full bg-muted/50 border border-border/40 w-fit">
+            <button
+              onClick={() => setViewMode("constellation")}
+              className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
+                viewMode === "constellation"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Constellation
+            </button>
+            <button
+              onClick={() => setViewMode("grid")}
+              className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
+                viewMode === "grid"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Grid
+            </button>
+          </div>
+        </div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-100px" }}
           variants={staggerFast}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mt-6 sm:mt-8"
+          className="mt-8 sm:mt-12"
         >
-          {categories.map((category) => (
-            <motion.div key={category.title} variants={fadeUp}>
-              <SkillCard category={category} />
+          {viewMode === "constellation" ? (
+            <motion.div variants={fadeUp}>
+              <SkillConstellation />
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                Hover to explore connections. Each node drifts with physics.
+              </p>
             </motion.div>
-          ))}
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+              {[".NET", "C#", "Python", "PowerShell", "SQL Server", "MongoDB", "ELK Stack", "AI Agents", "Next.js", "Git", "Windows", "Linux"].map((s, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-center bg-primary/5 border border-primary/10 text-foreground"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

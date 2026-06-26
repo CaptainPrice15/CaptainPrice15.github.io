@@ -1,0 +1,404 @@
+{
+  "communities": {
+    "0": [
+      "about_about",
+      "contact_contact",
+      "contact_contactform",
+      "contact_copybutton",
+      "experience_experience",
+      "footer_footer",
+      "navbar_navbar",
+      "pattern_glasscard",
+      "pattern_gradienttext",
+      "pattern_scrollanimation",
+      "pattern_sectionheading",
+      "portfolio_portfoliodata",
+      "section_heading_sectionheading",
+      "src_components_footer_tsx",
+      "src_components_navbar_tsx",
+      "src_lib_utils_ts",
+      "ui_button",
+      "utils_buttongradient",
+      "utils_cardhoveroverlay",
+      "utils_cn",
+      "utils_glassclasses",
+      "utils_sectioncontainer"
+    ],
+    "1": [
+      "button_component",
+      "button_gradient_pattern",
+      "community_framer_motion_transitions",
+      "community_site_metadata",
+      "community_static_portfolio_data",
+      "community_ui_button",
+      "decorative_blur_pattern",
+      "glass_panel_pattern",
+      "god_node_gourab_das_profile",
+      "hero_badge_variant",
+      "hero_component",
+      "hero_item_variant",
+      "motion_variants_module",
+      "portfolio_data_module",
+      "rotating_phrases_config",
+      "site_config_module",
+      "stagger_container_variant",
+      "stagger_fast_variant",
+      "staggered_animation_pattern",
+      "typewriter_component",
+      "typewriter_pattern"
+    ],
+    "2": [
+      "agents_nextjs_agent_rules",
+      "agents_nextjs_breaking_changes_rationale",
+      "claude_agents_reference",
+      "profile_accessories",
+      "profile_attire",
+      "profile_background",
+      "profile_gourab_das",
+      "profile_image",
+      "readme_experience_timeline",
+      "readme_focus_areas_update",
+      "readme_gourab_das",
+      "readme_personal_portfolio",
+      "readme_tech_stack",
+      "readme_tools_app_update",
+      "resume_automations_scripts",
+      "resume_cognizant_experience",
+      "resume_education",
+      "resume_gourab_das",
+      "resume_software_tools",
+      "resume_team_lead_role"
+    ],
+    "3": [
+      "animated_presence_pattern",
+      "button_gradient_classes_util",
+      "card_hover_overlay_util",
+      "client_component_pattern",
+      "cn_utility",
+      "community_core_tailwind_utils",
+      "community_section_heading",
+      "community_typescript_types",
+      "fade_up_variant",
+      "filter_tab_pattern",
+      "glass_classes_util",
+      "projects_component",
+      "section_container_util",
+      "section_heading_component",
+      "section_layout_pattern",
+      "skills_component",
+      "types_module",
+      "utils_ts"
+    ],
+    "4": [
+      "about_gethighlighticon",
+      "contact_handlecopy",
+      "motion_variants",
+      "skills_getbadgeclass",
+      "skills_getcategorydesc",
+      "src_components_sections_about_tsx",
+      "src_components_sections_contact_tsx",
+      "src_components_sections_experience_tsx",
+      "src_components_sections_hero_tsx",
+      "src_components_sections_projects_tsx",
+      "src_components_sections_skills_tsx",
+      "src_components_sections_stats_tsx",
+      "stats_countupnumber"
+    ],
+    "5": [
+      "category_meta_config",
+      "community_hero_section",
+      "community_projects_section",
+      "community_skills_section",
+      "glass_card_pattern",
+      "hero_tsx",
+      "knowledge_gap_isolated_node",
+      "project_card_component",
+      "project_gradients_config",
+      "projects_tsx",
+      "scale_in_variant",
+      "skill_card_component",
+      "skills_tsx"
+    ],
+    "6": [
+      "file_document_icon",
+      "file_fill_attribute",
+      "file_folded_corner",
+      "file_text_lines",
+      "file_vector_paths",
+      "file_viewbox_attribute",
+      "globe_globe_icon",
+      "resume_resume_document",
+      "window_window_icon"
+    ],
+    "7": [
+      "layout_rootlayout",
+      "next_config_config",
+      "next_logo",
+      "src_app_layout_tsx",
+      "vercel_logo"
+    ],
+    "8": [
+      "src_lib_use_reduced_motion_ts",
+      "use_reduced_motion_getserversnapshot",
+      "use_reduced_motion_getsnapshot",
+      "use_reduced_motion_subscribe",
+      "use_reduced_motion_usereducedmotion"
+    ],
+    "9": [
+      "window_controls",
+      "window_frame",
+      "window_mockup",
+      "window_svg_file"
+    ],
+    "10": [
+      "manifest_manifest",
+      "src_app_manifest_ts"
+    ],
+    "11": [
+      "not_found_notfound",
+      "src_app_not_found_tsx"
+    ],
+    "12": [
+      "page_home",
+      "src_app_page_tsx"
+    ],
+    "13": [
+      "robots_robots",
+      "src_app_robots_ts"
+    ],
+    "14": [
+      "sitemap_sitemap",
+      "src_app_sitemap_ts"
+    ],
+    "15": [
+      "back_to_top_backtotop",
+      "src_components_back_to_top_tsx"
+    ],
+    "16": [
+      "scroll_progress_scrollprogress",
+      "src_components_scroll_progress_tsx"
+    ],
+    "17": [
+      "src_components_theme_provider_tsx",
+      "theme_provider_themeprovider"
+    ],
+    "18": [
+      "eslint_config_mjs"
+    ],
+    "19": [
+      "next_env_d_ts"
+    ],
+    "20": [
+      "postcss_config_mjs"
+    ],
+    "21": [
+      "src_components_section_heading_tsx"
+    ],
+    "22": [
+      "src_components_ui_button_tsx"
+    ],
+    "23": [
+      "src_data_portfolio_ts"
+    ],
+    "24": [
+      "src_lib_motion_variants_ts"
+    ],
+    "25": [
+      "src_lib_site_config_ts"
+    ],
+    "26": [
+      "src_lib_types_ts"
+    ],
+    "27": [
+      "globe_globe"
+    ],
+    "28": [
+      "community_developer_profile_visuals"
+    ],
+    "29": [
+      "hyperedge_gourab_das_career"
+    ],
+    "30": [
+      "hyperedge_nextjs_env_rules"
+    ]
+  },
+  "cohesion": {
+    "0": 0.19,
+    "1": 0.12,
+    "2": 0.13,
+    "3": 0.15,
+    "4": 0.15,
+    "5": 0.17,
+    "6": 0.22,
+    "7": 0.4,
+    "8": 0.4,
+    "9": 0.5,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0
+  },
+  "gods": [
+    {
+      "id": "hero_component",
+      "label": "Hero",
+      "degree": 17
+    },
+    {
+      "id": "experience_experience",
+      "label": "Experience()",
+      "degree": 11
+    },
+    {
+      "id": "projects_component",
+      "label": "Projects",
+      "degree": 11
+    },
+    {
+      "id": "navbar_navbar",
+      "label": "Navbar()",
+      "degree": 8
+    },
+    {
+      "id": "skills_component",
+      "label": "Skills",
+      "degree": 8
+    },
+    {
+      "id": "resume_gourab_das",
+      "label": "Gourab Das Profile",
+      "degree": 6
+    },
+    {
+      "id": "file_document_icon",
+      "label": "Document Icon",
+      "degree": 6
+    },
+    {
+      "id": "readme_personal_portfolio",
+      "label": "Personal Portfolio Project Overview",
+      "degree": 5
+    },
+    {
+      "id": "profile_gourab_das",
+      "label": "Gourab Das",
+      "degree": 5
+    },
+    {
+      "id": "footer_footer",
+      "label": "Footer()",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Gourab Das Portfolio Owner",
+      "target": "Gourab Das Profile",
+      "source_files": [
+        "README.md",
+        "public/resume.pdf"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 paper); connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Gourab Das",
+      "target": "Gourab Das Portfolio Owner",
+      "source_files": [
+        "public/profile.jpg",
+        "README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Tools App Hero Link Update",
+      "target": "Key Automations & Scripts",
+      "source_files": [
+        "README.md",
+        "public/resume.pdf"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "conceptually_related_to",
+      "why": "ambiguous connection - not explicitly stated in source; crosses file types (doc \u2194 paper); connects across different repos/directories"
+    },
+    {
+      "source": "Next.js Logo",
+      "target": "Next.js Project Configuration",
+      "source_files": [
+        "public/next.svg",
+        "next.config.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 image); connects across different repos/directories"
+    },
+    {
+      "source": "Focus Areas: Leadership & Agentic AI",
+      "target": "Key Automations & Scripts",
+      "source_files": [
+        "README.md",
+        "public/resume.pdf"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 paper); connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Tools App Hero Link Update` and `Key Automations & Scripts`?",
+      "why": "Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low."
+    },
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Resume Document` and `Document Icon`?",
+      "why": "Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Hero` connect `Community 1` to `Community 3`, `Community 5`?",
+      "why": "High betweenness centrality (0.052) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Projects` connect `Community 3` to `Community 1`, `Community 5`?",
+      "why": "High betweenness centrality (0.030) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Skills` connect `Community 3` to `Community 1`, `Community 5`?",
+      "why": "High betweenness centrality (0.018) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 8 inferred relationships involving `Hero` (e.g. with `Glass Panel Pattern` and `Button Gradient Pattern`) actually correct?",
+      "why": "`Hero` has 8 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 7 inferred relationships involving `Projects` (e.g. with `sectionContainer` and `fadeUp`) actually correct?",
+      "why": "`Projects` has 7 INFERRED edges - model-reasoned connections that need verification."
+    }
+  ]
+}

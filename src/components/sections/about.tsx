@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ShieldCheck, Zap, Bot, Activity } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
+import { Card3D } from "@/components/card-3d";
 import { fadeUp, slideInLeft, slideInRight, staggerFast } from "@/lib/motion-variants";
 import { glassClasses, cardHoverOverlay, sectionContainer } from "@/lib/utils";
 
@@ -62,47 +63,53 @@ export function About() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={slideInRight}
-            className={`${glassClasses} !p-5 sm:!p-7 md:!p-9 rounded-2xl sm:rounded-3xl`}
+          <Card3D
+            maxRotation={8}
+            shineIntensity={0.12}
+            className="w-full"
           >
-            <div className={cardHoverOverlay} aria-hidden="true" />
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={slideInRight}
+              className={`${glassClasses} !p-5 sm:!p-7 md:!p-9 rounded-2xl sm:rounded-3xl`}
+            >
+              <div className={cardHoverOverlay} aria-hidden="true" />
 
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-6 text-foreground">Key Focus Areas</h3>
-              <motion.ul
-                variants={staggerFast}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-5"
-              >
-                {highlights.map((highlight, index) => {
-                  const colonIdx = highlight.indexOf(": ");
-                  const hTitle = colonIdx > -1 ? highlight.slice(0, colonIdx) : highlight;
-                  const description = colonIdx > -1 ? highlight.slice(colonIdx + 2) : "";
-                  return (
-                    <motion.li key={index} variants={fadeUp} className="flex gap-4">
-                      <div className="p-2 rounded-lg bg-primary/5 border border-primary/10 flex-shrink-0 mt-0.5">
-                        {getHighlightIcon(hTitle)}
-                      </div>
-                      <div>
-                        <strong className="block text-foreground text-base mb-1">{hTitle}</strong>
-                        {description && (
-                          <span className="text-muted-foreground text-sm leading-relaxed">
-                            {description}
-                          </span>
-                        )}
-                      </div>
-                    </motion.li>
-                  );
-                })}
-              </motion.ul>
-            </div>
-          </motion.div>
+              <div className="relative z-10 preserve-3d">
+                <h3 className="text-xl font-bold mb-6 text-foreground depth-layer-1">Key Focus Areas</h3>
+                <motion.ul
+                  variants={staggerFast}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="space-y-5"
+                >
+                  {highlights.map((highlight, index) => {
+                    const colonIdx = highlight.indexOf(": ");
+                    const hTitle = colonIdx > -1 ? highlight.slice(0, colonIdx) : highlight;
+                    const description = colonIdx > -1 ? highlight.slice(colonIdx + 2) : "";
+                    return (
+                      <motion.li key={index} variants={fadeUp} className="flex gap-4">
+                        <div className="p-2 rounded-lg bg-primary/5 border border-primary/10 flex-shrink-0 mt-0.5 depth-layer-2">
+                          {getHighlightIcon(hTitle)}
+                        </div>
+                        <div className="depth-layer-1">
+                          <strong className="block text-foreground text-base mb-1">{hTitle}</strong>
+                          {description && (
+                            <span className="text-muted-foreground text-sm leading-relaxed">
+                              {description}
+                            </span>
+                          )}
+                        </div>
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+              </div>
+            </motion.div>
+          </Card3D>
         </div>
       </div>
     </section>

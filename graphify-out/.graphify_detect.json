@@ -1,0 +1,61 @@
+{
+  "files": {
+    "code": [
+      "eslint.config.mjs",
+      "next-env.d.ts",
+      "next.config.ts",
+      "postcss.config.mjs",
+      "src\\app\\layout.tsx",
+      "src\\app\\manifest.ts",
+      "src\\app\\not-found.tsx",
+      "src\\app\\page.tsx",
+      "src\\app\\robots.ts",
+      "src\\app\\sitemap.ts",
+      "src\\components\\back-to-top.tsx",
+      "src\\components\\footer.tsx",
+      "src\\components\\navbar.tsx",
+      "src\\components\\scroll-progress.tsx",
+      "src\\components\\section-heading.tsx",
+      "src\\components\\theme-provider.tsx",
+      "src\\components\\sections\\about.tsx",
+      "src\\components\\sections\\contact.tsx",
+      "src\\components\\sections\\experience.tsx",
+      "src\\components\\sections\\hero.tsx",
+      "src\\components\\sections\\projects.tsx",
+      "src\\components\\sections\\skills.tsx",
+      "src\\components\\sections\\stats.tsx",
+      "src\\components\\ui\\button.tsx",
+      "src\\data\\portfolio.ts",
+      "src\\lib\\motion-variants.ts",
+      "src\\lib\\site-config.ts",
+      "src\\lib\\types.ts",
+      "src\\lib\\use-reduced-motion.ts",
+      "src\\lib\\utils.ts"
+    ],
+    "document": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.md",
+      "graphify-out\\graph.html",
+      "graphify-out\\GRAPH_REPORT.md"
+    ],
+    "paper": [
+      "public\\resume.pdf"
+    ],
+    "image": [
+      "public\\file.svg",
+      "public\\globe.svg",
+      "public\\next.svg",
+      "public\\profile.jpg",
+      "public\\vercel.svg",
+      "public\\window.svg"
+    ],
+    "video": []
+  },
+  "total_files": 42,
+  "total_words": 98202,
+  "needs_graph": true,
+  "warning": null,
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 0
+}

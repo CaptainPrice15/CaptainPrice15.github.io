@@ -9,7 +9,8 @@ import Link from "next/link";
 import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const rotatingPhrases = [
   "Building Reliable Systems",
@@ -55,19 +56,202 @@ function Typewriter({ phrases, delay = 0 }: { phrases: string[]; delay?: number 
   );
 }
 
+function ParticleNetwork({ className }: { className?: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let raf: number;
+    const particles: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
+    const PARTICLE_COUNT = 50;
+    const MAX_DIST = 120;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio, 1.5);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const init = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      particles.length = 0;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 1.5 + 0.5,
+        });
+      }
+    };
+
+    const draw = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(37, 99, 235, 0.25)";
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / MAX_DIST)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      raf = requestAnimationFrame(draw);
+    };
+
+    resize();
+    init();
+    draw();
+    window.addEventListener("resize", resize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) return null;
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={className}
+      style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}
+    />
+  );
+}
+
+function RotatingBorderProfile() {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [glowX, setGlowX] = useState(50);
+  const [glowY, setGlowY] = useState(50);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+    setRotateX((mouseY / (rect.height / 2)) * -12);
+    setRotateY((mouseX / (rect.width / 2)) * 12);
+    setGlowX(((e.clientX - rect.left) / rect.width) * 100);
+    setGlowY(((e.clientY - rect.top) / rect.height) * 100);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+    setGlowX(50);
+    setGlowY(50);
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] cursor-default float-3d-wrapper"
+      style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+    >
+      {/* Outer glow aura */}
+      <div
+        className="absolute -inset-8 rounded-full bg-gradient-to-br from-primary/15 to-accent/15 blur-3xl pointer-events-none transition-all duration-300"
+        style={{
+          transform: `translate(${(glowX - 50) * 0.1}px, ${(glowY - 50) * 0.1}px)`,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Mid glow ring */}
+      <div
+        className="absolute -inset-4 rounded-full opacity-60 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(37,99,235,0.12), transparent 60%)`,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Conic gradient border */}
+      <div className="absolute -inset-[3px] rounded-3xl animate-rotate-border overflow-hidden">
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent,var(--primary),transparent,var(--accent),transparent)] animate-spin-slow" style={{ animationDuration: "4s" }} />
+      </div>
+
+      <motion.div
+        animate={{ rotateX, rotateY }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        style={{ transformStyle: "preserve-3d" }}
+        className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-glass-border glass shadow-xl preserve-3d"
+      >
+        <Image
+          src="/profile.jpg"
+          alt="Gourab Das Profile"
+          fill
+          className="object-cover backface-hidden"
+          priority
+          sizes="320px"
+        />
+
+        {/* Depth overlay on image */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            transform: "translateZ(10px)",
+            background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.08), transparent 50%)`,
+          }}
+        />
+      </motion.div>
+    </div>
+  );
+}
+
 export function Hero() {
   const { name, title } = portfolioData.hero;
 
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden section !pt-28 sm:!pt-32 !pb-16 sm:!pb-20">
-      <div
-        className="absolute top-1/3 left-1/4 w-64 sm:w-80 md:w-[420px] h-64 sm:h-80 md:h-[420px] bg-primary/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-1/3 right-1/4 w-56 sm:w-72 md:w-[360px] h-56 sm:h-72 md:h-[360px] bg-accent/8 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
+      <ParticleNetwork className="absolute inset-0" />
+
+      {/* 3D floating decorative elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
+        <div className="absolute top-[15%] left-[8%] w-3 h-3 rounded-full bg-primary/30 animate-float-3d" style={{ animationDelay: "0s", animationDuration: "5s" }} />
+        <div className="absolute top-[25%] right-[12%] w-2 h-2 rounded-full bg-accent/40 animate-float-3d-reverse" style={{ animationDelay: "0.5s", animationDuration: "6s" }} />
+        <div className="absolute bottom-[20%] left-[15%] w-4 h-4 rounded-full bg-primary/20 animate-float-3d" style={{ animationDelay: "1s", animationDuration: "7s" }} />
+        <div className="absolute bottom-[30%] right-[8%] w-2.5 h-2.5 rounded-full bg-success/30 animate-float-3d-reverse" style={{ animationDelay: "1.5s", animationDuration: "5.5s" }} />
+      </div>
 
       <motion.div
         className="container px-4 sm:px-6 lg:px-8 relative z-10 mx-auto"
@@ -76,29 +260,29 @@ export function Hero() {
         variants={staggerContainer}
       >
         <div className="grid lg:grid-cols-[1fr_auto] gap-10 sm:gap-14 lg:gap-20 items-center max-w-6xl mx-auto">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left preserve-3d">
             <motion.div
               variants={heroBadge}
-              className="eyebrow mb-6 sm:mb-8 justify-center lg:justify-start"
+              className="eyebrow mb-6 sm:mb-8 justify-center lg:justify-start depth-layer-1"
             >
               <span className="eyebrow-dot" aria-hidden="true" />
               {title}
             </motion.div>
 
-            <motion.div variants={heroItem}>
+            <motion.div variants={heroItem} className="depth-layer-2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-4 sm:mb-6 leading-[1.1]">
                 Hi, I'm{" "}
                 <span className="gradient-text">{name}</span>.
               </h1>
             </motion.div>
 
-            <motion.div variants={heroItem}>
+            <motion.div variants={heroItem} className="depth-layer-2">
               <p className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground/70 mb-4 sm:mb-6 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] leading-snug">
                 <Typewriter phrases={rotatingPhrases} delay={300} />
               </p>
             </motion.div>
 
-            <motion.div variants={heroItem}>
+            <motion.div variants={heroItem} className="depth-layer-1">
               <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-xl lg:mx-0 mx-auto leading-relaxed px-4 sm:px-0">
                 {portfolioData.hero.subtext}
               </p>
@@ -106,11 +290,11 @@ export function Hero() {
 
             <motion.div
               variants={heroItem}
-              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"
+              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0 depth-layer-3"
             >
               <Button
                 size="lg"
-                className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-12 sm:h-14 px-7 sm:px-8`}
+                className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-12 sm:h-14 px-7 sm:px-8 depth-shadow`}
                 asChild
               >
                 <Link href="#projects">
@@ -131,10 +315,10 @@ export function Hero() {
 
             <motion.div
               variants={heroItem}
-              className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground font-medium px-4 sm:px-0"
+              className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground font-medium px-4 sm:px-0 depth-layer-1"
             >
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-primary depth-layer-1" aria-hidden="true" />
                 4.5+ years experience
               </span>
               <span className="text-border/40" aria-hidden="true">&middot;</span>
@@ -144,7 +328,7 @@ export function Hero() {
               </span>
               <span className="text-border/40" aria-hidden="true">&middot;</span>
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true" />
+                <span className="h-1.5 w-1.5 rounded-full bg-success depth-layer-2" aria-hidden="true" />
                 Team Lead
               </span>
             </motion.div>
@@ -152,30 +336,10 @@ export function Hero() {
 
           <motion.div
             variants={heroItem}
-            className="hidden lg:flex justify-center items-center"
+            className="hidden lg:flex justify-center items-center animate-float-3d"
+            style={{ animationDuration: "7s" }}
           >
-            <div className="relative w-[280px] xl:w-[320px] h-[280px] xl:h-[320px]">
-              <div
-                className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl pointer-events-none"
-                aria-hidden="true"
-              />
-
-              <motion.div
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.8, type: "spring" }}
-                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-glass-border glass animate-float shadow-xl"
-              >
-                <Image
-                  src="/profile.jpg"
-                  alt="Gourab Das Profile"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="320px"
-                />
-              </motion.div>
-            </div>
+            <RotatingBorderProfile />
           </motion.div>
         </div>
       </motion.div>

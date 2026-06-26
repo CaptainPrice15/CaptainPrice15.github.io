@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { Mail, User, MessageSquare, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card3D } from "@/components/card-3d";
 import { springTransition } from "@/lib/motion-variants";
 import { buttonGradientClasses, sectionContainer } from "@/lib/utils";
 import { SectionHeading } from "@/components/section-heading";
@@ -190,21 +191,22 @@ export function Contact() {
 
               <div className="space-y-3">
                 {contactLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group"
-                  >
-                    <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors text-muted-foreground group-hover:text-primary">
-                      {link.icon}
-                    </div>
-                    <div>
-                      <span className="text-xs text-muted-foreground font-medium block">{link.label}</span>
-                      <span className="text-sm text-foreground font-medium">{link.display}</span>
-                    </div>
-                  </a>
+                  <Card3D key={link.label} maxRotation={5} shineIntensity={0.08} glare={false} depth={false} className="block">
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group"
+                    >
+                      <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors text-muted-foreground group-hover:text-primary depth-layer-1">
+                        {link.icon}
+                      </div>
+                      <div className="depth-layer-1">
+                        <span className="text-xs text-muted-foreground font-medium block">{link.label}</span>
+                        <span className="text-sm text-foreground font-medium">{link.display}</span>
+                      </div>
+                    </a>
+                  </Card3D>
                 ))}
               </div>
 
@@ -214,10 +216,12 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="glass p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl">
-              <h3 className="text-lg font-bold text-foreground mb-4">Send a message</h3>
-              <ContactForm />
-            </div>
+            <Card3D maxRotation={6} shineIntensity={0.1} className="w-full">
+              <div className="glass p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl preserve-3d">
+                <h3 className="text-lg font-bold text-foreground mb-4 depth-layer-1">Send a message</h3>
+                <ContactForm />
+              </div>
+            </Card3D>
           </div>
         </motion.div>
       </div>
