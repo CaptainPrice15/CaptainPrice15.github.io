@@ -57,7 +57,7 @@ export function Skills() {
             </motion.div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {[".NET", "C#", "Python", "PowerShell", "SQL Server", "MongoDB", "ELK Stack", "AI Agents", "Next.js", "Git", "Windows", "Linux"].map((s, i) => (
+              {[".NET", "C#", "Python", "PowerShell", "SQL Server", "MongoDB", "ELK Stack", "AI Agents", "Next.js", "Git", "Windows", "Linux", "Android (Kotlin/Java)"].map((s, i) => (
                 <span
                   key={i}
                   className="px-3 py-2 rounded-lg text-sm font-medium text-center bg-primary/5 border border-primary/10 text-foreground"

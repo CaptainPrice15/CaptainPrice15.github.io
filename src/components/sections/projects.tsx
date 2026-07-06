@@ -14,12 +14,14 @@ const projectGradients: Record<string, string> = {
   Monitoring: "from-blue-500/20 via-cyan-500/10 to-indigo-500/20",
   Automation: "from-amber-500/20 via-orange-500/10 to-yellow-500/20",
   Backend: "from-emerald-500/20 via-green-500/10 to-teal-500/20",
+  Mobile: "from-teal-400/20 via-cyan-400/10 to-blue-400/20",
 };
 
 const projectAccentColors: Record<string, string> = {
   Monitoring: "text-blue-500",
   Automation: "text-amber-500",
   Backend: "text-emerald-500",
+  Mobile: "text-teal-400",
 };
 
 function ProjectCard({ project }: { project: Project }) {

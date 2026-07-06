@@ -43,6 +43,7 @@ export type PortfolioData = {
     ai: string[];
     monitoring: string[];
     tools: string[];
+    mobile: string[];
   };
   projects: Project[];
   experience: ExperienceItem[];

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { ShieldCheck, Zap, Bot, Activity } from "lucide-react";
+import { ShieldCheck, Zap, Bot, Activity, Smartphone } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Card3D } from "@/components/card-3d";
 import { fadeUp, slideInLeft, slideInRight, staggerFast } from "@/lib/motion-variants";
@@ -13,6 +13,7 @@ const highlightIcons: Record<string, React.ReactNode> = {
   Automation: <Zap className="h-5 w-5 text-amber-500" />,
   "Agentic AI": <Bot className="h-5 w-5 text-purple-500" />,
   System: <Activity className="h-5 w-5 text-emerald-500" />,
+  Android: <Smartphone className="h-5 w-5 text-teal-500" />,
 };
 
 function getHighlightIcon(title: string) {
@@ -25,7 +26,7 @@ function getHighlightIcon(title: string) {
 const careerStats = [
   { label: "Experience", value: "4.5+" },
   { label: "Domain", value: "Enterprise Retail" },
-  { label: "Focus", value: "Reliability & SLA" },
+  { label: "Mobile", value: "Play Store Publisher" },
 ];
 
 export function About() {

@@ -39,6 +39,7 @@ const SKILLS_DATA = [
   { id: "linux", label: "Linux", category: "Tools" },
   { id: "git", label: "Git", category: "Tools" },
   { id: "next", label: "Next.js", category: "Frontend" },
+  { id: "android", label: "Android", category: "Mobile" }
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -49,6 +50,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   Monitoring: "#ef4444",
   Tools: "#6b7280",
   Frontend: "#ec4899",
+  Mobile: "#00bcd4",
 };
 
 const CONNECTIONS: [string, string][] = [
@@ -64,6 +66,7 @@ const CONNECTIONS: [string, string][] = [
   ["dotnet", "sql"],
   ["python", "elk"],
   ["next", "rest"],
+  ["android", "csharp"]
 ];
 
 export function SkillConstellation({ className }: { className?: string }) {

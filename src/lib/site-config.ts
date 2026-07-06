@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Gourab Das",
-  title: "Software Engineer & Team Lead",
+  title: "Software Engineer & Android Developer",
   description:
-    "Portfolio of Gourab Das — Team Lead and Software Engineer specializing in system reliability, automation, .NET, Python, and enterprise-scale solutions.",
+    "Portfolio of Gourab Das — Software Engineer specializing in Android development, .NET, Python, automation, and modern web experiences. Published an app on the Google Play Store.",
   url: "https://gourab.app",
-  ogImage: "/profile.jpg",
+  ogImage: "/og-image.jpg",
   email: "gourabdas.13@gmail.com",
   phone: "+91 8274987485",
   links: {

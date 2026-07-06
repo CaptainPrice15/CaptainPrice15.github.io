@@ -8,7 +8,6 @@ import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
-import Image from "next/image";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
@@ -16,6 +15,7 @@ const rotatingPhrases = [
   "Building Reliable Systems",
   "Automating at Scale",
   "Designing Modern Web Experiences",
+  "Crafting Android Apps",
   "Leading Production Teams",
 ];
 
@@ -152,91 +152,7 @@ function ParticleNetwork({ className }: { className?: string }) {
   );
 }
 
-function RotatingBorderProfile() {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const [glowX, setGlowX] = useState(50);
-  const [glowY, setGlowY] = useState(50);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const mouseX = e.clientX - centerX;
-    const mouseY = e.clientY - centerY;
-    setRotateX((mouseY / (rect.height / 2)) * -12);
-    setRotateY((mouseX / (rect.width / 2)) * 12);
-    setGlowX(((e.clientX - rect.left) / rect.width) * 100);
-    setGlowY(((e.clientY - rect.top) / rect.height) * 100);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-    setGlowX(50);
-    setGlowY(50);
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative w-[280px] xl:w-[320px] h-[280px] xl:h-[320px] cursor-default float-3d-wrapper"
-      style={{ perspective: 1200, transformStyle: "preserve-3d" }}
-    >
-      {/* Outer glow aura */}
-      <div
-        className="absolute -inset-8 rounded-full bg-gradient-to-br from-primary/15 to-accent/15 blur-3xl pointer-events-none transition-all duration-300"
-        style={{
-          transform: `translate(${(glowX - 50) * 0.1}px, ${(glowY - 50) * 0.1}px)`,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Mid glow ring */}
-      <div
-        className="absolute -inset-4 rounded-full opacity-60 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(37,99,235,0.12), transparent 60%)`,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Conic gradient border */}
-      <div className="absolute -inset-[3px] rounded-3xl animate-rotate-border overflow-hidden">
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent,var(--primary),transparent,var(--accent),transparent)] animate-spin-slow" style={{ animationDuration: "4s" }} />
-      </div>
-
-      <motion.div
-        animate={{ rotateX, rotateY }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        style={{ transformStyle: "preserve-3d" }}
-        className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-glass-border glass shadow-xl preserve-3d"
-      >
-        <Image
-          src="/profile.jpg"
-          alt="Gourab Das Profile"
-          fill
-          className="object-cover backface-hidden"
-          priority
-          sizes="320px"
-        />
-
-        {/* Depth overlay on image */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            transform: "translateZ(10px)",
-            background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(255,255,255,0.08), transparent 50%)`,
-          }}
-        />
-      </motion.div>
-    </div>
-  );
-}
 
 export function Hero() {
   const { name, title } = portfolioData.hero;
@@ -259,11 +175,11 @@ export function Hero() {
         animate="visible"
         variants={staggerContainer}
       >
-        <div className="grid lg:grid-cols-[1fr_auto] gap-10 sm:gap-14 lg:gap-20 items-center max-w-6xl mx-auto">
-          <div className="text-center lg:text-left preserve-3d">
+        <div className="grid grid-cols-1 gap-10 sm:gap-14 items-center max-w-4xl mx-auto text-center">
+          <div className="text-center preserve-3d">
             <motion.div
               variants={heroBadge}
-              className="eyebrow mb-6 sm:mb-8 justify-center lg:justify-start depth-layer-1"
+              className="eyebrow mb-6 sm:mb-8 justify-center depth-layer-1"
             >
               <span className="eyebrow-dot" aria-hidden="true" />
               {title}
@@ -283,14 +199,14 @@ export function Hero() {
             </motion.div>
 
             <motion.div variants={heroItem} className="depth-layer-1">
-              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-xl lg:mx-0 mx-auto leading-relaxed px-4 sm:px-0">
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
                 {portfolioData.hero.subtext}
               </p>
             </motion.div>
 
             <motion.div
               variants={heroItem}
-              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0 depth-layer-3"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0 depth-layer-3"
             >
               <Button
                 size="lg"
@@ -315,7 +231,7 @@ export function Hero() {
 
             <motion.div
               variants={heroItem}
-              className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground font-medium px-4 sm:px-0 depth-layer-1"
+              className="mt-6 sm:mt-8 flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-muted-foreground font-medium px-4 sm:px-0 depth-layer-1"
             >
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary depth-layer-1" aria-hidden="true" />
@@ -324,23 +240,15 @@ export function Hero() {
               <span className="text-border/40" aria-hidden="true">&middot;</span>
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                Cognizant
+                Android & .NET
               </span>
               <span className="text-border/40" aria-hidden="true">&middot;</span>
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-success depth-layer-2" aria-hidden="true" />
-                Team Lead
+                Play Store Publisher
               </span>
             </motion.div>
           </div>
-
-          <motion.div
-            variants={heroItem}
-            className="hidden lg:flex justify-center items-center animate-float-3d"
-            style={{ animationDuration: "7s" }}
-          >
-            <RotatingBorderProfile />
-          </motion.div>
         </div>
       </motion.div>
     </section>
