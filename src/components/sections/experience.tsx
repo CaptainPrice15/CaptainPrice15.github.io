@@ -7,7 +7,7 @@ import { Briefcase, Star, Building2, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Card3D } from "@/components/card-3d";
 import { springTransition, timelineNode } from "@/lib/motion-variants";
-import { sectionContainer } from "@/lib/utils";
+import { cn, glassClasses, sectionContainer } from "@/lib/utils";
 
 export function Experience() {
   const { experience } = portfolioData;
@@ -93,7 +93,7 @@ export function Experience() {
                     <motion.div
                       whileHover={{ scale: 1.01, y: -2 }}
                       transition={{ duration: 0.25 }}
-                      className="glass rounded-xl sm:rounded-2xl p-5 sm:p-6 group hover:border-primary/20 transition-colors preserve-3d relative overflow-hidden"
+                      className={cn(glassClasses, "hover:border-primary/20 transition-colors preserve-3d")}
                     >
                       {/* Contextual milestone badge */}
                       <div className="flex items-center gap-2 mb-3">

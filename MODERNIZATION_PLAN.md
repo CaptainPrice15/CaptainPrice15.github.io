@@ -37,6 +37,8 @@ Based on the graphify knowledge graph analysis of your Next.js portfolio (**107 
 | 6 | Localized viewport glow on experience timeline | `experience.tsx` | ✅ Implemented |
 | 7 | SectionReveal wrapper for global scroll-triggered entrance transitions | `section-reveal.tsx`, `page.tsx` | ✅ Implemented |
 | 8 | Lenis/framer alignment review confirmed correct | `smooth-scroll.tsx`, `scroll-progress.tsx` | ✅ Verified |
+| 9 | Centralized glass shadow/blur into CSS custom properties (`--glass-shadow`, `--glass-hover-shadow`, `--glass-blur`) | `globals.css`, `design-system.ts` | ✅ Implemented |
+| 10 | All card surfaces standardized to use shared `glassClasses` utility | `projects.tsx`, `contact.tsx`, `experience.tsx`, `utils.ts` | ✅ Implemented |
 
 ## Recent Bug Fixes (Jul 2026)
 
@@ -99,13 +101,13 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 
 ## The Plan: 7-Phase Transformation
 
-### ✅ Phase 1: Foundation — Unify the Design System (~80% complete)
+### ✅ Phase 1: Foundation — Unify the Design System (~95% complete)
 **Goal:** Merge the fragmented `glass`, `card-shadow`, `gradient-text`, and `motion-variants` communities into a single cohesive design language.
 
 **✅ Step 1.1 — Create a `design-system.ts` hub.**
 - `src/lib/design-system.ts` exists with shared tokens, colors, spacing, and transitions.
 - `motion-variants.ts` imports from `design-system.ts`.
-- **Pending:** Some hardcoded values remain in `globals.css` (shadows, blur values) that could be centralized.
+- ✅ Completed: Hardcoded shadow/blur values in `.glass`, `.glass-hover`, `.card-shadow` replaced with CSS custom properties (`--glass-shadow`, `--glass-hover-shadow`, `--glass-blur`) sourced from `design-system.ts` tokens.
 
 **✅ Step 1.2 — Introduce CSS custom properties for animation timing.**
 - CSS variables `--ease-out-expo`, `--ease-spring`, `--ease-elastic` defined in `design-system.ts`.
@@ -113,12 +115,11 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 
 **✅ Step 1.3 — Standardize card surfaces.**
 - `utils.ts` exports: `buttonGradientClasses`, `glassClasses`, `cardHoverOverlay`, `sectionContainer`.
-- Most cards use `.glass` / `.glass-hover` CSS classes.
-- **Pending:** Not every card surface is fully standardized — some use inline classes instead of shared utilities.
+- ✅ All card surfaces now use shared `glassClasses`: `projects.tsx`, `contact.tsx`, `experience.tsx`, `about.tsx`.
 
 ---
 
-### ✅ Phase 2: Atmosphere — Add a Global WebGL/Canvas Background (~80% complete)
+### ✅ Phase 2: Atmosphere — Add a Global WebGL/Canvas Background (~95% complete)
 **Goal:** Turn the static `body::before` / `body::after` glows into a living, breathing ambient field.
 
 **✅ Step 2.1 — Add a `AmbientBackground` component.**
@@ -126,23 +127,24 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 - DPR capped to 1.5. Uses `useReducedMotion`.
 - **Note:** Uses Canvas 2D (not WebGL) — lighter but can be upgraded to R3F/WebGL for more visual complexity.
 
-**⏳ Step 2.2 — Connect it to the scroll progress.**
+**✅ Step 2.2 — Connect it to the scroll progress.**
 - ✅ Wired: `AmbientBackground` shifts hue/intensity from the shared Lenis progress value (falls back to native scroll when motion is reduced).
 
 ---
 
-### ⏳ Phase 3: Hero — Immersive & Interactive (~60% complete)
+### ✅ Phase 3: Hero — Immersive & Interactive (~85% complete)
 **Goal:** Make the hero the most important "hook." The `hero_component` should be the God Node of the entire page.
 
-**⏳ Step 3.1 — Keep the Typewriter, but amplify it.**
+**✅ Step 3.1 — Keep the Typewriter, but amplify it.**
 - ✅ Typewriter with rotating phrases is implemented (`hero.tsx`).
 - ✅ Stale closure bug fixed (refs-based implementation, Jul 2026).
 - ✅ 3D tilt on text container on mouse move — landed.
 - ✅ Micro-particle burst on phrase completion — landed.
 
-**⬜ Step 3.2 — Profile Picture Evolution.**
-- ⬜ No profile picture in the current hero (text-only). Initials variable exists but the avatar JSX was not committed.
-- ⬜ Rotating gradient border placeholder not yet rendered.
+**✅ Step 3.2 — Profile Picture Evolution.**
+- ✅ `HeroAvatar` component renders initials with rotating conic-gradient border (animated via requestAnimationFrame).
+- ✅ Rotating gradient border implemented — `conic-gradient(from ${angle}deg, #2563eb, #7c3aed, #ec4899, #2563eb)`.
+- ✅ Avatar placed in 2-column grid layout alongside text.
 - ⬜ "Liquid glass" distortion not implemented (requires WebGL/R3F upgrade).
 
 **✅ Step 3.3 — Background Depth.**
@@ -153,7 +155,7 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 
 ---
 
-### ⏳ Phase 4: Skills — Interactive Knowledge Constellation (~70% complete)
+### ✅ Phase 4: Skills — Interactive Knowledge Constellation (~85% complete)
 **Goal:** Visualize the skills as a miniature, interactive graph. This turns the abstract `Skills Component` into an engaging micro-experience.
 
 **✅ Step 4.1 — Build a `SkillConstellation` component.**
@@ -167,12 +169,14 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 - ✅ Nodes/connections now derived from `portfolioData.skills`. Categories map to consistent colors.
 - ✅ Cross-category relationships are defined next to the data map; unmatched labels are dropped silently.
 
-**⏳ Step 4.3 — Add a "tech radar" toggle.**
-- ⏳ Implementation next: a lightweight SVG radar chart derived from category proficiency.
+**✅ Step 4.3 — Add a "tech radar" toggle.**
+- ✅ `TechRadar` component renders a Canvas 2D rotating radar chart with category labels, concentric rings, and proficiency polygons.
+- ✅ Three-mode toggle in `skills.tsx`: Constellation / Radar / Grid.
+- ✅ Respects `useReducedMotion` (falls back to static percentage grid).
 
 ---
 
-### ⏳ Phase 5: Projects — Cinematic 3D Cards (~60% complete)
+### ✅ Phase 5: Projects — Cinematic 3D Cards (~85% complete)
 **Goal:** Transform `ProjectCard` from a flat card into a cinematic, 3D-interactive element.
 
 **✅ Step 5.1 — Implement 3D Tilt Cards.**
@@ -180,8 +184,10 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 - ✅ Uses `transform-style: preserve-3d`, spring transitions.
 - ✅ Bug fix applied: duplicate `translateZ` class/style conflict resolved (Jul 2026).
 
-**⏳ Step 5.2 — Project Data Expansion.**
-- ⏳ `coverImage` / `coverGradient` project fields + icon parallax still pending.
+**✅ Step 5.2 — Project Data Expansion.**
+- ✅ `coverGradient` and `iconEmoji` fields added to `Project` type in `types.ts`.
+- ✅ All 4 projects in `portfolio.ts` have per-project `coverGradient` and `iconEmoji` values.
+- ✅ Icon parallax: project card icons use `useMotionValue`/`useSpring` tilt with mouse tracking.
 
 **✅ Step 5.3 — Expandable Project View.**
 - ✅ Animated detail modal/drawer landed (framer-motion scale/spring, backdrop blur).
@@ -189,40 +195,42 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 
 ---
 
-### ⏳ Phase 6: Timeline — Scroll-Driven Narrative (~65% complete)
+### ✅ Phase 6: Timeline — Scroll-Driven Narrative (~80% complete)
 **Goal:** The `Experience Section` needs to tell a story. A scroll-driven baseline timeline is in place and is being enhanced.
 
 **✅ Step 6.1 — Build a `ScrollTimeline` component.**
 - ✅ The `Experience` section now renders a vertical timeline with a scroll-progress line and alternating entrance animations.
 - ✅ `slideInLeft` / `slideInRight` variants are used for direction-aware reveals.
 
-**⏳ Step 6.2 — Add "milestone" markers.**
+**✅ Step 6.2 — Add "milestone" markers.**
 - ✅ Per-entry milestone chips (Current / Milestone / Start) live above each experience card.
 
-**⏳ Step 6.3 — Contextual Background Shift.**
+**✅ Step 6.3 — Contextual Background Shift.**
 - ✅ Background hue now evolves with scroll progress (Phase 2.2 connection).
-- ⬜ A localized section-level glow on the timeline viewport is still planned.
+- ✅ Localized section-level radial gradient glow added behind the timeline viewport (masked to fade at top/bottom).
 
 ---
 
-### ⏳ Phase 7: Polish & Performance (~60% complete)
+### ✅ Phase 7: Polish & Performance (~80% complete)
 **Goal:** Tie everything together with smooth transitions and optimized rendering.
 
-**⏳ Step 7.1 — Smooth Scroll & Lenis.**
+**✅ Step 7.1 — Smooth Scroll & Lenis.**
 - ✅ `lenis` integrated in `smooth-scroll.tsx` with smooth easing and exposes shared progress.
 - ✅ Bug fix applied: RAF loop now properly cancelled on cleanup (Jul 2026).
 - ✅ `ScrollProgress` is now connected to the same Lenis progress (with native scroll fallback).
-- ⏳ Scroll-triggered framer-motion animations still need to be reviewed for Lenis alignment.
+- ✅ Framer-motion scroll animations reviewed: all `whileInView` animations use IntersectionObserver (Lenis-safe pattern). `useScroll` with target refs works correctly with Lenis firing native scroll events.
 
-**⬜ Step 7.2 — Global Page Transitions.**
-- ❌ Not implemented. Single-page app with no transition effect between sections or route changes.
+**✅ Step 7.2 — Global Page Transitions.**
+- ✅ `SectionReveal` component wraps each section with whileInView entrance transitions (opacity + y + scale).
+- ✅ All 6 sections in `page.tsx` wrapped with staggered delays (0 to 0.25).
+- ✅ Respects `useReducedMotion`.
 
 **✅ Step 7.3 — Reduce Motion Respect.**
-- ✅ `use-reduced-motion.ts` exists and is used in: `AmbientBackground`, `SmoothScroll`, `Hero/ParticleNetwork`, `SkillConstellation`, `Card3D`.
+- ✅ `use-reduced-motion.ts` exists and is used in: `AmbientBackground`, `SmoothScroll`, `Hero/ParticleNetwork`, `SkillConstellation`, `Card3D`, `TechRadar`, `SectionReveal`.
 - ✅ Fallback rendering when reduced motion is preferred: canvas animations are skipped, simple CSS renders instead.
 - **Note:** This is well-implemented and matches best practices.
 
-**⏳ Step 7.4 — Graphify Easter Egg.**
+**✅ Step 7.4 — Graphify Easter Egg.**
 - ✅ `GraphifyEasterEgg` mounted in the root layout. Type `graphify` anywhere to reveal the knowledge-graph stats modal.
 
 ---
@@ -231,14 +239,14 @@ iliary glows are CSS-only — no mouse-reactive, fluid, or shader-driven depth.
 
 | Phase | Impact | Effort | Priority | Current Status |
 |-------|--------|--------|----------|----------------|
-| 1 (Design System Unify) | High | Low | **Week 1** | ✅ ~80% done |
+| 1 (Design System Unify) | High | Low | **Week 1** | ✅ ~95% done |
 | 7.3 (Reduce Motion) | High | Low | **Week 1** | ✅ Done |
-| 2 (Global Background) | Very High | Medium | **Week 1–2** | ✅ ~90% done |
-| 3 (Hero Upgrade) | Very High | Medium | **Week 2** | ⏳ ~60% done |
+| 2 (Global Background) | Very High | Medium | **Week 1–2** | ✅ ~95% done |
+| 3 (Hero Upgrade) | Very High | Medium | **Week 2** | ✅ ~85% done |
 | 7.1 (Lenis Smooth Scroll) | High | Low | **Week 2** | ✅ Done (RAF fix applied) |
-| 5 (3D Project Cards) | High | Medium | **Week 3** | ⏳ ~60% done |
-| 4 (Skill Constellation) | Very High | High | **Week 3–4** | ⏳ ~70% done |
-| 6 (Scroll Timeline) | High | Medium | **Week 4** | ⏳ ~65% done |
+| 5 (3D Project Cards) | High | Medium | **Week 3** | ✅ ~85% done |
+| 4 (Skill Constellation) | Very High | High | **Week 3–4** | ✅ ~85% done |
+| 6 (Scroll Timeline) | High | Medium | **Week 4** | ✅ ~80% done |
 | 7.4 (Graphify Easter Egg) | Medium | Medium | **Week 4+** | ✅ Done |
 
 ---

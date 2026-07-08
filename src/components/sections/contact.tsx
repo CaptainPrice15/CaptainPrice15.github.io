@@ -7,7 +7,7 @@ import { Mail, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card3D } from "@/components/card-3d";
 import { springTransition } from "@/lib/motion-variants";
-import { buttonGradientClasses, sectionContainer } from "@/lib/utils";
+import { buttonGradientClasses, cn, glassClasses, sectionContainer } from "@/lib/utils";
 import { SectionHeading } from "@/components/section-heading";
 
 function CopyButton({ text, label }: { text: string; label: string }) {
@@ -217,7 +217,7 @@ export function Contact() {
             </div>
 
             <Card3D maxRotation={6} shineIntensity={0.1} className="w-full">
-              <div className="glass p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl preserve-3d">
+              <div className={cn(glassClasses, "preserve-3d")}>
                 <h3 className="text-lg font-bold text-foreground mb-4 depth-layer-1">Send a message</h3>
                 <ContactForm />
               </div>

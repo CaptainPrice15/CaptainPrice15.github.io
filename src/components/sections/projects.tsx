@@ -6,7 +6,7 @@ import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Code, FolderGit2, TrendingUp, ArrowRight, X } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { fadeUp, scaleIn, springTransition } from "@/lib/motion-variants";
-import { sectionContainer } from "@/lib/utils";
+import { cn, glassClasses, sectionContainer } from "@/lib/utils";
 import { Card3D } from "@/components/card-3d";
 import type { Project } from "@/lib/types";
 
@@ -56,7 +56,7 @@ function ProjectCard({ project, onViewDetails }: { project: Project; onViewDetai
       variants={scaleIn}
       layout
     >
-      <div className="glass glass-hover rounded-2xl overflow-hidden flex flex-col h-full group relative">
+      <div className={cn(glassClasses, "rounded-2xl flex flex-col h-full")}>
         <div
           className={`relative h-40 sm:h-48 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
         >
