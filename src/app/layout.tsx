@@ -9,6 +9,7 @@ import { AmbientBackground } from "@/components/ambient-background";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "@/lib/site-config";
+import { GraphifyEasterEgg } from "@/components/graphify-easter-egg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,6 +108,7 @@ export default function RootLayout({
             <Footer />
           </SmoothScroll>
         </ThemeProvider>
+        <GraphifyEasterEgg />
         <Analytics />
       </body>
     </html>

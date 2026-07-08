@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, User, MessageSquare, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
+import { Mail, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card3D } from "@/components/card-3d";
 import { springTransition } from "@/lib/motion-variants";
@@ -186,7 +186,7 @@ export function Contact() {
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-4">
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
-                Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
+                Whether you have a question, a project idea, or just want to say hi, I&apos;ll try my best to get back to you!
               </p>
 
               <div className="space-y-3">

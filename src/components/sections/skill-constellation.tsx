@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
+import { portfolioData } from "@/data/portfolio";
 
 /**
  * SkillConstellation
@@ -22,25 +23,15 @@ interface SkillNode {
   color: string;
 }
 
-const SKILLS_DATA = [
-  { id: "dotnet", label: ".NET", category: "Backend" },
-  { id: "csharp", label: "C#", category: "Backend" },
-  { id: "aspnet", label: "ASP.NET", category: "Backend" },
-  { id: "rest", label: "REST APIs", category: "Backend" },
-  { id: "sql", label: "SQL Server", category: "Database" },
-  { id: "mongo", label: "MongoDB", category: "Database" },
-  { id: "python", label: "Python", category: "Automation" },
-  { id: "powershell", label: "PowerShell", category: "Automation" },
-  { id: "automate", label: "Power Automate", category: "Automation" },
-  { id: "ai", label: "AI Agents", category: "AI" },
-  { id: "elk", label: "ELK Stack", category: "Monitoring" },
-  { id: "kibana", label: "Kibana", category: "Monitoring" },
-  { id: "win", label: "Windows", category: "Tools" },
-  { id: "linux", label: "Linux", category: "Tools" },
-  { id: "git", label: "Git", category: "Tools" },
-  { id: "next", label: "Next.js", category: "Frontend" },
-  { id: "android", label: "Android", category: "Mobile" }
-];
+const CATEGORY_LABELS: Record<string, string> = {
+  backend: "Backend",
+  database: "Database",
+  automation: "Automation",
+  ai: "AI",
+  monitoring: "Monitoring",
+  tools: "Tools",
+  mobile: "Mobile",
+};
 
 const CATEGORY_COLORS: Record<string, string> = {
   Backend: "#3b82f6",
@@ -53,26 +44,56 @@ const CATEGORY_COLORS: Record<string, string> = {
   Mobile: "#00bcd4",
 };
 
-const CONNECTIONS: [string, string][] = [
-  ["dotnet", "csharp"],
-  ["csharp", "aspnet"],
-  ["aspnet", "rest"],
-  ["sql", "mongo"],
-  ["python", "powershell"],
-  ["python", "automate"],
-  ["elk", "kibana"],
-  ["win", "linux"],
-  ["linux", "git"],
-  ["dotnet", "sql"],
-  ["python", "elk"],
-  ["next", "rest"],
-  ["android", "csharp"]
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 32);
+}
+
+function buildSkillData() {
+  const nodes: { id: string; label: string; category: string }[] = [];
+  Object.entries(portfolioData.skills).forEach(([key, items]) => {
+    const category = CATEGORY_LABELS[key] ?? key;
+    items.forEach((label) => {
+      nodes.push({ id: slugify(label), label, category });
+    });
+  });
+  return nodes;
+}
+
+const SKILLS_DATA = buildSkillData();
+
+const SKILL_CONNECTIONS: [string, string][] = [
+  [".NET", "C#"],
+  ["C#", "ASP.NET"],
+  ["ASP.NET", "REST APIs"],
+  ["SQL Server", "MongoDB"],
+  ["Python", "PowerShell"],
+  ["Python", "Power Automate"],
+  ["ELK Stack", "Kibana"],
+  ["Windows", "Linux"],
+  ["Linux", "Git"],
+  [".NET", "SQL Server"],
+  ["Python", "ELK Stack"],
+  ["AI Agent Coding (Claude, Codex, Gemini)", "Python"],
+  ["Next.js", "REST APIs"],
+  ["Android (Kotlin/Java)", "C#"],
 ];
+
+const CONNECTIONS: [string, string][] = SKILL_CONNECTIONS
+  .map(([a, b]) => {
+    const nodeA = SKILLS_DATA.find((n) => n.label === a);
+    const nodeB = SKILLS_DATA.find((n) => n.label === b);
+    return nodeA && nodeB ? ([nodeA.id, nodeB.id] as [string, string]) : null;
+  })
+  .filter((pair): pair is [string, string] => pair !== null);
 
 export function SkillConstellation({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  // hovered state kept for future tooltip expansion
   const nodesRef = useRef<SkillNode[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const rafRef = useRef<number>(0);
@@ -128,13 +149,11 @@ export function SkillConstellation({ className }: { className?: string }) {
 
     const handleMouseLeave = () => {
       mouseRef.current = { x: -1000, y: -1000 };
-      setHoveredNode(null);
     };
 
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseleave", handleMouseLeave);
 
-    let frame = 0;
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, w, h);
@@ -244,7 +263,7 @@ export function SkillConstellation({ className }: { className?: string }) {
       if (hovering) {
         const node = nodes.find((n) => n.id === hovering);
         if (node) {
-          setHoveredNode(hovering);
+          // tooltip state could be tracked here
           // Draw tooltip on canvas
           const text = `${node.label} — ${node.category}`;
           ctx!.font = "13px system-ui, sans-serif";
@@ -268,10 +287,9 @@ export function SkillConstellation({ className }: { className?: string }) {
           ctx!.fillText(text, tooltipX + textWidth / 2, tooltipY + 12);
         }
       } else {
-        setHoveredNode(null);
+        // no tooltip
       }
 
-      frame++;
       rafRef.current = requestAnimationFrame(animate);
     };
 

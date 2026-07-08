@@ -1,4 +1,4 @@
-import { ExternalLink, Link, Mail, Code } from "lucide-react";
+import { ExternalLink, Mail, Code } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export function Footer() {

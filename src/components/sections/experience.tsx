@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 import { useRef } from "react";
 import { portfolioData } from "@/data/portfolio";
-import { Briefcase, Star } from "lucide-react";
+import { Briefcase, Star, Building2, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Card3D } from "@/components/card-3d";
 import { springTransition, timelineNode } from "@/lib/motion-variants";
@@ -18,8 +18,25 @@ export function Experience() {
   });
   const lineHeight = useTransform(scrollYProgress, [0.1, 0.9], ["0%", "100%"]);
 
+  const getMilestone = (idx: number) => {
+    if (idx === 0) return { label: "Current", Icon: Building2, color: "text-primary" };
+    if (idx === experience.length - 1) return { label: "Start", Icon: Rocket, color: "text-accent" };
+    return { label: "Milestone", Icon: Briefcase, color: "text-muted-foreground" };
+  };
+
   return (
     <section id="experience" className="section bg-transparent relative overflow-hidden">
+      {/* Localized viewport glow */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 top-0 w-[600px] h-full pointer-events-none opacity-30"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(37,99,235,0.15) 0%, transparent 70%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
       <div className={`${sectionContainer} max-w-4xl`}>
         <SectionHeading title="Experience" eyebrow="Career path" />
 
@@ -39,6 +56,7 @@ export function Experience() {
             {experience.map((exp, idx) => {
               const isCurrent = idx === 0;
               const isLeft = idx % 2 === 0;
+              const milestone = getMilestone(idx);
 
               return (
                 <motion.div
@@ -75,8 +93,16 @@ export function Experience() {
                     <motion.div
                       whileHover={{ scale: 1.01, y: -2 }}
                       transition={{ duration: 0.25 }}
-                      className="glass rounded-xl sm:rounded-2xl p-5 sm:p-6 group hover:border-primary/20 transition-colors preserve-3d"
+                      className="glass rounded-xl sm:rounded-2xl p-5 sm:p-6 group hover:border-primary/20 transition-colors preserve-3d relative overflow-hidden"
                     >
+                      {/* Contextual milestone badge */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <milestone.Icon className={`h-3.5 w-3.5 ${milestone.color}`} />
+                        <span className={`text-xs font-semibold uppercase tracking-wider ${milestone.color}`}>
+                          {milestone.label}
+                        </span>
+                      </div>
+
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2.5 depth-layer-2">
                           <div className="p-1.5 bg-primary/8 rounded-lg border border-primary/10">

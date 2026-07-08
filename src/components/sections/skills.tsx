@@ -1,14 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { SkillConstellation } from "./skill-constellation";
+import { TechRadar } from "./tech-radar";
 import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { sectionContainer } from "@/lib/utils";
+import { portfolioData } from "@/data/portfolio";
 
 export function Skills() {
-  const [viewMode, setViewMode] = useState<"constellation" | "grid">("constellation");
+  const [viewMode, setViewMode] = useState<"constellation" | "grid" | "radar">("constellation");
+
+  const gridSkills = useMemo(
+    () => Object.values(portfolioData.skills).flat(),
+    []
+  );
 
   return (
     <section id="skills" className="section bg-transparent relative overflow-hidden">
@@ -27,6 +34,16 @@ export function Skills() {
               }`}
             >
               Constellation
+            </button>
+            <button
+              onClick={() => setViewMode("radar")}
+              className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
+                viewMode === "radar"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Radar
             </button>
             <button
               onClick={() => setViewMode("grid")}
@@ -55,11 +72,18 @@ export function Skills() {
                 Hover to explore connections. Each node drifts with physics.
               </p>
             </motion.div>
+          ) : viewMode === "radar" ? (
+            <motion.div variants={fadeUp}>
+              <TechRadar />
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                Rotating radar showing category proficiency levels.
+              </p>
+            </motion.div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {[".NET", "C#", "Python", "PowerShell", "SQL Server", "MongoDB", "ELK Stack", "AI Agents", "Next.js", "Git", "Windows", "Linux", "Android (Kotlin/Java)"].map((s, i) => (
+              {gridSkills.map((s) => (
                 <span
-                  key={i}
+                  key={s}
                   className="px-3 py-2 rounded-lg text-sm font-medium text-center bg-primary/5 border border-primary/10 text-foreground"
                 >
                   {s}

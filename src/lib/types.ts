@@ -10,6 +10,8 @@ export type Project = {
   type: string;
   highlights?: string[];
   challenges?: string[];
+  coverGradient?: string;
+  iconEmoji?: string;
 };
 
 export type SkillCategory = {

@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Stats } from "@/components/sections/stats";
+import { SectionReveal } from "@/components/section-reveal";
 
 const About = dynamic(
   () =>
@@ -65,12 +66,12 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />
-        <Stats />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        <SectionReveal><Stats /></SectionReveal>
+        <SectionReveal delay={0.05}><About /></SectionReveal>
+        <SectionReveal delay={0.1}><Skills /></SectionReveal>
+        <SectionReveal delay={0.15}><Projects /></SectionReveal>
+        <SectionReveal delay={0.2}><Experience /></SectionReveal>
+        <SectionReveal delay={0.25}><Contact /></SectionReveal>
       </main>
     </>
   );

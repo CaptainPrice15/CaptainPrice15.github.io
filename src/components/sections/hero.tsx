@@ -1,15 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { portfolioData } from "@/data/portfolio";
-import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+
+function HeroAvatar({
+  initials,
+  className,
+}: {
+  initials: string;
+  className?: string;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+  const angleRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const animate = () => {
+      angleRef.current = (angleRef.current + 0.3) % 360;
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [prefersReducedMotion]);
+
+  return (
+    <div className={className} style={{ position: "relative" }}>
+      <div
+        className="absolute inset-0 rounded-full blur-[60px] opacity-30 pointer-events-none"
+        style={{
+          background: `conic-gradient(from ${angleRef.current}deg, #2563eb, #7c3aed, #ec4899, #2563eb)`,
+          transform: "scale(1.15)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="relative rounded-full border-2 bg-gradient-to-br from-background to-muted p-[3px]"
+        style={{
+          background: `conic-gradient(from ${angleRef.current}deg, #2563eb, #7c3aed, #ec4899, #2563eb)`,
+        }}
+      >
+        <div className="relative rounded-full bg-background/80 backdrop-blur-sm p-6 sm:p-8 flex items-center justify-center">
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">
+            {initials}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const rotatingPhrases = [
   "Building Reliable Systems",
@@ -19,30 +67,61 @@ const rotatingPhrases = [
   "Leading Production Teams",
 ];
 
-function Typewriter({ phrases, delay = 0 }: { phrases: string[]; delay?: number }) {
+function Typewriter({
+  phrases,
+  onPhraseComplete,
+}: {
+  phrases: string[];
+  onPhraseComplete?: () => void;
+}) {
   const [displayText, setDisplayText] = useState("");
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const indexRef = useRef(0);
+  const deletingRef = useRef(false);
+  const textRef = useRef("");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const current = phrases[phraseIndex];
-      if (!isDeleting) {
-        setDisplayText(current.slice(0, displayText.length + 1));
-        if (displayText.length + 1 === current.length) {
-          setTimeout(() => setIsDeleting(true), 2200);
+    if (prefersReducedMotion) return;
+
+    const tick = () => {
+      const current = phrases[indexRef.current];
+
+      if (!deletingRef.current) {
+        const next = current.slice(0, textRef.current.length + 1);
+        textRef.current = next;
+        setDisplayText(next);
+        if (next === current) {
+          onPhraseComplete?.();
+          timerRef.current = setTimeout(() => {
+            deletingRef.current = true;
+            tick();
+          }, 2200);
+          return;
         }
       } else {
-        setDisplayText(current.slice(0, displayText.length - 1));
-        if (displayText.length === 0) {
-          setIsDeleting(false);
-          setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        const next = current.slice(0, Math.max(0, textRef.current.length - 1));
+        textRef.current = next;
+        setDisplayText(next);
+        if (next.length === 0) {
+          deletingRef.current = false;
+          indexRef.current = (indexRef.current + 1) % phrases.length;
         }
       }
-    }, isDeleting ? 30 : 60);
 
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, phraseIndex, phrases]);
+      const speed = deletingRef.current ? 30 : 60;
+      timerRef.current = setTimeout(tick, speed);
+    };
+
+    tick();
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [phrases, prefersReducedMotion, onPhraseComplete]);
+
+  if (prefersReducedMotion) {
+    return <span>{phrases[0] || ""}</span>;
+  }
 
   return (
     <span>
@@ -56,9 +135,44 @@ function Typewriter({ phrases, delay = 0 }: { phrases: string[]; delay?: number 
   );
 }
 
-function ParticleNetwork({ className }: { className?: string }) {
+function ParticleNetwork({
+  className,
+  burstSignal = 0,
+}: {
+  className?: string;
+  burstSignal?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const burstsRef = useRef<
+    { x: number; y: number; vx: number; vy: number; life: number; max: number; r: number; color: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    if (!burstSignal) return;
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const cx = w / 2;
+    const cy = h * 0.42;
+    const count = 26;
+
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const speed = 2 + Math.random() * 3.5;
+      burstsRef.current.push({
+        x: cx,
+        y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 80,
+        max: 80,
+        r: Math.random() * 2 + 1,
+        color: Math.random() < 0.5 ? "37, 99, 235" : "124, 58, 237",
+      });
+    }
+  }, [burstSignal, prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -127,6 +241,30 @@ function ParticleNetwork({ className }: { className?: string }) {
         }
       }
 
+      // Phrase-completion burst particles
+      const bursts = burstsRef.current;
+      for (let i = bursts.length - 1; i >= 0; i--) {
+        const b = bursts[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vx *= 0.96;
+        b.vy *= 0.96;
+        b.life -= 1;
+        const alpha = Math.max(0, b.life / b.max);
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${b.color}, ${alpha * 0.9})`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r * 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${b.color}, ${alpha * 0.12})`;
+        ctx.fill();
+
+        if (b.life <= 0) bursts.splice(i, 1);
+      }
+
       raf = requestAnimationFrame(draw);
     };
 
@@ -138,6 +276,7 @@ function ParticleNetwork({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      burstsRef.current = [];
     };
   }, [prefersReducedMotion]);
 
@@ -156,10 +295,44 @@ function ParticleNetwork({ className }: { className?: string }) {
 
 export function Hero() {
   const { name, title } = portfolioData.hero;
+  const initials = name
+    .split(" ")
+    .map((w) => w[0] ?? "")
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [burstSignal, setBurstSignal] = useState(0);
+
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateX = useSpring(tiltX, { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(tiltY, { stiffness: 150, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (prefersReducedMotion) return;
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltX.set(-py * 4);
+    tiltY.set(px * 5);
+  };
+
+  const handleMouseLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden section !pt-28 sm:!pt-32 !pb-16 sm:!pb-20">
-      <ParticleNetwork className="absolute inset-0" />
+    <section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-[100dvh] flex items-center overflow-hidden section !pt-28 sm:!pt-32 !pb-16 sm:!pb-20"
+    >
+      <ParticleNetwork className="absolute inset-0" burstSignal={burstSignal} />
 
       {/* 3D floating decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
@@ -175,11 +348,28 @@ export function Hero() {
         animate="visible"
         variants={staggerContainer}
       >
-        <div className="grid grid-cols-1 gap-10 sm:gap-14 items-center max-w-4xl mx-auto text-center">
-          <div className="text-center preserve-3d">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 items-center max-w-4xl mx-auto">
+          {/* Avatar Column */}
+          <motion.div
+            variants={heroItem}
+            className="flex justify-center lg:justify-end order-1 lg:order-1 depth-layer-3"
+          >
+            <HeroAvatar initials={initials} className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64" />
+          </motion.div>
+
+          {/* Text Column */}
+          <motion.div
+            className="text-center lg:text-left preserve-3d"
+            style={{
+              rotateX: prefersReducedMotion ? 0 : rotateX,
+              rotateY: prefersReducedMotion ? 0 : rotateY,
+              transformPerspective: 1000,
+              transformStyle: "preserve-3d",
+            }}
+          >
             <motion.div
               variants={heroBadge}
-              className="eyebrow mb-6 sm:mb-8 justify-center depth-layer-1"
+              className="eyebrow mb-6 sm:mb-8 justify-center lg:justify-start depth-layer-1"
             >
               <span className="eyebrow-dot" aria-hidden="true" />
               {title}
@@ -187,14 +377,17 @@ export function Hero() {
 
             <motion.div variants={heroItem} className="depth-layer-2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-4 sm:mb-6 leading-[1.1]">
-                Hi, I'm{" "}
+                Hi, I&apos;m{" "}
                 <span className="gradient-text">{name}</span>.
               </h1>
             </motion.div>
 
             <motion.div variants={heroItem} className="depth-layer-2">
               <p className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground/70 mb-4 sm:mb-6 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] leading-snug">
-                <Typewriter phrases={rotatingPhrases} delay={300} />
+                <Typewriter
+                  phrases={rotatingPhrases}
+                  onPhraseComplete={() => setBurstSignal((n) => n + 1)}
+                />
               </p>
             </motion.div>
 
@@ -248,7 +441,7 @@ export function Hero() {
                 Play Store Publisher
               </span>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

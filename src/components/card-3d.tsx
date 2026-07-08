@@ -99,7 +99,6 @@ export function Card3D({
             "relative z-10",
             depth && "[transform:translateZ(30px)]"
           )}
-          style={depth ? { transform: `translateZ(30px)` } : undefined}
         >
           {children}
         </div>
