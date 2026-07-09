@@ -9,54 +9,10 @@ import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
 import React, { useState, useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { HeroAvatarWebGL } from "@/components/hero-avatar-webgl";
 
-function HeroAvatar({
-  initials,
-  className,
-}: {
-  initials: string;
-  className?: string;
-}) {
-  const prefersReducedMotion = useReducedMotion();
-  const angleRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-    const animate = () => {
-      angleRef.current = (angleRef.current + 0.3) % 360;
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [prefersReducedMotion]);
-
-  return (
-    <div className={className} style={{ position: "relative" }}>
-      <div
-        className="absolute inset-0 rounded-full blur-[60px] opacity-30 pointer-events-none"
-        style={{
-          background: `conic-gradient(from ${angleRef.current}deg, #2563eb, #7c3aed, #ec4899, #2563eb)`,
-          transform: "scale(1.15)",
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="relative rounded-full border-2 bg-gradient-to-br from-background to-muted p-[3px]"
-        style={{
-          background: `conic-gradient(from ${angleRef.current}deg, #2563eb, #7c3aed, #ec4899, #2563eb)`,
-        }}
-      >
-        <div className="relative rounded-full bg-background/80 backdrop-blur-sm p-6 sm:p-8 flex items-center justify-center">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">
-            {initials}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
+function HeroAvatar(props: { initials: string; className?: string }) {
+  return <HeroAvatarWebGL {...props} />;
 }
 
 const rotatingPhrases = [

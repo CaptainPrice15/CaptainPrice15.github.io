@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { portfolioData } from "@/data/portfolio";
 import { Briefcase, Star, Building2, Rocket } from "lucide-react";
