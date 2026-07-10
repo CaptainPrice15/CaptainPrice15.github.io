@@ -2,7 +2,7 @@
 // wrapper can use it for the reduced-motion grid fallback without pulling the
 // WebGL bundle into the initial chunk.
 
-import { portfolioData } from "@/data/portfolio";
+import { skills } from "@/data/skills";
 
 const CATEGORY_LABELS: Record<string, string> = {
   backend: "Backend",
@@ -42,7 +42,7 @@ export interface SkillDatum {
 
 function buildSkillData(): SkillDatum[] {
   const nodes: SkillDatum[] = [];
-  Object.entries(portfolioData.skills).forEach(([key, items]) => {
+  Object.entries(skills).forEach(([key, items]) => {
     const category = CATEGORY_LABELS[key] ?? key;
     items.forEach((label) => {
       nodes.push({

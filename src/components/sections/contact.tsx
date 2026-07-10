@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { contact } from "@/data/contact";
 import { Mail, Copy, Check, Send, Link, Phone, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card3D } from "@/components/card-3d";
@@ -90,7 +90,7 @@ function ContactForm() {
     e.preventDefault();
     setStatus("sending");
 
-    const mailtoLink = `mailto:${portfolioData.contact.email}?subject=Portfolio Contact from ${encodeURIComponent(formState.name)}&body=${encodeURIComponent(formState.message)}%0A%0AFrom: ${encodeURIComponent(formState.email)}`;
+    const mailtoLink = `mailto:${contact.email}?subject=Portfolio Contact from ${encodeURIComponent(formState.name)}&body=${encodeURIComponent(formState.message)}%0A%0AFrom: ${encodeURIComponent(formState.email)}`;
     window.location.href = mailtoLink;
     setStatus("sent");
     setTimeout(() => setStatus("idle"), 3000);
@@ -211,8 +211,8 @@ export function Contact() {
               </div>
 
               <div className="pt-4 flex flex-col sm:flex-row justify-center sm:justify-start gap-3">
-                <CopyButton text={portfolioData.contact.email} label="Copy email" />
-                <CopyButton text={portfolioData.contact.phone} label="Copy phone" />
+                <CopyButton text={contact.email} label="Copy email" />
+                <CopyButton text={contact.phone} label="Copy phone" />
               </div>
             </div>
 

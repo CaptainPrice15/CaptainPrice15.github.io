@@ -2,77 +2,9 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Environment, MeshTransmissionMaterial } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
-
-/**
- * HeroAvatarCanvas (WebGL)
- * Liquid-glass avatar: initials + rotating conic-gradient ring baked into a
- * texture, warped by a flowing noise distortion shader with a mouse-driven
- * specular highlight + tilt. Kept in its own module so `three` is code-split.
- */
-
-const vertexShader = /* glsl */ `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-const fragmentShader = /* glsl */ `
-  precision highp float;
-  uniform sampler2D uTex;
-  uniform float uTime;
-  uniform vec2 uMouse;
-  varying vec2 vUv;
-
-  // Ashima 2D simplex noise
-  vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-  vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-  vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
-  float snoise(vec2 v) {
-    const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
-    vec2 i = floor(v + dot(v, C.yy));
-    vec2 x0 = v - i + dot(i, C.xx);
-    vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-    vec4 x12 = x0.xyxy + C.xxzz;
-    x12.xy -= i1;
-    i = mod289(i);
-    vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
-    vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
-    m = m * m; m = m * m;
-    vec3 x = 2.0 * fract(p * C.www) - 1.0;
-    vec3 h = abs(x) - 0.5;
-    vec3 ox = floor(x + 0.5);
-    vec3 a0 = x - ox;
-    m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
-    vec3 g;
-    g.x = a0.x * x0.x + h.x * x0.y;
-    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-    return 130.0 * dot(m, g);
-  }
-
-  void main() {
-    vec2 uv = vUv;
-    float n = snoise(uv * 2.5 + uTime * 0.15);
-    float n2 = snoise(uv * 4.0 - uTime * 0.1);
-    vec2 disp = vec2(n, n2) * 0.02;
-    vec2 suv = uv + disp;
-
-    vec4 tex = texture2D(uTex, suv);
-
-    float d = distance(uv, vec2(0.5));
-    float rim = smoothstep(0.40, 0.5, d) * (1.0 - smoothstep(0.5, 0.52, d));
-    vec3 rimColor = vec3(0.15, 0.6, 1.0);
-
-    vec2 hl = vec2(0.5) + uMouse * 0.15;
-    float spec = smoothstep(0.34, 0.0, distance(uv, hl)) * 0.22;
-
-    vec3 color = tex.rgb + rim * rimColor * 0.7 + spec;
-    gl_FragColor = vec4(color, tex.a);
-  }
-`;
 
 function makeAvatarTexture(initials: string) {
   const size = 512;
@@ -118,20 +50,17 @@ function makeAvatarTexture(initials: string) {
 }
 
 function AvatarMesh({ initials }: { initials: string }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
   const mouseRef = useRef(new THREE.Vector2(0, 0));
   const texture = useMemo(() => makeAvatarTexture(initials), [initials]);
+  const sphereGeo = useMemo(() => new THREE.SphereGeometry(1, 48, 48), []);
+  const planeGeo = useMemo(() => new THREE.PlaneGeometry(1.6, 1.6), []);
 
-  const uniforms = useMemo(
-    () => ({
-      uTex: { value: texture },
-      uTime: { value: 0 },
-      uMouse: { value: new THREE.Vector2(0, 0) },
-    }),
-    [texture]
-  );
-
-  useEffect(() => () => texture.dispose(), [texture]);
+  useEffect(() => () => {
+    sphereGeo.dispose();
+    planeGeo.dispose();
+    texture.dispose();
+  }, [sphereGeo, planeGeo, texture]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -144,28 +73,40 @@ function AvatarMesh({ initials }: { initials: string }) {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useFrame((state) => {
-    uniforms.uTime.value = state.clock.elapsedTime;
-    uniforms.uMouse.value.lerp(mouseRef.current, 0.08);
-    if (meshRef.current) {
-      const targetX = mouseRef.current.y * 0.3;
-      const targetY = mouseRef.current.x * 0.3;
-      meshRef.current.rotation.x += (targetX - meshRef.current.rotation.x) * 0.08;
-      meshRef.current.rotation.y += (targetY - meshRef.current.rotation.y) * 0.08;
+  useFrame(() => {
+    if (groupRef.current) {
+      const targetX = mouseRef.current.y * 0.4;
+      const targetY = mouseRef.current.x * 0.4;
+      groupRef.current.rotation.x += (targetX - groupRef.current.rotation.x) * 0.08;
+      groupRef.current.rotation.y += (targetY - groupRef.current.rotation.y) * 0.08;
     }
   });
 
   return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[2.4, 2.4]} />
-      <shaderMaterial
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        transparent
-        depthWrite={false}
-      />
-    </mesh>
+    <group ref={groupRef}>
+      <mesh>
+        <primitive object={sphereGeo} />
+        <MeshTransmissionMaterial
+          backside
+          backsideThickness={0.2}
+          thickness={0.5}
+          roughness={0.08}
+          metalness={0.02}
+          distortion={0.6}
+          distortionScale={0.4}
+          temporalDistortion={0.12}
+          clearcoat={0.15}
+          envMapIntensity={1.5}
+          transparent
+          opacity={0.96}
+        />
+      </mesh>
+      <mesh position={[0, 0, -0.15]}>
+        <primitive object={planeGeo} />
+        <meshBasicMaterial map={texture} transparent depthWrite={false} />
+      </mesh>
+      <Environment preset="city" />
+    </group>
   );
 }
 
@@ -174,7 +115,7 @@ export function HeroAvatarCanvas({ initials }: { initials: string }) {
     <Canvas
       gl={{ alpha: true, antialias: true }}
       dpr={[1, 2]}
-      camera={{ position: [0, 0, 4], fov: 45 }}
+      camera={{ position: [0, 0, 3.8], fov: 45 }}
       style={{ width: "100%", height: "100%" }}
     >
       <AvatarMesh initials={initials} />

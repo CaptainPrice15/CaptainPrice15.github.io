@@ -27,7 +27,7 @@ Based on the graphify knowledge graph analysis of your Next.js portfolio (**107 
 
 **Build & lint state:** `npm run build` ✅ passes · `npm run lint` ✅ passes (0 warnings/errors).
 
-## Recent Implementations (Jul 2026)
+## Recent Implementations
 
 | # | Feature | Files | Status |
 |---|---------|-------|--------|
@@ -47,6 +47,11 @@ Based on the graphify knowledge graph analysis of your Next.js portfolio (**107 
 | 14 | HeroAvatar "liquid glass" R3F distortion shader | `hero-avatar-canvas.tsx` | ✅ Implemented |
 | 15 | `SkillConstellation` → R3F 3D force-directed graph | `skill-graph-canvas.tsx`, `skill-data.ts` | ✅ Implemented |
 | 16 | Lazy-load R3F canvases via `next/dynamic` (ssr:false, code-split three.js) | `ambient-canvas.tsx`, `hero-avatar-canvas.tsx`, `skill-graph-canvas.tsx` | ✅ Implemented |
+| 17 | Data decoupling — per-section data files, named types, barrel re-export, component wiring | `src/lib/types.ts`, `src/data/*.ts`, consuming components | ✅ Implemented |
+
+## In-Progress Items (Jul 2026)
+
+No items currently in progress. All planned work is complete.
 
 ## Recent Bug Fixes (Jul 2026)
 
@@ -86,7 +91,7 @@ Based on the graphify knowledge graph analysis of your Next.js portfolio (**107 
 | 3 | **Skills text-heavy** — static list, no visual depth | ✅ Resolved | 3D force-directed graph (`skill-graph-canvas.tsx`), radar chart toggle, interactive hover |
 | 4 | **Projects generic** — flat card grid, no hover depth | ✅ Resolved | 3D tilt cards (`card-3d.tsx`), per-project icons/gradients, expandable detail modal |
 | 5 | **No living background** — CSS glows used locally | ✅ Resolved | Global full-screen R3F shader (`ambient-canvas.tsx`) mouse parallax + scroll-hue |
-| 6 | **Data tightly coupled** — all content hardcoded in `portfolio.ts` | ⬜ Not addressed | Still a single static object; limits dynamic rendering, filtering, CMS, or localization |
+| 6 | **Data tightly coupled** — all content hardcoded in `portfolio.ts` | ✅ Resolved | Data fully decoupled into per-section files (`hero.ts`, `about.ts`, `skills.ts`, `projects.ts`, `experience.ts`, `contact.ts`). Named types exported from `types.ts`, `portfolio.ts` re-exports the barrel, and all 9 consuming components now import section-specific data directly |
 
 ---
 
@@ -264,21 +269,24 @@ Based on the graphify knowledge graph analysis of your Next.js portfolio (**107 
 
 ---
 
-## Remaining Pending Work
+## Remaining & In-Progress Work
 
-All 7 phases are complete. The site builds & lints clean. Two open items remain:
+All 7 phases and the data-decoupling follow-up are complete. Build & lint pass cleanly.
 
-### ⬜ Data Decoupling (pain point #6, not in original plan)
-- Extract hardcoded data from `portfolio.ts` into separate, potentially queryable sources (e.g. a CMS, MDX, or separate data files per section).
+### ✅ Data Decoupling (pain point #6, completed Jul 2026)
+- ✅ Created `src/data/contact.ts` in addition to existing per-section files (`hero.ts`, `about.ts`, `skills.ts`, `projects.ts`, `experience.ts`).
+- ✅ Updated `src/lib/types.ts` with named section types (`HeroData`, `AboutData`, `SkillsData`, `ContactData`) and composed `PortfolioData` from them.
+- ✅ Updated `src/data/portfolio.ts` to act as a barrel that re-exports data from per-section files while keeping the `portfolioData` aggregate object.
+- ✅ Wired all 9 consumers to import section-specific data directly: `footer.tsx`, `hero.tsx`, `about.tsx`, `skills.tsx`, `projects.tsx`, `experience.tsx`, `contact.tsx`, `tech-radar.tsx`, `skill-data.ts`.
 - Enables filtering, localization, and dynamic content updates without code changes.
 
-### ⬜ Possible visual enhancements (not in original plan)
-- Bake `MeshTransmissionMaterial` for a true refractive glass avatar (current shader is a lighter approximation).
-- Add `drei` `<Environment>` for richer PBR reflections on skill-graph nodes.
+### ✅ Visual enhancements (Jul 2026)
+- ✅ Replaced custom simplex-noise shader with `MeshTransmissionMaterial` on the hero avatar — true refractive glass orb with env-map reflections, temporal distortion, and backside refraction.
+- ✅ Added `drei` `<Environment>` (preset `studio`) to the 3D skill graph — nodes are now `meshStandardMaterial` with metalness/roughness, picking up PBR reflections from the HDRI environment.
 
 ### ✅ Completed future enhancements (Jul 2026)
 - Lazy-load R3F chunks — canvases code-split into async chunks via `next/dynamic({ ssr:false })`; verified `three` isolated in its own chunk.
 
 ---
 
-> **Summary:** All 7 modernization phases complete, all original Graphify pain points resolved except data decoupling. Lint ✅, Build ✅. The portfolio is visually rich with WebGL ambient background, liquid-glass avatar, 3D skill graph, cinematic project cards, scroll timeline, and smooth Lenis scrolling — all code-split for performance.
+> **Summary:** All 7 modernization phases complete, all 6 original Graphify pain points resolved. Data decoupling fully implemented. Visual enhancements: refractive glass avatar (MeshTransmissionMaterial) and PBR environment on skill-graph nodes. Lint ✅, Build ✅. The portfolio is visually rich with WebGL ambient background, liquid-glass avatar, 3D skill graph, cinematic project cards, scroll timeline, and smooth Lenis scrolling — all code-split for performance.

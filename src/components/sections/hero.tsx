@@ -3,7 +3,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { portfolioData } from "@/data/portfolio";
+import { hero } from "@/data/hero";
 import Link from "next/link";
 import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
@@ -250,7 +250,7 @@ function ParticleNetwork({
 
 
 export function Hero() {
-  const { name, title } = portfolioData.hero;
+  const { name, title } = hero;
   const initials = name
     .split(" ")
     .map((w) => w[0] ?? "")
@@ -349,7 +349,7 @@ export function Hero() {
 
             <motion.div variants={heroItem} className="depth-layer-1">
               <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
-                {portfolioData.hero.subtext}
+                {hero.subtext}
               </p>
             </motion.div>
 

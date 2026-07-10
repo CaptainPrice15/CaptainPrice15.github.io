@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { portfolioData } from "@/data/portfolio";
+import { experience } from "@/data/experience";
 import { Briefcase, Star, Building2, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Card3D } from "@/components/card-3d";
@@ -10,7 +10,6 @@ import { springTransition, timelineNode } from "@/lib/motion-variants";
 import { cn, glassClasses, sectionContainer } from "@/lib/utils";
 
 export function Experience() {
-  const { experience } = portfolioData;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

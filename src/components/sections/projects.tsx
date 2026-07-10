@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { projects } from "@/data/projects";
 import { ExternalLink, Code, FolderGit2, TrendingUp, ArrowRight, X } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { fadeUp, scaleIn, springTransition } from "@/lib/motion-variants";
@@ -161,7 +161,6 @@ function ProjectCard({ project, onViewDetails }: { project: Project; onViewDetai
 }
 
 export function Projects() {
-  const { projects } = portfolioData;
   const [filter, setFilter] = React.useState("All");
   const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 

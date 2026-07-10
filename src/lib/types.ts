@@ -27,32 +27,41 @@ export type ExperienceItem = {
   description: string;
 };
 
+export type HeroData = {
+  name: string;
+  title: string;
+  headline: string;
+  subtext: string;
+};
+
+export type AboutData = {
+  story: string;
+  highlights: string[];
+};
+
+export type SkillsData = {
+  backend: string[];
+  database: string[];
+  automation: string[];
+  ai: string[];
+  monitoring: string[];
+  tools: string[];
+  mobile: string[];
+  [category: string]: string[];
+};
+
+export type ContactData = {
+  email: string;
+  linkedin: string;
+  phone: string;
+  github: string;
+};
+
 export type PortfolioData = {
-  hero: {
-    name: string;
-    title: string;
-    headline: string;
-    subtext: string;
-  };
-  about: {
-    story: string;
-    highlights: string[];
-  };
-  skills: {
-    backend: string[];
-    database: string[];
-    automation: string[];
-    ai: string[];
-    monitoring: string[];
-    tools: string[];
-    mobile: string[];
-  };
+  hero: HeroData;
+  about: AboutData;
+  skills: SkillsData;
   projects: Project[];
   experience: ExperienceItem[];
-  contact: {
-    email: string;
-    linkedin: string;
-    phone: string;
-    github: string;
-  };
+  contact: ContactData;
 };

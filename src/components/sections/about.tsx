@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { about } from "@/data/about";
 import { ShieldCheck, Zap, Bot, Activity, Smartphone } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Card3D } from "@/components/card-3d";
@@ -30,7 +30,7 @@ const careerStats = [
 ];
 
 export function About() {
-  const { story, highlights } = portfolioData.about;
+  const { story, highlights } = about;
 
   return (
     <section id="about" className="section bg-transparent">

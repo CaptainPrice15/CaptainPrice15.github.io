@@ -1,8 +1,8 @@
 import { ExternalLink, Mail, Code } from "lucide-react";
-import { portfolioData } from "@/data/portfolio";
+import { contact } from "@/data/contact";
 
 export function Footer() {
-  const { email, linkedin, github } = portfolioData.contact;
+  const { email, linkedin, github } = contact;
 
   return (
     <footer className="relative border-t border-border/30 bg-background/40 backdrop-blur-sm">

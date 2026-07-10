@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { cn } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
+import { skills } from "@/data/skills";
 
 const CATEGORY_LABELS: Record<string, string> = {
   backend: "Backend",
@@ -34,7 +34,7 @@ interface RadarData {
 }
 
 function computeCategoryProficiency(): RadarData[] {
-  const entries = Object.entries(portfolioData.skills);
+  const entries = Object.entries(skills);
   const categories = entries.map(([key, skills]) => {
     const label = CATEGORY_LABELS[key] ?? key;
     const count = skills.length;

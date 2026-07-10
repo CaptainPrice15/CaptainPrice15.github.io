@@ -7,13 +7,13 @@ import { SkillConstellation } from "./skill-constellation";
 import { TechRadar } from "./tech-radar";
 import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { sectionContainer } from "@/lib/utils";
-import { portfolioData } from "@/data/portfolio";
+import { skills } from "@/data/skills";
 
 export function Skills() {
   const [viewMode, setViewMode] = useState<"constellation" | "grid" | "radar">("constellation");
 
   const gridSkills = useMemo(
-    () => Object.values(portfolioData.skills).flat(),
+    () => Object.values(skills).flat(),
     []
   );
 

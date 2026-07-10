@@ -3,19 +3,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { Environment, Html, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { SKILLS_DATA, CONNECTIONS } from "./skill-data";
 
-/**
- * SkillGraphCanvas (WebGL 3D)
- * Skills rendered as nodes in a 3D force-directed graph. Nodes repel each
- * other, connected nodes attract (spring), and the whole graph is pulled
- * toward a sphere shell. Auto-rotates; drag to orbit; hover a node to inspect.
- * Kept in its own module so `three` is code-split out of the initial chunk.
- */
-
 const RADIUS = 1.7;
+const NODE_GEOMETRY = new THREE.SphereGeometry(0.085, 16, 16);
 
 function fibonacciSphere(i: number, n: number): THREE.Vector3 {
   const phi = Math.acos(1 - (2 * (i + 0.5)) / n);
@@ -26,8 +19,6 @@ function fibonacciSphere(i: number, n: number): THREE.Vector3 {
     RADIUS * Math.sin(phi) * Math.sin(theta)
   );
 }
-
-const NODE_GEOMETRY = new THREE.SphereGeometry(0.085, 16, 16);
 
 function SkillGraph3D() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
@@ -169,7 +160,7 @@ function SkillGraph3D() {
         }}
         onPointerOut={() => setHovered(null)}
       >
-        <meshBasicMaterial toneMapped={false} />
+        <meshStandardMaterial toneMapped={false} metalness={0.4} roughness={0.3} />
       </instancedMesh>
 
       <lineSegments ref={lineRef}>
@@ -207,6 +198,7 @@ function SkillGraph3D() {
         autoRotateSpeed={0.6}
         rotateSpeed={0.5}
       />
+      <Environment preset="studio" />
     </group>
   );
 }
