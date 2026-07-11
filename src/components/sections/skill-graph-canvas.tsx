@@ -1,9 +1,9 @@
 // @disable-react-compiler
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Html, OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 import { SKILLS_DATA, CONNECTIONS } from "./skill-data";
@@ -25,6 +25,7 @@ function SkillGraph3D() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const lineRef = useRef<THREE.LineSegments>(null);
   const hoveredGroupRef = useRef<THREE.Group>(null);
+  const occluderRef = useRef<THREE.Mesh>(null);
   const labelRefs = useRef<(THREE.Group | null)[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -165,9 +166,13 @@ function SkillGraph3D() {
           e.stopPropagation();
           if (e.instanceId != null) setHovered(e.instanceId);
         }}
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          if (e.instanceId != null) setHovered(e.instanceId);
+        }}
         onPointerOut={() => setHovered(null)}
       >
-        <meshStandardMaterial toneMapped={false} metalness={0.4} roughness={0.3} />
+        <meshStandardMaterial toneMapped={false} metalness={0.3} roughness={0.4} />
       </instancedMesh>
 
       <lineSegments ref={lineRef}>
@@ -192,7 +197,7 @@ function SkillGraph3D() {
             labelRefs.current[i] = el;
           }}
         >
-          <Html center distanceFactor={9} zIndexRange={[5, 0]} style={{ pointerEvents: "none" }}>
+          <Html center distanceFactor={9} zIndexRange={[5, 0]} occlude={[occluderRef as RefObject<THREE.Object3D>]} style={{ pointerEvents: "none" }}>
             <div
               className={cn(
                 "whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
@@ -221,6 +226,17 @@ function SkillGraph3D() {
         </group>
       )}
 
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[4, 5, 3]} intensity={1.1} />
+      <directionalLight position={[-4, -2, -3]} intensity={0.5} color="#a5b4fc" />
+
+      {/* Invisible raycast-only sphere used to occlude (hide) labels on the
+          far side of the constellation. Writes no color/depth. */}
+      <mesh ref={occluderRef}>
+        <sphereGeometry args={[1.6, 16, 16]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false} />
+      </mesh>
+
       <OrbitControls
         enableZoom={false}
         enablePan={false}
@@ -228,19 +244,36 @@ function SkillGraph3D() {
         autoRotateSpeed={0.6}
         rotateSpeed={0.5}
       />
-      <Environment preset="studio" />
     </group>
   );
 }
 
 export function SkillGraphCanvas() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [frameloop, setFrameloop] = useState<"always" | "never">("always");
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setFrameloop(entry.isIntersecting ? "always" : "never"),
+      { threshold: 0.05 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 4.6], fov: 50 }}
-      dpr={[1, 1.5]}
-      gl={{ alpha: true, antialias: true }}
-    >
-      <SkillGraph3D />
-    </Canvas>
+    <div ref={containerRef} className="w-full h-full">
+      <Canvas
+        frameloop={frameloop}
+        camera={{ position: [0, 0, 4.6], fov: 50 }}
+        dpr={[1, 1.5]}
+        gl={{ alpha: true, antialias: true }}
+        style={{ touchAction: "pan-y" }}
+      >
+        <SkillGraph3D />
+      </Canvas>
+    </div>
   );
 }
