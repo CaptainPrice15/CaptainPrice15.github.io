@@ -2,8 +2,8 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, MeshTransmissionMaterial } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { MeshTransmissionMaterial } from "@react-three/drei";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 function makeAvatarTexture(initials: string) {
@@ -56,6 +56,15 @@ function AvatarMesh({ initials }: { initials: string }) {
   const sphereGeo = useMemo(() => new THREE.SphereGeometry(1, 48, 48), []);
   const planeGeo = useMemo(() => new THREE.PlaneGeometry(1.6, 1.6), []);
 
+  // Cheaper material on small / touch devices — transmission with `backside`
+  // re-renders the scene multiple times per frame and is heavy on mobile GPUs.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(
+      window.matchMedia("(max-width: 768px), (pointer: coarse)").matches
+    );
+  }, []);
+
   useEffect(() => () => {
     sphereGeo.dispose();
     planeGeo.dispose();
@@ -86,39 +95,91 @@ function AvatarMesh({ initials }: { initials: string }) {
     <group ref={groupRef}>
       <mesh>
         <primitive object={sphereGeo} />
-        <MeshTransmissionMaterial
-          backside
-          backsideThickness={0.2}
-          thickness={0.5}
-          roughness={0.08}
-          metalness={0.02}
-          distortion={0.6}
-          distortionScale={0.4}
-          temporalDistortion={0.12}
-          clearcoat={0.15}
-          envMapIntensity={1.5}
-          transparent
-          opacity={0.96}
-        />
+        {isMobile ? (
+          <meshPhysicalMaterial
+            transmission={0.6}
+            thickness={0.5}
+            roughness={0.25}
+            metalness={0.05}
+            ior={1.4}
+            clearcoat={0.15}
+            transparent
+            opacity={0.96}
+          />
+        ) : (
+          <MeshTransmissionMaterial
+            backside
+            backsideThickness={0.2}
+            thickness={0.5}
+            roughness={0.08}
+            metalness={0.02}
+            distortion={0.6}
+            distortionScale={0.4}
+            temporalDistortion={0.12}
+            clearcoat={0.15}
+            envMapIntensity={1.5}
+            transparent
+            opacity={0.96}
+            samples={6}
+          />
+        )}
       </mesh>
       <mesh position={[0, 0, -0.15]}>
         <primitive object={planeGeo} />
         <meshBasicMaterial map={texture} transparent depthWrite={false} />
       </mesh>
-      <Environment preset="city" />
+
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[3, 4, 5]} intensity={1.2} />
+      <directionalLight position={[-3, -2, -4]} intensity={0.5} color="#a5b4fc" />
     </group>
   );
 }
 
 export function HeroAvatarCanvas({ initials }: { initials: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [frameloop, setFrameloop] = useState<"always" | "never">("always");
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    let inView = true;
+    let pageVisible = !document.hidden;
+    const update = () =>
+      setFrameloop(inView && pageVisible ? "always" : "never");
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        update();
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(el);
+
+    const onVisibility = () => {
+      pageVisible = !document.hidden;
+      update();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
   return (
-    <Canvas
-      gl={{ alpha: true, antialias: true }}
-      dpr={[1, 2]}
-      camera={{ position: [0, 0, 3.8], fov: 45 }}
-      style={{ width: "100%", height: "100%" }}
-    >
-      <AvatarMesh initials={initials} />
-    </Canvas>
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <Canvas
+        frameloop={frameloop}
+        gl={{ alpha: true, antialias: true }}
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 3.8], fov: 45 }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <AvatarMesh initials={initials} />
+      </Canvas>
+    </div>
   );
 }

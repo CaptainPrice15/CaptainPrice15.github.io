@@ -2,26 +2,70 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
-  useState,
+  useMemo,
+  useRef,
   type ReactNode,
 } from "react";
 import Lenis from "lenis";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 interface LenisContextValue {
-  /** Global scroll progress from 0 to 1. Driven by Lenis when active. */
-  progress: number;
+  /** Live scroll progress (0–1), read imperatively to avoid re-renders. */
+  progressRef: React.MutableRefObject<number>;
+  /** Subscribe to progress changes (for components that want to re-render). */
+  subscribe: (cb: () => void) => () => void;
+  /** Read the latest progress synchronously. */
+  getProgress: () => number;
+  /** Smoothly scroll to a target (number = px, string = selector). Falls back to native. */
+  scrollTo: (target: number | string) => void;
 }
 
-const LenisContext = createContext<LenisContextValue>({ progress: 0 });
+const LenisContext = createContext<LenisContextValue | null>(null);
 
-export const useLenis = () => useContext(LenisContext);
+const fallback: LenisContextValue = {
+  progressRef: { current: 0 },
+  subscribe: () => () => {},
+  getProgress: () => 0,
+  scrollTo: (target) =>
+    typeof target === "number"
+      ? window.scrollTo({ top: target, behavior: "smooth" })
+      : document.querySelector(target)?.scrollIntoView({ behavior: "smooth" }),
+};
+
+export const useLenis = () => useContext(LenisContext) ?? fallback;
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(0);
+  const listenersRef = useRef(new Set<() => void>());
+  const lenisRef = useRef<Lenis | null>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  const subscribe = useCallback((cb: () => void) => {
+    listenersRef.current.add(cb);
+    return () => {
+      listenersRef.current.delete(cb);
+    };
+  }, []);
+
+  const getProgress = useCallback(() => progressRef.current, []);
+
+  const scrollTo = useCallback((target: number | string) => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(target, { offset: -80 });
+    } else if (typeof target === "number") {
+      window.scrollTo({ top: target, behavior: "smooth" });
+    } else {
+      document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  const value = useMemo<LenisContextValue>(
+    () => ({ progressRef, subscribe, getProgress, scrollTo }),
+    [subscribe, getProgress, scrollTo]
+  );
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -30,10 +74,13 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
+      anchors: true,
     });
+    lenisRef.current = lenis;
 
     lenis.on("scroll", ({ progress: p }) => {
-      setProgress(p);
+      progressRef.current = p;
+      listenersRef.current.forEach((l) => l());
     });
 
     let rafId: number;
@@ -41,18 +88,16 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     }
-
     rafId = requestAnimationFrame(raf);
 
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, [prefersReducedMotion]);
 
   return (
-    <LenisContext.Provider value={{ progress }}>
-      {children}
-    </LenisContext.Provider>
+    <LenisContext.Provider value={value}>{children}</LenisContext.Provider>
   );
 }

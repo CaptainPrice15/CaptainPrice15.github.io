@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 /**
@@ -17,11 +18,21 @@ const AmbientCanvas = dynamic(
 
 export function AmbientBackground() {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (prefersReducedMotion) return null;
+  useEffect(() => setMounted(true), []);
+
+  // Gate on `mounted` so the first client render matches the server (which
+  // can't know the user's reduced-motion preference) — avoids a hydration
+  // mismatch and a flash of WebGL before swapping to the static fallback.
+  if (prefersReducedMotion && mounted) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+    <div
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: -1 }}
+      aria-hidden="true"
+    >
       <AmbientCanvas />
     </div>
   );

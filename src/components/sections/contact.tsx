@@ -84,20 +84,34 @@ function ContactForm() {
     email: "",
     message: "",
   });
-  const [status, setStatus] = React.useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [botcheck, setBotcheck] = React.useState("");
+  const [status, setStatus] = React.useState<"idle" | "sending" | "opened">("idle");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: real users never fill this hidden field.
+    if (botcheck) return;
     setStatus("sending");
 
     const mailtoLink = `mailto:${contact.email}?subject=Portfolio Contact from ${encodeURIComponent(formState.name)}&body=${encodeURIComponent(formState.message)}%0A%0AFrom: ${encodeURIComponent(formState.email)}`;
     window.location.href = mailtoLink;
-    setStatus("sent");
+    setStatus("opened");
     setTimeout(() => setStatus("idle"), 3000);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 text-left">
+      <form onSubmit={handleSubmit} className="space-y-4 text-left">
+        <div className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label htmlFor="botcheck">Leave this field empty</label>
+          <input
+            id="botcheck"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={botcheck}
+            onChange={(e) => setBotcheck(e.target.value)}
+          />
+        </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-1.5">
@@ -148,9 +162,13 @@ function ContactForm() {
         className={`w-full sm:w-auto gap-2 ${buttonGradientClasses} rounded-full h-12 px-8`}
         disabled={status === "sending"}
       >
-        {status === "sent" ? (
+        {status === "opened" ? (
           <>
-            <Check className="h-4 w-4" /> Opening email client...
+            <Check className="h-4 w-4" /> Email client opened
+          </>
+        ) : status === "sending" ? (
+          <>
+            <Send className="h-4 w-4" /> Opening...
           </>
         ) : (
           <>

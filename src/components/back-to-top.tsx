@@ -3,9 +3,11 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { useLenis } from "@/components/smooth-scroll";
 
 export function BackToTop() {
   const [visible, setVisible] = React.useState(false);
+  const { scrollTo } = useLenis();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +18,7 @@ export function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollTo(0);
   };
 
   return (

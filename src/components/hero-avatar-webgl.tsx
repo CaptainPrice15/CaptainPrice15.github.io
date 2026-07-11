@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 /**
@@ -23,8 +24,11 @@ export function HeroAvatarWebGL({
   className?: string;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (prefersReducedMotion) {
+  useEffect(() => setMounted(true), []);
+
+  if (prefersReducedMotion && mounted) {
     return (
       <div
         className={className}
@@ -47,7 +51,7 @@ export function HeroAvatarWebGL({
   }
 
   return (
-    <div className={className} style={{ position: "relative" }}>
+    <div className={className} style={{ position: "relative" }} aria-hidden="true">
       <HeroAvatarCanvas initials={initials} />
     </div>
   );

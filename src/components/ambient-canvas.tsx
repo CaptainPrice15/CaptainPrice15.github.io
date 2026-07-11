@@ -2,7 +2,7 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { useLenis } from "@/components/smooth-scroll";
 
@@ -75,9 +75,8 @@ const fragmentShader = /* glsl */ `
 
 function BlobField() {
   const { size } = useThree();
-  const { progress } = useLenis();
+  const { progressRef } = useLenis();
   const mouseRef = useRef(new THREE.Vector2(0, 0));
-  const progressRef = useRef(progress);
 
   const uniforms = useMemo(
     () => ({
@@ -88,10 +87,6 @@ function BlobField() {
     }),
     []
   );
-
-  useEffect(() => {
-    progressRef.current = progress;
-  }, [progress]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -128,8 +123,19 @@ function BlobField() {
 }
 
 export function AmbientCanvas() {
+  const [frameloop, setFrameloop] = useState<"always" | "never">("always");
+
+  useEffect(() => {
+    const onVisibility = () =>
+      setFrameloop(document.hidden ? "never" : "always");
+    document.addEventListener("visibilitychange", onVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
   return (
     <Canvas
+      frameloop={frameloop}
       gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
       dpr={[1, 1.5]}
       style={{ width: "100%", height: "100%" }}

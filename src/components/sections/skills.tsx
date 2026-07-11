@@ -18,7 +18,7 @@ export function Skills() {
   );
 
   return (
-    <section id="skills" className="section bg-transparent relative overflow-hidden">
+    <section id="skills" aria-label="Skills and technologies" className="section bg-transparent relative overflow-hidden">
       <div className={`${sectionContainer} max-w-6xl`}>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <SectionHeading title="Skills & Technologies" eyebrow="What I work with" />

@@ -22,6 +22,12 @@ const eslintConfig = defineConfig([
       "src/components/ambient-canvas.tsx",
       "src/components/hero-avatar-canvas.tsx",
       "src/components/sections/skill-graph-canvas.tsx",
+      // The reduced-motion wrappers use a deliberate `mounted` gate
+      // (setState in an effect) to avoid hydration mismatches — the standard,
+      // correct pattern, so the strict rule is opted out here too.
+      "src/components/ambient-background.tsx",
+      "src/components/hero-avatar-webgl.tsx",
+      "src/components/sections/skill-constellation.tsx",
     ],
     rules: {
       "react-hooks/immutability": "off",

@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useSyncExternalStore } from "react";
 import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useLenis } from "@/components/smooth-scroll";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 export function ScrollProgress() {
-  const { progress } = useLenis();
+  const { subscribe, getProgress } = useLenis();
+  const lenisProgress = useSyncExternalStore(subscribe, getProgress, getProgress);
   const { scrollYProgress } = useScroll();
   const prefersReducedMotion = useReducedMotion();
   const progressMotion = useMotionValue(0);
@@ -28,7 +30,7 @@ export function ScrollProgress() {
         unsubscribeRef.current();
         unsubscribeRef.current = null;
       }
-      progressMotion.set(progress);
+      progressMotion.set(lenisProgress);
     }
 
     return () => {
@@ -37,7 +39,7 @@ export function ScrollProgress() {
         unsubscribeRef.current = null;
       }
     };
-  }, [prefersReducedMotion, progress, scrollYProgress, progressMotion]);
+  }, [prefersReducedMotion, lenisProgress, scrollYProgress, progressMotion]);
 
   const scaleX = useSpring(progressMotion, {
     stiffness: 200,

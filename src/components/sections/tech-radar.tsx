@@ -51,6 +51,7 @@ export function TechRadar({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const animationRef = useRef<number | null>(null);
+  const runningRef = useRef(false);
   const rotationRef = useRef(0);
   const dataRef = useRef<RadarData[]>([]);
 
@@ -98,14 +99,6 @@ export function TechRadar({ className }: { className?: string }) {
         ctx.strokeStyle = "rgba(148, 163, 184, 0.1)";
         ctx.lineWidth = 1;
         ctx.stroke();
-
-        ctx.font = "11px system-ui, sans-serif";
-        ctx.fillStyle = "#94a3b8";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        const labelX = Math.cos(angle) * (radius + 20);
-        const labelY = Math.sin(angle) * (radius + 20);
-        ctx.fillText(data[i].category, labelX, labelY);
       }
 
       ctx.beginPath();
@@ -145,6 +138,23 @@ export function TechRadar({ className }: { className?: string }) {
       });
 
       ctx.restore();
+
+      // Upright category labels (drawn unrotated so text stays readable while
+      // the chart spins). Positions still orbit with the rotation.
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.font = "11px system-ui, sans-serif";
+      ctx.fillStyle = "#94a3b8";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      data.forEach((d, i) => {
+        const angle = i * angleStep - Math.PI / 2 + (rotationRef.current * Math.PI) / 180;
+        const lx = Math.cos(angle) * (radius + 20);
+        const ly = Math.sin(angle) * (radius + 20);
+        ctx.fillText(d.category, lx, ly);
+      });
+      ctx.restore();
+
       rotationRef.current = (rotationRef.current + 0.15) % 360;
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -160,13 +170,49 @@ export function TechRadar({ className }: { className?: string }) {
       canvas.style.height = `${rect.height}px`;
     };
 
+    const start = () => {
+      if (runningRef.current) return;
+      runningRef.current = true;
+      animate();
+    };
+    const stop = () => {
+      runningRef.current = false;
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      animationRef.current = null;
+    };
+    const sync = () => {
+      if (inView && pageVisible) start();
+      else stop();
+    };
+
+    let inView = true;
+    let pageVisible = !document.hidden;
+
     resize();
     window.addEventListener("resize", resize);
-    animate();
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.05 }
+    );
+    io.observe(canvas);
+
+    const onVisibility = () => {
+      pageVisible = !document.hidden;
+      sync();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    sync();
 
     return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", resize);
+      stop();
     };
   }, [prefersReducedMotion]);
 
