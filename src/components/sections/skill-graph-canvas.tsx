@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Html, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import { cn } from "@/lib/utils";
 import { SKILLS_DATA, CONNECTIONS } from "./skill-data";
 
 const RADIUS = 1.7;
@@ -24,6 +25,7 @@ function SkillGraph3D() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const lineRef = useRef<THREE.LineSegments>(null);
   const hoveredGroupRef = useRef<THREE.Group>(null);
+  const labelRefs = useRef<(THREE.Group | null)[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
 
   const positions = useRef<THREE.Vector3[]>([]);
@@ -142,6 +144,11 @@ function SkillGraph3D() {
       if (lineColorAttr.current) lineColorAttr.current.needsUpdate = true;
     }
 
+    for (let i = 0; i < n; i++) {
+      const g = labelRefs.current[i];
+      if (g) g.position.copy(pos[i]).multiplyScalar(1.12);
+    }
+
     if (hovered != null && hoveredGroupRef.current) {
       hoveredGroupRef.current.position.copy(pos[hovered]);
     }
@@ -177,6 +184,29 @@ function SkillGraph3D() {
         </bufferGeometry>
         <lineBasicMaterial vertexColors transparent opacity={0.5} toneMapped={false} />
       </lineSegments>
+
+      {SKILLS_DATA.map((node, i) => (
+        <group
+          key={node.id}
+          ref={(el) => {
+            labelRefs.current[i] = el;
+          }}
+        >
+          <Html center distanceFactor={9} zIndexRange={[5, 0]} style={{ pointerEvents: "none" }}>
+            <div
+              className={cn(
+                "whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
+                hovered === i
+                  ? "bg-slate-900/90 text-white"
+                  : "bg-slate-900/60 text-slate-200"
+              )}
+              style={{ color: hovered === i ? "#ffffff" : node.color }}
+            >
+              {node.label}
+            </div>
+          </Html>
+        </group>
+      ))}
 
       {hovered != null && hoveredData && (
         <group ref={hoveredGroupRef}>
