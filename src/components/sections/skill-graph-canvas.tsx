@@ -4,6 +4,7 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 import { SKILLS_DATA, CONNECTIONS } from "./skill-data";
@@ -28,6 +29,8 @@ function SkillGraph3D() {
   const occluderRef = useRef<THREE.Mesh>(null);
   const labelRefs = useRef<(THREE.Group | null)[]>([]);
   const [hovered, setHovered] = useState<number | null>(null);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
 
   const positions = useRef<THREE.Vector3[]>([]);
   const velocities = useRef<THREE.Vector3[]>([]);
@@ -200,14 +203,21 @@ function SkillGraph3D() {
           <Html center distanceFactor={9} zIndexRange={[5, 0]} occlude={[occluderRef as RefObject<THREE.Object3D>]} style={{ pointerEvents: "none" }}>
             <div
               className={cn(
-                "whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
+                "flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
                 hovered === i
-                  ? "bg-slate-900/90 text-white"
-                  : "bg-slate-900/60 text-slate-200"
+                  ? isLight
+                    ? "bg-slate-900 text-white shadow-md ring-1 ring-white/20"
+                    : "bg-slate-100 text-slate-900 shadow-md ring-1 ring-black/10"
+                  : isLight
+                    ? "bg-slate-900/80 text-slate-100"
+                    : "bg-slate-900/60 text-slate-200"
               )}
-              style={{ color: hovered === i ? "#ffffff" : node.color }}
             >
-              {node.label}
+              <span
+                className="h-2 w-2 rounded-full shrink-0"
+                style={{ background: node.color }}
+              />
+              <span>{node.label}</span>
             </div>
           </Html>
         </group>
