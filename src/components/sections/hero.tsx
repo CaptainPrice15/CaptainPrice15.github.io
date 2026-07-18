@@ -9,6 +9,7 @@ import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
 import React, { useState, useEffect, useRef } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { usePerformanceMode } from "@/lib/use-performance-mode";
 import { HeroAvatarWebGL } from "@/components/hero-avatar-webgl";
 
 function HeroAvatar(props: { initials: string; className?: string }) {
@@ -100,19 +101,21 @@ function ParticleNetwork({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { reduceEffects, isMobile } = usePerformanceMode();
+  const skip = prefersReducedMotion || reduceEffects;
   const burstsRef = useRef<
     { x: number; y: number; vx: number; vy: number; life: number; max: number; r: number; color: string }[]
   >([]);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (skip) return;
     if (!burstSignal) return;
 
     const w = window.innerWidth;
     const h = window.innerHeight;
     const cx = w / 2;
     const cy = h * 0.42;
-    const count = 26;
+    const count = isMobile ? 12 : 26;
 
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
@@ -128,22 +131,25 @@ function ParticleNetwork({
         color: Math.random() < 0.5 ? "37, 99, 235" : "124, 58, 237",
       });
     }
-  }, [burstSignal, prefersReducedMotion]);
+  }, [burstSignal, skip, isMobile]);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (skip) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let raf: number;
+    let running = true;
     const particles: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
-    const PARTICLE_COUNT = 50;
-    const MAX_DIST = 120;
+    // Mobile path uses skip=true; this is a safety net for low-end desktop.
+    const PARTICLE_COUNT = 36;
+    const MAX_DIST = 100;
+    const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -165,11 +171,13 @@ function ParticleNetwork({
     };
 
     const draw = () => {
+      if (!running) return;
       const w = window.innerWidth;
       const h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
 
-      particles.forEach((p) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0 || p.x > w) p.vx *= -1;
@@ -179,14 +187,15 @@ function ParticleNetwork({
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(37, 99, 235, 0.25)";
         ctx.fill();
-      });
+      }
 
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MAX_DIST) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < MAX_DIST_SQ) {
+            const dist = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -197,7 +206,6 @@ function ParticleNetwork({
         }
       }
 
-      // Phrase-completion burst particles
       const bursts = burstsRef.current;
       for (let i = bursts.length - 1; i >= 0; i--) {
         const b = bursts[i];
@@ -213,36 +221,45 @@ function ParticleNetwork({
         ctx.fillStyle = `rgba(${b.color}, ${alpha * 0.9})`;
         ctx.fill();
 
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r * 3, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${b.color}, ${alpha * 0.12})`;
-        ctx.fill();
-
         if (b.life <= 0) bursts.splice(i, 1);
       }
 
       raf = requestAnimationFrame(draw);
     };
 
+    const onVisibility = () => {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(raf);
+      } else if (!running) {
+        running = true;
+        raf = requestAnimationFrame(draw);
+      }
+    };
+
     resize();
     init();
-    draw();
+    raf = requestAnimationFrame(draw);
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
       burstsRef.current = [];
     };
-  }, [prefersReducedMotion]);
+  }, [skip]);
 
-  if (prefersReducedMotion) return null;
+  if (skip) return null;
 
   return (
     <canvas
       ref={canvasRef}
       className={className}
       style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}
+      aria-hidden="true"
     />
   );
 }
@@ -258,6 +275,8 @@ export function Hero() {
     .slice(0, 2)
     .toUpperCase();
   const prefersReducedMotion = useReducedMotion();
+  const { reduceEffects } = usePerformanceMode();
+  const lightMotion = prefersReducedMotion || reduceEffects;
   const sectionRef = useRef<HTMLElement>(null);
   const [burstSignal, setBurstSignal] = useState(0);
 
@@ -267,7 +286,7 @@ export function Hero() {
   const rotateY = useSpring(tiltY, { stiffness: 150, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (prefersReducedMotion) return;
+    if (lightMotion) return;
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
     const px = (e.clientX - rect.left) / rect.width - 0.5;
@@ -284,18 +303,30 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={lightMotion ? undefined : handleMouseMove}
+      onMouseLeave={lightMotion ? undefined : handleMouseLeave}
       className="relative min-h-[100dvh] flex items-center overflow-hidden section !pt-28 sm:!pt-32 !pb-16 sm:!pb-20"
     >
       <ParticleNetwork className="absolute inset-0" burstSignal={burstSignal} />
 
-      {/* 3D floating decorative elements */}
+      {/* Decorative orbs — static on mobile to avoid continuous CSS transform work */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
-        <div className="absolute top-[15%] left-[8%] w-3 h-3 rounded-full bg-primary/30 animate-float-3d" style={{ animationDelay: "0s", animationDuration: "5s" }} />
-        <div className="absolute top-[25%] right-[12%] w-2 h-2 rounded-full bg-accent/40 animate-float-3d-reverse" style={{ animationDelay: "0.5s", animationDuration: "6s" }} />
-        <div className="absolute bottom-[20%] left-[15%] w-4 h-4 rounded-full bg-primary/20 animate-float-3d" style={{ animationDelay: "1s", animationDuration: "7s" }} />
-        <div className="absolute bottom-[30%] right-[8%] w-2.5 h-2.5 rounded-full bg-success/30 animate-float-3d-reverse" style={{ animationDelay: "1.5s", animationDuration: "5.5s" }} />
+        <div
+          className={`absolute top-[15%] left-[8%] w-3 h-3 rounded-full bg-primary/30 ${lightMotion ? "" : "animate-float-3d"}`}
+          style={lightMotion ? undefined : { animationDelay: "0s", animationDuration: "5s" }}
+        />
+        <div
+          className={`absolute top-[25%] right-[12%] w-2 h-2 rounded-full bg-accent/40 ${lightMotion ? "" : "animate-float-3d-reverse"}`}
+          style={lightMotion ? undefined : { animationDelay: "0.5s", animationDuration: "6s" }}
+        />
+        <div
+          className={`absolute bottom-[20%] left-[15%] w-4 h-4 rounded-full bg-primary/20 ${lightMotion ? "" : "animate-float-3d"}`}
+          style={lightMotion ? undefined : { animationDelay: "1s", animationDuration: "7s" }}
+        />
+        <div
+          className={`absolute bottom-[30%] right-[8%] w-2.5 h-2.5 rounded-full bg-success/30 ${lightMotion ? "" : "animate-float-3d-reverse"}`}
+          style={lightMotion ? undefined : { animationDelay: "1.5s", animationDuration: "5.5s" }}
+        />
       </div>
 
       <motion.div
@@ -308,20 +339,24 @@ export function Hero() {
           {/* Avatar Column */}
           <motion.div
             variants={heroItem}
-            className="flex justify-center lg:justify-end order-1 lg:order-1 depth-layer-3"
+            className={`flex justify-center lg:justify-end order-1 lg:order-1 ${lightMotion ? "" : "depth-layer-3"}`}
           >
             <HeroAvatar initials={initials} className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64" />
           </motion.div>
 
           {/* Text Column */}
           <motion.div
-            className="text-center lg:text-left preserve-3d"
-            style={{
-              rotateX: prefersReducedMotion ? 0 : rotateX,
-              rotateY: prefersReducedMotion ? 0 : rotateY,
-              transformPerspective: 1000,
-              transformStyle: "preserve-3d",
-            }}
+            className={`text-center lg:text-left ${lightMotion ? "" : "preserve-3d"}`}
+            style={
+              lightMotion
+                ? undefined
+                : {
+                    rotateX,
+                    rotateY,
+                    transformPerspective: 1000,
+                    transformStyle: "preserve-3d",
+                  }
+            }
           >
             <motion.div
               variants={heroBadge}

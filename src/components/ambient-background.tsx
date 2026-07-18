@@ -3,12 +3,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { usePerformanceMode } from "@/lib/use-performance-mode";
 
 /**
  * AmbientBackground (wrapper)
  * Mounts the WebGL field lazily so the heavy `three` bundle stays out of the
- * initial chunk. SSR-safe via `dynamic(..., { ssr: false })`. All mouse/scroll
- * handling lives inside the canvas module.
+ * initial chunk. On mobile / low-end devices we keep the CSS body gradients
+ * only — same look, no continuous full-screen GPU cost.
  */
 
 const AmbientCanvas = dynamic(
@@ -18,14 +19,14 @@ const AmbientCanvas = dynamic(
 
 export function AmbientBackground() {
   const prefersReducedMotion = useReducedMotion();
+  const { reduceEffects } = usePerformanceMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
   // Gate on `mounted` so the first client render matches the server (which
-  // can't know the user's reduced-motion preference) — avoids a hydration
-  // mismatch and a flash of WebGL before swapping to the static fallback.
-  if (prefersReducedMotion && mounted) return null;
+  // can't know device capability) — avoids hydration mismatch.
+  if (mounted && (prefersReducedMotion || reduceEffects)) return null;
 
   return (
     <div

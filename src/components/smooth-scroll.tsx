@@ -11,6 +11,7 @@ import {
 } from "react";
 import Lenis from "lenis";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { usePerformanceMode } from "@/lib/use-performance-mode";
 
 interface LenisContextValue {
   /** Live scroll progress (0–1), read imperatively to avoid re-renders. */
@@ -42,6 +43,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const listenersRef = useRef(new Set<() => void>());
   const lenisRef = useRef<Lenis | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { reduceEffects } = usePerformanceMode();
 
   const subscribe = useCallback((cb: () => void) => {
     listenersRef.current.add(cb);
@@ -67,8 +69,24 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     [subscribe, getProgress, scrollTo]
   );
 
+  // Native scroll progress when Lenis is off (mobile / reduced motion).
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (!prefersReducedMotion && !reduceEffects) return;
+
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progressRef.current = max > 0 ? window.scrollY / max : 0;
+      listenersRef.current.forEach((l) => l());
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [prefersReducedMotion, reduceEffects]);
+
+  useEffect(() => {
+    // Lenis fights native touch scrolling and burns a permanent RAF loop —
+    // skip it on mobile / low-end so fling scroll stays buttery.
+    if (prefersReducedMotion || reduceEffects) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -95,7 +113,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, reduceEffects]);
 
   return (
     <LenisContext.Provider value={value}>{children}</LenisContext.Provider>

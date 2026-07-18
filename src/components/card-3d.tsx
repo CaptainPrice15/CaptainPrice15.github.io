@@ -4,15 +4,12 @@ import { useRef, useState, type ReactNode } from "react";
 import { motion, type MotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { usePerformanceMode } from "@/lib/use-performance-mode";
 
 /**
  * Card3D
- * A card wrapper that applies real 3D perspective tilt on hover.
- * Features:
- * - Mouse-driven rotateX/rotateY tilt
- * - Shine/gloss overlay that follows cursor
- * - Children can have translateZ for depth layering
- * - Glow edge on hover
+ * Desktop: perspective tilt + glare on hover.
+ * Mobile / reduced-motion: same glass card with layout animations, no tilt work.
  */
 interface Card3DProps extends Omit<MotionProps, "onMouseMove" | "onMouseLeave"> {
   children: ReactNode;
@@ -37,9 +34,11 @@ export function Card3D({
   const [rotateY, setRotateY] = useState(0);
   const [shine, setShine] = useState({ x: 50, y: 50 });
   const prefersReducedMotion = useReducedMotion();
+  const { reduceEffects } = usePerformanceMode();
+  const interactive = !prefersReducedMotion && !reduceEffects;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (prefersReducedMotion || !cardRef.current) return;
+    if (!interactive || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -47,15 +46,12 @@ export function Card3D({
     const mouseX = e.clientX - centerX;
     const mouseY = e.clientY - centerY;
 
-    const rotX = (mouseY / (rect.height / 2)) * -maxRotation;
-    const rotY = (mouseX / (rect.width / 2)) * maxRotation;
-
-    setRotateX(rotX);
-    setRotateY(rotY);
-
-    const shineX = ((e.clientX - rect.left) / rect.width) * 100;
-    const shineY = ((e.clientY - rect.top) / rect.height) * 100;
-    setShine({ x: shineX, y: shineY });
+    setRotateX((mouseY / (rect.height / 2)) * -maxRotation);
+    setRotateY((mouseX / (rect.width / 2)) * maxRotation);
+    setShine({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
   };
 
   const handleMouseLeave = () => {
@@ -67,56 +63,56 @@ export function Card3D({
   return (
     <motion.div
       ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={interactive ? handleMouseMove : undefined}
+      onMouseLeave={interactive ? handleMouseLeave : undefined}
       className={cn("group", className)}
-      style={{
-        perspective: 1200,
-        transformStyle: "preserve-3d",
-      }}
+      style={
+        interactive
+          ? { perspective: 1200, transformStyle: "preserve-3d" }
+          : undefined
+      }
       {...props}
     >
-      <motion.div
-        animate={{
-          rotateX,
-          rotateY,
-        }}
-        transition={{ type: "spring", stiffness: 250, damping: 25 }}
-        style={{ transformStyle: "preserve-3d" }}
-        className="relative w-full h-full"
-      >
-        {/* Glare overlay (follows cursor) */}
-        {glare && (
-          <div
-            className="absolute inset-0 rounded-[inherit] pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{
-              background: `radial-gradient(circle at ${shine.x}% ${shine.y}%, rgba(255,255,255,${shineIntensity}), transparent 60%)`,
-            }}
-          />
-        )}
-
-        {/* Content with optional depth */}
-        <div
-          className={cn(
-            "relative z-10",
-            depth && "[transform:translateZ(30px)]"
-          )}
+      {interactive ? (
+        <motion.div
+          animate={{ rotateX, rotateY }}
+          transition={{ type: "spring", stiffness: 250, damping: 25 }}
+          style={{ transformStyle: "preserve-3d" }}
+          className="relative w-full h-full"
         >
-          {children}
-        </div>
+          {glare && (
+            <div
+              className="absolute inset-0 rounded-[inherit] pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: `radial-gradient(circle at ${shine.x}% ${shine.y}%, rgba(255,255,255,${shineIntensity}), transparent 60%)`,
+              }}
+            />
+          )}
 
-        {/* Depth shadow layer */}
-        {depth && (
           <div
-            className="absolute inset-0 rounded-[inherit] pointer-events-none z-0"
-            style={{
-              transform: `translateZ(-10px)`,
-              background: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02))`,
-              filter: `blur(4px)`,
-            }}
-          />
-        )}
-      </motion.div>
+            className={cn(
+              "relative z-10",
+              depth && "[transform:translateZ(30px)]"
+            )}
+          >
+            {children}
+          </div>
+
+          {depth && (
+            <div
+              className="absolute inset-0 rounded-[inherit] pointer-events-none z-0"
+              style={{
+                transform: "translateZ(-10px)",
+                background:
+                  "linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02))",
+                filter: "blur(4px)",
+              }}
+            />
+          )}
+        </motion.div>
+      ) : (
+        <div className="relative w-full h-full">{children}</div>
+      )}
     </motion.div>
   );
 }
