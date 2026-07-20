@@ -41,13 +41,13 @@ const fragmentShader = /* glsl */ `
     vec3 col = vec3(0.0);
     float alpha = 0.0;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
       float fi = float(i);
       vec2 center = vec2(
         0.5 + 0.18 * sin(uTime * 0.08 + fi * 1.3),
         0.5 + 0.18 * cos(uTime * 0.06 + fi * 2.1)
       );
-      float pf = fi < 2.0 ? 0.02 : (fi < 4.0 ? 0.04 : 0.08);
+      float pf = fi < 2.0 ? 0.02 : 0.04;
       center += uMouse * pf;
       vec2 c = vec2((center.x - 0.5) * aspect, center.y - 0.5);
 
@@ -57,8 +57,7 @@ const fragmentShader = /* glsl */ `
       if (i == 0) { baseR = 0.38; a = 0.03; hueOff = 0.0; }
       else if (i == 1) { baseR = 0.42; a = 0.025; hueOff = -15.0; }
       else if (i == 2) { baseR = 0.30; a = 0.06; hueOff = 10.0; }
-      else if (i == 3) { baseR = 0.34; a = 0.05; hueOff = -5.0; }
-      else { baseR = 0.22; a = 0.04; hueOff = 25.0; }
+      else { baseR = 0.34; a = 0.05; hueOff = -5.0; }
 
       float pulse = 0.03 * sin(uTime * 0.5 + fi);
       float r = baseR + pulse;
@@ -89,13 +88,26 @@ function BlobField() {
   );
 
   useEffect(() => {
+    let rafId: number;
+    let lastX = 0;
+    let lastY = 0;
     const handleMouseMove = (e: MouseEvent) => {
       const nx = (e.clientX / window.innerWidth) * 2 - 1;
       const ny = -((e.clientY / window.innerHeight) * 2 - 1);
-      mouseRef.current.set(nx, ny);
+      if (Math.abs(nx - lastX) > 0.01 || Math.abs(ny - lastY) > 0.01) {
+        lastX = nx;
+        lastY = ny;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          mouseRef.current.set(nx, ny);
+        });
+      }
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -137,8 +149,8 @@ export function AmbientCanvas() {
     <Canvas
       frameloop={frameloop}
       gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-      dpr={[1, 1.5]}
-      style={{ width: "100%", height: "100%" }}
+      dpr={[1, 1.25]}
+      style={{ width: "100%", height: "100%", contain: "layout paint" }}
     >
       <BlobField />
     </Canvas>

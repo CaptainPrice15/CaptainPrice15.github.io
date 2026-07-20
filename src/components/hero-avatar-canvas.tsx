@@ -53,11 +53,9 @@ function AvatarMesh({ initials }: { initials: string }) {
   const groupRef = useRef<THREE.Group>(null);
   const mouseRef = useRef(new THREE.Vector2(0, 0));
   const texture = useMemo(() => makeAvatarTexture(initials), [initials]);
-  const sphereGeo = useMemo(() => new THREE.SphereGeometry(1, 48, 48), []);
+  const sphereGeo = useMemo(() => new THREE.SphereGeometry(1, 32, 32), []);
   const planeGeo = useMemo(() => new THREE.PlaneGeometry(1.6, 1.6), []);
 
-  // Cheaper material on small / touch devices — transmission with `backside`
-  // re-renders the scene multiple times per frame and is heavy on mobile GPUs.
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     setIsMobile(
@@ -72,14 +70,26 @@ function AvatarMesh({ initials }: { initials: string }) {
   }, [sphereGeo, planeGeo, texture]);
 
   useEffect(() => {
+    let rafId: number;
+    let lastX = 0;
+    let lastY = 0;
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.set(
-        (e.clientX / window.innerWidth) * 2 - 1,
-        -((e.clientY / window.innerHeight) * 2 - 1)
-      );
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = -((e.clientY / window.innerHeight) * 2 - 1);
+      if (Math.abs(nx - lastX) > 0.02 || Math.abs(ny - lastY) > 0.02) {
+        lastX = nx;
+        lastY = ny;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          mouseRef.current.set(nx, ny);
+        });
+      }
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useFrame(() => {
@@ -120,7 +130,7 @@ function AvatarMesh({ initials }: { initials: string }) {
             envMapIntensity={1.5}
             transparent
             opacity={0.96}
-            samples={6}
+            samples={4}
           />
         )}
       </mesh>
@@ -170,11 +180,11 @@ export function HeroAvatarCanvas({ initials }: { initials: string }) {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+    <div ref={containerRef} style={{ width: "100%", height: "100%", contain: "layout paint" }}>
       <Canvas
         frameloop={frameloop}
-        gl={{ alpha: true, antialias: true }}
-        dpr={[1, 1.5]}
+        gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
+        dpr={[1, 1.25]}
         camera={{ position: [0, 0, 3.8], fov: 45 }}
         style={{ width: "100%", height: "100%" }}
       >

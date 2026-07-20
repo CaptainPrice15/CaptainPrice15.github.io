@@ -115,7 +115,7 @@ function ParticleNetwork({
     const h = window.innerHeight;
     const cx = w / 2;
     const cy = h * 0.42;
-    const count = isMobile ? 12 : 26;
+    const count = isMobile ? 8 : 20;
 
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
@@ -143,13 +143,12 @@ function ParticleNetwork({
     let raf: number;
     let running = true;
     const particles: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
-    // Mobile path uses skip=true; this is a safety net for low-end desktop.
-    const PARTICLE_COUNT = 36;
+    const PARTICLE_COUNT = isMobile ? 18 : 32;
     const MAX_DIST = 100;
     const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.25);
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -170,8 +169,10 @@ function ParticleNetwork({
       }
     };
 
+    let frameCount = 0;
     const draw = () => {
       if (!running) return;
+      frameCount++;
       const w = window.innerWidth;
       const h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
@@ -189,19 +190,22 @@ function ParticleNetwork({
         ctx.fill();
       }
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distSq = dx * dx + dy * dy;
-          if (distSq < MAX_DIST_SQ) {
-            const dist = Math.sqrt(distSq);
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / MAX_DIST)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+      // Only draw connections every other frame for performance
+      if (frameCount % 2 === 0) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < MAX_DIST_SQ) {
+              const dist = Math.sqrt(distSq);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(37, 99, 235, ${0.12 * (1 - dist / MAX_DIST)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -250,7 +254,7 @@ function ParticleNetwork({
       document.removeEventListener("visibilitychange", onVisibility);
       burstsRef.current = [];
     };
-  }, [skip]);
+  }, [skip, isMobile]);
 
   if (skip) return null;
 
@@ -258,7 +262,7 @@ function ParticleNetwork({
     <canvas
       ref={canvasRef}
       className={className}
-      style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}
+      style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, contain: "layout paint" }}
       aria-hidden="true"
     />
   );

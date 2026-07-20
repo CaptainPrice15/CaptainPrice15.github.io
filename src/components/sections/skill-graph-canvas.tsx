@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { SKILLS_DATA, CONNECTIONS } from "./skill-data";
 
 const RADIUS = 1.7;
-const NODE_GEOMETRY = new THREE.SphereGeometry(0.085, 16, 16);
+const NODE_GEOMETRY = new THREE.SphereGeometry(0.085, 12, 12);
 
 function fibonacciSphere(i: number, n: number): THREE.Vector3 {
   const phi = Math.acos(1 - (2 * (i + 0.5)) / n);
@@ -84,30 +84,51 @@ function SkillGraph3D() {
       const pi = pos[i];
       const vi = vel[i];
 
-      for (let j = 0; j < n; j++) {
-        if (i === j) continue;
-        const d = pi.clone().sub(pos[j]);
-        const dist = d.length() || 0.0001;
+      for (let j = i + 1; j < n; j++) {
+        const dx = pi.x - pos[j].x;
+        const dy = pi.y - pos[j].y;
+        const dz = pi.z - pos[j].z;
+        const distSq = dx * dx + dy * dy + dz * dz;
+        const dist = Math.sqrt(distSq) || 0.0001;
         if (dist < 1.2) {
-          vi.add(d.multiplyScalar((1.2 - dist) * 0.02 / dist));
+          const force = (1.2 - dist) * 0.02 / dist;
+          const fx = dx * force;
+          const fy = dy * force;
+          const fz = dz * force;
+          vi.x += fx;
+          vi.y += fy;
+          vi.z += fz;
+          vel[j].x -= fx;
+          vel[j].y -= fy;
+          vel[j].z -= fz;
         }
       }
 
       CONNECTIONS.forEach(([a, b]) => {
         if (a !== i && b !== i) return;
         const other = pos[a === i ? b : a];
-        const d = other.clone().sub(pi);
-        const dist = d.length() || 0.0001;
-        vi.add(d.multiplyScalar((dist - 1.1) * 0.01 / dist));
+        const dx = other.x - pi.x;
+        const dy = other.y - pi.y;
+        const dz = other.z - pi.z;
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.0001;
+        const force = (dist - 1.1) * 0.01 / dist;
+        vi.x += dx * force;
+        vi.y += dy * force;
+        vi.z += dz * force;
       });
 
-      const r = pi.length();
-      vi.add(pi.clone().multiplyScalar((RADIUS - r) * 0.015 / r));
+      const r = pi.length() || 0.0001;
+      const sphereForce = (RADIUS - r) * 0.015 / r;
+      vi.x += pi.x * sphereForce;
+      vi.y += pi.y * sphereForce;
+      vi.z += pi.z * sphereForce;
     }
 
     for (let i = 0; i < n; i++) {
       vel[i].multiplyScalar(0.86);
-      pos[i].add(vel[i].clone().multiplyScalar(dt * 6));
+      pos[i].x += vel[i].x * dt * 6;
+      pos[i].y += vel[i].y * dt * 6;
+      pos[i].z += vel[i].z * dt * 6;
     }
 
     const mesh = meshRef.current;
@@ -150,7 +171,11 @@ function SkillGraph3D() {
 
     for (let i = 0; i < n; i++) {
       const g = labelRefs.current[i];
-      if (g) g.position.copy(pos[i]).multiplyScalar(1.12);
+      if (g) {
+        g.position.x = pos[i].x * 1.12;
+        g.position.y = pos[i].y * 1.12;
+        g.position.z = pos[i].z * 1.12;
+      }
     }
 
     if (hovered != null && hoveredGroupRef.current) {
@@ -274,12 +299,12 @@ export function SkillGraphCanvas() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-full">
+    <div ref={containerRef} className="w-full h-full" style={{ contain: "layout paint" }}>
       <Canvas
         frameloop={frameloop}
         camera={{ position: [0, 0, 4.6], fov: 50 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true }}
+        dpr={[1, 1.25]}
+        gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
         style={{ touchAction: "pan-y" }}
       >
         <SkillGraph3D />

@@ -44,6 +44,7 @@ export function SectionReveal({
       variants={sectionVariants}
       transition={{ delay }}
       className={className}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>

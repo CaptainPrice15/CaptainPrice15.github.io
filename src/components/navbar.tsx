@@ -87,6 +87,7 @@ export function Navbar() {
         hidden && "pointer-events-none"
       )}
       aria-hidden={hidden}
+      style={{ willChange: "transform" }}
     >
       <nav
         className={cn(

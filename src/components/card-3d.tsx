@@ -77,7 +77,7 @@ export function Card3D({
         <motion.div
           animate={{ rotateX, rotateY }}
           transition={{ type: "spring", stiffness: 250, damping: 25 }}
-          style={{ transformStyle: "preserve-3d" }}
+          style={{ transformStyle: "preserve-3d", willChange: "transform" }}
           className="relative w-full h-full"
         >
           {glare && (
