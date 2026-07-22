@@ -240,7 +240,6 @@ body::after {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
               border-color 0.3s ease,
               box-shadow 0.4s ease;
-  will-change: transform;
 }
 
 .glass-hover:hover {
@@ -337,7 +336,6 @@ body::after {
     0 12px 24px rgba(37, 99, 235, 0.08),
     0 24px 48px rgba(37, 99, 235, 0.06);
   transition: box-shadow 0.4s ease;
-  will-change: box-shadow;
 }
 
 .depth-shadow:hover {

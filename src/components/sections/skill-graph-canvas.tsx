@@ -73,6 +73,8 @@ function SkillGraph3D() {
     }
   }, []);
 
+  const frameSkipRef = useRef(0);
+
   useFrame((_, delta) => {
     const dt = Math.min(delta, 0.05);
     const pos = positions.current;
@@ -80,52 +82,57 @@ function SkillGraph3D() {
     const n = pos.length;
     if (n === 0) return;
 
-    for (let i = 0; i < n; i++) {
-      const pi = pos[i];
-      const vi = vel[i];
+    frameSkipRef.current = (frameSkipRef.current + 1) % 2;
+    const simulate = frameSkipRef.current === 0;
 
-      for (let j = i + 1; j < n; j++) {
-        const dx = pi.x - pos[j].x;
-        const dy = pi.y - pos[j].y;
-        const dz = pi.z - pos[j].z;
-        const distSq = dx * dx + dy * dy + dz * dz;
-        const dist = Math.sqrt(distSq) || 0.0001;
-        if (dist < 1.2) {
-          const force = (1.2 - dist) * 0.02 / dist;
-          const fx = dx * force;
-          const fy = dy * force;
-          const fz = dz * force;
-          vi.x += fx;
-          vi.y += fy;
-          vi.z += fz;
-          vel[j].x -= fx;
-          vel[j].y -= fy;
-          vel[j].z -= fz;
+    if (simulate) {
+      for (let i = 0; i < n; i++) {
+        const pi = pos[i];
+        const vi = vel[i];
+
+        for (let j = i + 1; j < n; j++) {
+          const dx = pi.x - pos[j].x;
+          const dy = pi.y - pos[j].y;
+          const dz = pi.z - pos[j].z;
+          const distSq = dx * dx + dy * dy + dz * dz;
+          const dist = Math.sqrt(distSq) || 0.0001;
+          if (dist < 1.2) {
+            const force = (1.2 - dist) * 0.02 / dist;
+            const fx = dx * force;
+            const fy = dy * force;
+            const fz = dz * force;
+            vi.x += fx;
+            vi.y += fy;
+            vi.z += fz;
+            vel[j].x -= fx;
+            vel[j].y -= fy;
+            vel[j].z -= fz;
+          }
         }
+
+        CONNECTIONS.forEach(([a, b]) => {
+          if (a !== i && b !== i) return;
+          const other = pos[a === i ? b : a];
+          const dx = other.x - pi.x;
+          const dy = other.y - pi.y;
+          const dz = other.z - pi.z;
+          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.0001;
+          const force = (dist - 1.1) * 0.01 / dist;
+          vi.x += dx * force;
+          vi.y += dy * force;
+          vi.z += dz * force;
+        });
+
+        const r = pi.length() || 0.0001;
+        const sphereForce = (RADIUS - r) * 0.015 / r;
+        vi.x += pi.x * sphereForce;
+        vi.y += pi.y * sphereForce;
+        vi.z += pi.z * sphereForce;
       }
-
-      CONNECTIONS.forEach(([a, b]) => {
-        if (a !== i && b !== i) return;
-        const other = pos[a === i ? b : a];
-        const dx = other.x - pi.x;
-        const dy = other.y - pi.y;
-        const dz = other.z - pi.z;
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz) || 0.0001;
-        const force = (dist - 1.1) * 0.01 / dist;
-        vi.x += dx * force;
-        vi.y += dy * force;
-        vi.z += dz * force;
-      });
-
-      const r = pi.length() || 0.0001;
-      const sphereForce = (RADIUS - r) * 0.015 / r;
-      vi.x += pi.x * sphereForce;
-      vi.y += pi.y * sphereForce;
-      vi.z += pi.z * sphereForce;
     }
 
     for (let i = 0; i < n; i++) {
-      vel[i].multiplyScalar(0.86);
+      vel[i].multiplyScalar(simulate ? 0.86 : 0.92);
       pos[i].x += vel[i].x * dt * 6;
       pos[i].y += vel[i].y * dt * 6;
       pos[i].z += vel[i].z * dt * 6;
@@ -290,12 +297,30 @@ export function SkillGraphCanvas() {
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
+    let inView = true;
+    let pageVisible = !document.hidden;
+    const update = () =>
+      setFrameloop(inView && pageVisible ? "always" : "never");
+
     const io = new IntersectionObserver(
-      ([entry]) => setFrameloop(entry.isIntersecting ? "always" : "never"),
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        update();
+      },
       { threshold: 0.05 }
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    const onVisibility = () => {
+      pageVisible = !document.hidden;
+      update();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, []);
 
   return (

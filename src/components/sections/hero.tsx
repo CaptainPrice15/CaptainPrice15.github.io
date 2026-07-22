@@ -7,7 +7,7 @@ import { hero } from "@/data/hero";
 import Link from "next/link";
 import { staggerContainer, heroItem, heroBadge } from "@/lib/motion-variants";
 import { buttonGradientClasses } from "@/lib/utils";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { usePerformanceMode } from "@/lib/use-performance-mode";
 import { HeroAvatarWebGL } from "@/components/hero-avatar-webgl";
@@ -24,7 +24,7 @@ const rotatingPhrases = [
   "Leading Production Teams",
 ];
 
-function Typewriter({
+const Typewriter = React.memo(function Typewriter({
   phrases,
   onPhraseComplete,
 }: {
@@ -90,7 +90,7 @@ function Typewriter({
       />
     </span>
   );
-}
+});
 
 function ParticleNetwork({
   className,
@@ -283,6 +283,7 @@ export function Hero() {
   const lightMotion = prefersReducedMotion || reduceEffects;
   const sectionRef = useRef<HTMLElement>(null);
   const [burstSignal, setBurstSignal] = useState(0);
+  const onPhraseComplete = useCallback(() => setBurstSignal((n) => n + 1), []);
 
   const tiltX = useMotionValue(0);
   const tiltY = useMotionValue(0);
@@ -381,7 +382,7 @@ export function Hero() {
               <p className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground/70 mb-4 sm:mb-6 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] leading-snug">
                 <Typewriter
                   phrases={rotatingPhrases}
-                  onPhraseComplete={() => setBurstSignal((n) => n + 1)}
+                  onPhraseComplete={onPhraseComplete}
                 />
               </p>
             </motion.div>
