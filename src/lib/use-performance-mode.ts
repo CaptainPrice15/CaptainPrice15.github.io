@@ -26,6 +26,8 @@ const DESKTOP: PerformanceMode = {
   reduceEffects: false,
 };
 
+let cached: PerformanceMode | null = null;
+
 function readMode(): PerformanceMode {
   if (typeof window === "undefined") return DESKTOP;
 
@@ -46,7 +48,18 @@ function readMode(): PerformanceMode {
   const isLowEnd = saveData || slowNetwork || cores <= 4;
   const reduceEffects = isMobile || isLowEnd;
 
-  return { isMobile, isLowEnd, saveData, reduceEffects };
+  if (
+    cached &&
+    cached.isMobile === isMobile &&
+    cached.isLowEnd === isLowEnd &&
+    cached.saveData === saveData &&
+    cached.reduceEffects === reduceEffects
+  ) {
+    return cached;
+  }
+
+  cached = { isMobile, isLowEnd, saveData, reduceEffects };
+  return cached;
 }
 
 function subscribe(callback: () => void) {
