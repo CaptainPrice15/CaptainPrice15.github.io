@@ -58,7 +58,12 @@ export function HeroAvatarWebGL({
 
   useEffect(() => setMounted(true), []);
 
-  if (mounted && (prefersReducedMotion || reduceEffects)) {
+  // Wait for `mounted` before deciding: prevents hydration mismatch AND keeps
+  // the heavy `three` chunk from being fetched on devices that will unmount it.
+  if (!mounted) {
+    return <StaticAvatar initials={initials} className={className} />;
+  }
+  if (prefersReducedMotion || reduceEffects) {
     return <StaticAvatar initials={initials} className={className} />;
   }
 

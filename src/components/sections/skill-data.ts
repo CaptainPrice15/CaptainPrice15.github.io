@@ -71,7 +71,6 @@ const SKILL_CONNECTIONS: [string, string][] = [
   [".NET", "SQL Server"],
   ["Python", "ELK Stack"],
   ["AI Agent Coding (Claude, Codex, Gemini)", "Python"],
-  ["Next.js", "REST APIs"],
   ["Android (Kotlin/Java)", "C#"],
 ];
 

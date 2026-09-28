@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 export function Navbar() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
@@ -87,6 +87,7 @@ export function Navbar() {
         hidden && "pointer-events-none"
       )}
       aria-hidden={hidden}
+      inert={hidden || undefined}
       style={{ willChange: "transform" }}
     >
       <nav
@@ -137,7 +138,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               className="rounded-full h-9 w-9 sm:h-10 sm:w-10 hover:bg-muted/60 active:scale-95 transition-all duration-200"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
             >
               <Sun className="h-[18px] w-[18px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

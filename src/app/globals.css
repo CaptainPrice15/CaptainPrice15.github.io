@@ -179,6 +179,11 @@ body::after {
 .section {
   padding-top: 5rem;
   padding-bottom: 5rem;
+  /* Skip layout/paint work for off-screen sections on mobile. The `auto`
+     keyword records the last rendered size so in-view scrolling stays jank-free
+     without reserve-height guessing. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 @media (min-width: 640px) {

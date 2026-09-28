@@ -56,7 +56,9 @@ export function SkillConstellation({ className }: { className?: string }) {
 
   useEffect(() => setMounted(true), []);
 
-  if (mounted && (prefersReducedMotion || reduceEffects)) {
+  // Same rationale as hero-avatar-webgl: render the static fallback until
+  // mounted so reduced-motion / mobile devices never fetch the WebGL chunk.
+  if (!mounted || prefersReducedMotion || reduceEffects) {
     return <StaticSkillGrid className={className} />;
   }
 

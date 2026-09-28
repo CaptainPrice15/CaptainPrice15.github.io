@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { SkillConstellation } from "./skill-constellation";
@@ -13,10 +13,18 @@ import { usePerformanceMode } from "@/lib/use-performance-mode";
 export function Skills() {
   const [viewMode, setViewMode] = useState<"constellation" | "grid" | "radar">("constellation");
   const { reduceEffects } = usePerformanceMode();
-  const defaultView = reduceEffects ? "grid" : "constellation";
-  const activeView = viewMode === "constellation" && reduceEffects ? defaultView : viewMode;
+  // On low-power devices, never mount the constellation; start on grid.
+  const allowConstellation = !reduceEffects;
+  const activeView =
+    viewMode === "constellation" && !allowConstellation ? "grid" : viewMode;
 
   const gridSkills = Object.values(skills).flat();
+
+  const modes: { id: "constellation" | "grid" | "radar"; label: string }[] = [
+    ...(allowConstellation ? [{ id: "constellation" as const, label: "Constellation" }] : []),
+    { id: "grid", label: "Grid" },
+    { id: "radar", label: "Radar" },
+  ];
 
   return (
     <section id="skills" aria-label="Skills and technologies" className="section bg-transparent relative overflow-hidden">
@@ -24,44 +32,27 @@ export function Skills() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <SectionHeading title="Skills & Technologies" eyebrow="What I work with" />
 
-          {/* View Toggle — show only modes valid for this device. */}
-          <div className="flex items-center gap-1 p-1 rounded-full bg-muted/50 border border-border/40 w-fit">
-            {activeView === "grid" && (
+          {/* View Toggle — all modes always visible so users can switch freely. */}
+          <div
+            className="flex items-center gap-1 p-1 rounded-full bg-muted/50 border border-border/40 w-fit"
+            role="tablist"
+            aria-label="Skills view"
+          >
+            {modes.map((m) => (
               <button
-                onClick={() => setViewMode("grid")}
-                className="px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground shadow-sm"
-              >
-                Grid
-              </button>
-            )}
-            {(activeView === "constellation" || activeView === "grid") && (
-              <button
-                onClick={() => setViewMode(activeView === "constellation" ? "grid" : "constellation")}
+                key={m.id}
+                role="tab"
+                aria-selected={activeView === m.id}
+                onClick={() => setViewMode(m.id)}
                 className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all ${
-                  activeView === "constellation"
+                  activeView === m.id
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                Constellation
+                {m.label}
               </button>
-            )}
-            {activeView === "radar" && (
-              <button
-                onClick={() => setViewMode("radar")}
-                className="px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground shadow-sm"
-              >
-                Radar
-              </button>
-            )}
-            {activeView === "grid" && (
-              <button
-                onClick={() => setViewMode("radar")}
-                className="px-4 py-1.5 text-sm font-medium rounded-full text-muted-foreground hover:text-foreground transition-all"
-              >
-                Radar
-              </button>
-            )}
+            ))}
           </div>
         </div>
 

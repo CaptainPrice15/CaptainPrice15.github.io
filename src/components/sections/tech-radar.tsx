@@ -67,8 +67,11 @@ export function TechRadar({ className }: { className?: string }) {
     if (!ctx) return;
 
     const animate = () => {
-      const w = canvas.width;
-      const h = canvas.height;
+      // Read back CSS logical size (we set canvas.style explicitly), NOT
+      // canvas.width which is in physical device pixels.
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
       const centerX = w / 2;
       const centerY = h / 2;
       const radius = Math.min(w, h) * 0.4;
@@ -163,9 +166,11 @@ export function TechRadar({ className }: { className?: string }) {
       const dpr = Math.min(window.devicePixelRatio, 1.5);
       const rect = canvas.parentElement?.getBoundingClientRect();
       if (!rect) return;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      // Reset transform before scaling so resize doesn't compound the DPR
+      // (ctx.scale accumulates on every invocation).
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
     };

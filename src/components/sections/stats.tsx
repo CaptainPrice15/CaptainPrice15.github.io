@@ -16,11 +16,12 @@ const stats = [
 function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
+  const rafRef = React.useRef<number>(0);
   const hasAnimated = React.useRef(false);
 
   React.useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || hasAnimated.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -34,22 +35,24 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(value * eased);
-
             if (progress < 1) {
-              requestAnimationFrame(animate);
+              rafRef.current = requestAnimationFrame(animate);
             } else {
               setCount(value);
             }
           };
 
-          requestAnimationFrame(animate);
+          rafRef.current = requestAnimationFrame(animate);
         }
       },
       { threshold: 0.5 }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafRef.current);
+    };
   }, [value]);
 
   const display =

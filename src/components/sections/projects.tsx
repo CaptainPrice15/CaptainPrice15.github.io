@@ -164,6 +164,24 @@ export function Projects() {
   const [filter, setFilter] = React.useState("All");
   const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
+  // Close on Escape and lock body scroll while the modal is open.
+  React.useEffect(() => {
+    if (!selectedProject) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedProject(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedProject]);
+
   const categories = ["All", ...Array.from(new Set(projects.map((p) => p.type)))];
 
   const filteredProjects =
@@ -223,6 +241,9 @@ export function Projects() {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedProject.title}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}

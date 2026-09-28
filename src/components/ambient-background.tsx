@@ -24,9 +24,12 @@ export function AmbientBackground() {
 
   useEffect(() => setMounted(true), []);
 
-  // Gate on `mounted` so the first client render matches the server (which
-  // can't know device capability) — avoids hydration mismatch.
-  if (mounted && (prefersReducedMotion || reduceEffects)) return null;
+  // Gate on `mounted` before rendering anything WebGL-related so the first
+  // client render matches the server AND low-capability devices never even
+  // start downloading the `three` chunk (it would otherwise be fetched while
+  // `mounted` is still false, then unmounted on the post-effect pass).
+  if (!mounted) return null;
+  if (prefersReducedMotion || reduceEffects) return null;
 
   return (
     <div

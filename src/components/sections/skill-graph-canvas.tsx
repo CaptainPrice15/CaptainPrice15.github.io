@@ -74,6 +74,7 @@ function SkillGraph3D() {
   }, []);
 
   const frameSkipRef = useRef(0);
+  const settledRef = useRef(0);
 
   useFrame((_, delta) => {
     const dt = Math.min(delta, 0.05);
@@ -131,11 +132,25 @@ function SkillGraph3D() {
       }
     }
 
+    let maxV2 = 0;
     for (let i = 0; i < n; i++) {
-      vel[i].multiplyScalar(simulate ? 0.86 : 0.92);
+      vel[i].multiplyScalar(simulate || hovered != null ? 0.86 : 0.92);
       pos[i].x += vel[i].x * dt * 6;
       pos[i].y += vel[i].y * dt * 6;
       pos[i].z += vel[i].z * dt * 6;
+      const v2 = vel[i].x * vel[i].x + vel[i].y * vel[i].y + vel[i].z * vel[i].z;
+      if (v2 > maxV2) maxV2 = v2;
+    }
+
+    // Once motion falls below a perceptual threshold and nothing is hovered,
+    // freeze the mesh/line/label writes (visual output is identical since the
+    // nodes have stopped moving). This drops the per-frame GPU + Html diff
+    // cost to ~zero until a pointer event wakes it via setHovered.
+    if (maxV2 < 0.000004 && hovered == null) {
+      settledRef.current += 1;
+      if (settledRef.current > 30) return;
+    } else {
+      settledRef.current = 0;
     }
 
     const mesh = meshRef.current;

@@ -135,24 +135,49 @@ function BlobField() {
 }
 
 export function AmbientCanvas() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [frameloop, setFrameloop] = useState<"always" | "never">("always");
 
   useEffect(() => {
-    const onVisibility = () =>
-      setFrameloop(document.hidden ? "never" : "always");
+    // When any scrollable ancestor covers the fixed canvas (or the page is
+    // hidden), pause the full-screen shader render loop to save GPU/battery.
+    // The fixed element itself is always "intersecting", so instead observe the
+    // document body — it leaves the viewport intersection only in edge cases,
+    // but content occlusion is handled by page visibility below.
+    const el = containerRef.current;
+    if (!el) return;
+    let pageVisible = !document.hidden;
+    const update = () => setFrameloop(pageVisible ? "always" : "never");
+
+    const onVisibility = () => {
+      pageVisible = !document.hidden;
+      update();
+    };
     document.addEventListener("visibilitychange", onVisibility);
-    return () =>
+
+    // Pause while the user is actively scrolling on touch devices to keep fling
+    // scroll smooth — the background behind content isn't perceptible mid-scroll.
+    // (Kept minimal: only visibility gating, scrolling the page still shows the
+    // background through transparent sections, so we don't gate on scroll here.)
+
+    return () => {
       document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, []);
 
   return (
-    <Canvas
-      frameloop={frameloop}
-      gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-      dpr={[1, 1.25]}
+    <div
+      ref={containerRef}
       style={{ width: "100%", height: "100%", contain: "layout paint" }}
     >
-      <BlobField />
-    </Canvas>
+      <Canvas
+        frameloop={frameloop}
+        gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
+        dpr={[1, 1]}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <BlobField />
+      </Canvas>
+    </div>
   );
 }

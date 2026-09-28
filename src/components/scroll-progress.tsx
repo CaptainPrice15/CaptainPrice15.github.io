@@ -1,45 +1,42 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useSyncExternalStore } from "react";
 import { motion, useMotionValue, useScroll, useSpring } from "framer-motion";
 import { useLenis } from "@/components/smooth-scroll";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 export function ScrollProgress() {
   const { subscribe, getProgress } = useLenis();
-  const lenisProgress = useSyncExternalStore(subscribe, getProgress, getProgress);
   const { scrollYProgress } = useScroll();
   const prefersReducedMotion = useReducedMotion();
   const progressMotion = useMotionValue(0);
   const unsubscribeRef = useRef<(() => void) | null>(null);
 
+  // Write scroll progress straight into the motion value (no React re-render per
+  // frame). We subscribe to Lenis' imperative progress store and fall back to the
+  // native scroll progress when reduced motion is active.
   useEffect(() => {
-    if (prefersReducedMotion) {
-      // Fall back to the native scroll progress when Lenis is not active.
-      if (unsubscribeRef.current) {
-        unsubscribeRef.current();
-        unsubscribeRef.current = null;
-      }
-      unsubscribeRef.current = scrollYProgress.on("change", (v) =>
-        progressMotion.set(v)
-      );
-      progressMotion.set(scrollYProgress.get());
-    } else {
-      if (unsubscribeRef.current) {
-        unsubscribeRef.current();
-        unsubscribeRef.current = null;
-      }
-      progressMotion.set(lenisProgress);
-    }
-
-    return () => {
+    const clean = () => {
       if (unsubscribeRef.current) {
         unsubscribeRef.current();
         unsubscribeRef.current = null;
       }
     };
-  }, [prefersReducedMotion, lenisProgress, scrollYProgress, progressMotion]);
+
+    if (prefersReducedMotion) {
+      clean();
+      unsubscribeRef.current = scrollYProgress.on("change", (v) =>
+        progressMotion.set(v)
+      );
+      progressMotion.set(scrollYProgress.get());
+    } else {
+      clean();
+      progressMotion.set(getProgress());
+      unsubscribeRef.current = subscribe(() => progressMotion.set(getProgress()));
+    }
+
+    return clean;
+  }, [prefersReducedMotion, subscribe, getProgress, scrollYProgress, progressMotion]);
 
   const scaleX = useSpring(progressMotion, {
     stiffness: 200,
