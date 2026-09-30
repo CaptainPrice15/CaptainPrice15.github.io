@@ -340,18 +340,18 @@ export function Hero() {
         animate="visible"
         variants={staggerContainer}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 items-center max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-14 items-center max-w-4xl mx-auto">
           {/* Avatar Column */}
           <motion.div
             variants={heroItem}
-            className={`flex justify-center lg:justify-end order-1 lg:order-1 ${lightMotion ? "" : "depth-layer-3"}`}
+            className={`flex justify-center lg:justify-end order-1 lg:order-2 ${lightMotion ? "" : "depth-layer-3"}`}
           >
-            <HeroAvatar initials={initials} className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64" />
+            <HeroAvatar initials={initials} className="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64" />
           </motion.div>
 
           {/* Text Column */}
           <motion.div
-            className={`text-center lg:text-left ${lightMotion ? "" : "preserve-3d"}`}
+            className={`text-center lg:text-left order-2 lg:order-1 ${lightMotion ? "" : "preserve-3d"}`}
             style={
               lightMotion
                 ? undefined

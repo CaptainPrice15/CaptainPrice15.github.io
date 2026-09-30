@@ -60,11 +60,11 @@ export function Experience() {
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20, x: isLeft ? -15 : 15 }}
+                  whileInView={{ opacity: 1, y: 0, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ ...springTransition, delay: idx * 0.08 }}
-                  className="relative pl-8 sm:pl-10"
+                  className="relative pl-7 sm:pl-10"
                 >
                   <motion.div
                     variants={timelineNode}

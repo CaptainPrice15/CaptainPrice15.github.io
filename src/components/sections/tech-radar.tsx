@@ -74,7 +74,11 @@ export function TechRadar({ className }: { className?: string }) {
       const h = rect.height;
       const centerX = w / 2;
       const centerY = h / 2;
-      const radius = Math.min(w, h) * 0.4;
+      const minDim = Math.min(w, h);
+      const isNarrow = minDim < 360;
+      // Scale radius to reserve ample margin for label text on mobile
+      const radius = minDim * (isNarrow ? 0.31 : 0.35);
+      const labelOffset = isNarrow ? 14 : 18;
 
       ctx.clearRect(0, 0, w, h);
       ctx.save();
@@ -146,14 +150,16 @@ export function TechRadar({ className }: { className?: string }) {
       // the chart spins). Positions still orbit with the rotation.
       ctx.save();
       ctx.translate(centerX, centerY);
-      ctx.font = "11px system-ui, sans-serif";
+      ctx.font = isNarrow
+        ? "10px system-ui, -apple-system, sans-serif"
+        : "11px system-ui, -apple-system, sans-serif";
       ctx.fillStyle = "#94a3b8";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       data.forEach((d, i) => {
         const angle = i * angleStep - Math.PI / 2 + (rotationRef.current * Math.PI) / 180;
-        const lx = Math.cos(angle) * (radius + 20);
-        const ly = Math.sin(angle) * (radius + 20);
+        const lx = Math.cos(angle) * (radius + labelOffset);
+        const ly = Math.sin(angle) * (radius + labelOffset);
         ctx.fillText(d.category, lx, ly);
       });
       ctx.restore();

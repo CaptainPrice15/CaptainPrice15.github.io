@@ -23,7 +23,7 @@ export function Footer() {
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               aria-label="GitHub Profile"
             >
               <Code className="h-4 w-4" />
@@ -32,14 +32,14 @@ export function Footer() {
               href={linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               aria-label="LinkedIn Profile"
             >
               <ExternalLink className="h-4 w-4" />
             </a>
             <a
               href={`mailto:${email}`}
-              className="p-2.5 rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl bg-muted/40 border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
               aria-label="Send Email"
             >
               <Mail className="h-4 w-4" />

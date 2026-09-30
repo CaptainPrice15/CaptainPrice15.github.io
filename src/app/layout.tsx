@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -10,6 +10,16 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "@/lib/site-config";
 import { GraphifyEasterEgg } from "@/components/graphify-easter-egg";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+  ],
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -68,9 +68,12 @@ body {
   position: relative;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
-  overscroll-behavior: none;
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 *,
@@ -179,11 +182,6 @@ body::after {
 .section {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  /* Skip layout/paint work for off-screen sections on mobile. The `auto`
-     keyword records the last rendered size so in-view scrolling stays jank-free
-     without reserve-height guessing. */
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
 }
 
 @media (min-width: 640px) {
@@ -413,6 +411,11 @@ body::after {
    ===================================================== */
 
 @media (max-width: 640px) {
+  /* Prevent iOS automatic zoom on focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
   body::before {
     opacity: 0.5;
   }

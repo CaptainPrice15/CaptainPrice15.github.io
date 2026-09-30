@@ -45,7 +45,12 @@ function readMode(): PerformanceMode {
     connection?.effectiveType === "slow-2g" ||
     connection?.effectiveType === "2g";
   const cores = navigator.hardwareConcurrency || 8;
-  const isLowEnd = saveData || slowNetwork || cores <= 4;
+  const memory = (navigator as unknown as { deviceMemory?: number }).deviceMemory;
+  const isLowEnd =
+    saveData ||
+    slowNetwork ||
+    cores <= 2 ||
+    (typeof memory === "number" && memory < 4);
   const reduceEffects = isMobile || isLowEnd;
 
   if (

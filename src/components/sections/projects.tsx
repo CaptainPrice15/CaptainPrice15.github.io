@@ -89,7 +89,6 @@ function ProjectCard({ project, onViewDetails }: { project: Project; onViewDetai
             </div>
           )}
         </div>
-
         <div className="p-5 sm:p-6 flex-grow flex flex-col relative z-10">
           <div className="flex justify-end items-start -mt-10 mb-3 gap-2 relative z-20">
             {project.github !== "#" && (
@@ -97,7 +96,7 @@ function ProjectCard({ project, onViewDetails }: { project: Project; onViewDetai
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
+                className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
                 aria-label="View source code on GitHub"
               >
                 <Code className="h-4 w-4" />
@@ -108,7 +107,7 @@ function ProjectCard({ project, onViewDetails }: { project: Project; onViewDetai
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
+                className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1 shadow-sm"
                 aria-label="View live demo"
               >
                 <ExternalLink className="h-4 w-4" />
@@ -199,7 +198,7 @@ export function Projects() {
           variants={fadeUp}
         >
           <div
-            className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12 mt-6 sm:mt-8 px-2"
+            className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 mt-6 sm:mt-8 px-2"
             role="tablist"
             aria-label="Filter projects by category"
           >
@@ -209,7 +208,7 @@ export function Projects() {
                 onClick={() => setFilter(category)}
                 role="tab"
                 aria-selected={filter === category}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
                   filter === category
                     ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
                     : "bg-muted/50 border border-border/40 text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -234,7 +233,7 @@ export function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-8 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -249,11 +248,11 @@ export function Projects() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={springTransition}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-background border border-border/50 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8"
+              className="relative bg-background border border-border/50 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[88vh] overflow-y-auto p-5 sm:p-8"
             >
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-muted/50 border border-border/40 text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+                className="absolute top-4 right-4 min-h-[44px] min-w-[44px] p-2.5 rounded-full bg-muted/50 border border-border/40 text-muted-foreground hover:text-foreground hover:bg-muted transition-all flex items-center justify-center"
                 aria-label="Close details"
               >
                 <X className="h-4 w-4" />

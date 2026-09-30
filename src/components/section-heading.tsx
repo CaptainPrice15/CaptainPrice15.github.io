@@ -24,10 +24,12 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <span className="eyebrow mb-3 sm:mb-4 block justify-center">
-          <span className="eyebrow-dot" aria-hidden="true" />
-          {eyebrow}
-        </span>
+        <div className={cn("flex mb-3 sm:mb-4", align === "center" ? "justify-center" : "justify-start")}>
+          <span className="eyebrow">
+            <span className="eyebrow-dot" aria-hidden="true" />
+            {eyebrow}
+          </span>
+        </div>
       )}
       {subtitle && !eyebrow && (
         <span className="text-xs sm:text-sm font-semibold text-primary tracking-widest uppercase mb-2 sm:mb-3 block">

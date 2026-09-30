@@ -33,7 +33,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group w-full text-left"
+      className="flex items-center gap-3 p-3 sm:p-4 min-h-[44px] rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group w-full text-left"
       aria-label={`${copied ? "Copied" : "Copy"} ${label}`}
     >
       <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors">
@@ -121,9 +121,10 @@ function ContactForm() {
             id="contact-name"
             type="text"
             required
+            autoComplete="name"
             value={formState.name}
             onChange={(e) => setFormState((s) => ({ ...s, name: e.target.value }))}
-            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground text-base placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
             placeholder="Your name"
           />
         </div>
@@ -135,9 +136,10 @@ function ContactForm() {
             id="contact-email"
             type="email"
             required
+            autoComplete="email"
             value={formState.email}
             onChange={(e) => setFormState((s) => ({ ...s, email: e.target.value }))}
-            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+            className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground text-base placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
             placeholder="you@email.com"
           />
         </div>
@@ -152,7 +154,7 @@ function ContactForm() {
           rows={4}
           value={formState.message}
           onChange={(e) => setFormState((s) => ({ ...s, message: e.target.value }))}
-          className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all resize-none"
+          className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/40 text-foreground text-base placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all resize-none"
           placeholder="Tell me about your project or idea..."
         />
       </div>
@@ -214,7 +216,7 @@ export function Contact() {
                       href={link.href}
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group"
+                      className="flex items-center gap-3 p-3 sm:p-4 min-h-[44px] rounded-xl bg-muted/50 border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all group"
                     >
                       <div className="p-2 bg-primary/8 rounded-lg border border-primary/10 group-hover:bg-primary/15 transition-colors text-muted-foreground group-hover:text-primary depth-layer-1">
                         {link.icon}

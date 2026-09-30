@@ -20,12 +20,14 @@ export function Navbar() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     setScrolled(latest > 20);
-    if (latest > previous && latest > 120) {
+    if (!isOpen && latest > previous && latest > 120) {
       setHidden(true);
     } else {
       setHidden(false);
     }
   });
+
+  const isHeaderHidden = hidden && !isOpen;
 
   React.useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -51,6 +53,9 @@ export function Navbar() {
   React.useEffect(() => {
     if (!isOpen) return;
 
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setIsOpen(false);
@@ -64,6 +69,7 @@ export function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEscape);
     return () => {
+      document.body.style.overflow = originalOverflow;
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
@@ -80,14 +86,14 @@ export function Navbar() {
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: hidden ? -120 : 0, opacity: hidden ? 0 : 1 }}
+      animate={{ y: isHeaderHidden ? -120 : 0, opacity: isHeaderHidden ? 0 : 1 }}
       transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 sm:pt-5 px-3 sm:px-4",
-        hidden && "pointer-events-none"
+        "fixed top-0 left-0 right-0 z-50 flex justify-center pt-[max(0.75rem,env(safe-area-inset-top))] sm:pt-5 px-3 sm:px-4",
+        isHeaderHidden && "pointer-events-none"
       )}
-      aria-hidden={hidden}
-      inert={hidden || undefined}
+      aria-hidden={isHeaderHidden ? true : undefined}
+      inert={isHeaderHidden ? true : undefined}
       style={{ willChange: "transform" }}
     >
       <nav
@@ -137,7 +143,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-full h-9 w-9 sm:h-10 sm:w-10 hover:bg-muted/60 active:scale-95 transition-all duration-200"
+              className="rounded-full h-10 w-10 min-h-[40px] min-w-[40px] hover:bg-muted/60 active:scale-95 transition-all duration-200"
               onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
             >
@@ -149,7 +155,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full h-9 w-9 sm:h-10 sm:w-10 hover:bg-muted/60 active:scale-95 transition-all duration-200"
+                className="rounded-full h-10 w-10 min-h-[40px] min-w-[40px] hover:bg-muted/60 active:scale-95 transition-all duration-200"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
@@ -171,7 +177,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -16, scale: 0.97, filter: "blur(8px)" }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute md:hidden top-[4.5rem] left-4 right-4 border border-border/60 bg-background/95 backdrop-blur-xl rounded-2xl p-3 shadow-2xl"
+            className="absolute md:hidden top-[calc(100%+0.5rem)] left-4 right-4 border border-border/60 bg-background/95 backdrop-blur-xl rounded-2xl p-3 shadow-2xl"
             role="navigation"
             aria-label="Mobile navigation"
           >

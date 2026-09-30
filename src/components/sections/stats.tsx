@@ -6,6 +6,8 @@ import { fadeUp, staggerFast } from "@/lib/motion-variants";
 import { Code2, Award, Briefcase, HeartHandshake } from "lucide-react";
 import { Card3D } from "@/components/card-3d";
 
+import { useReducedMotion } from "@/lib/use-reduced-motion";
+
 const stats = [
   { icon: <Briefcase className="h-6 w-6" />, value: 4.5, suffix: "+", label: "Years Experience" },
   { icon: <Code2 className="h-6 w-6" />, value: 15, suffix: "+", label: "Projects Delivered" },
@@ -14,12 +16,15 @@ const stats = [
 ];
 
 function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
+  const prefersReducedMotion = useReducedMotion();
   const [count, setCount] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
   const rafRef = React.useRef<number>(0);
   const hasAnimated = React.useRef(false);
 
   React.useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const el = ref.current;
     if (!el || hasAnimated.current) return;
 
@@ -27,7 +32,7 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-          const duration = 1500;
+          const duration = 1400;
           const start = performance.now();
 
           const animate = (now: number) => {
@@ -45,7 +50,7 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
           rafRef.current = requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);
@@ -53,10 +58,11 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
       observer.disconnect();
       cancelAnimationFrame(rafRef.current);
     };
-  }, [value]);
+  }, [value, prefersReducedMotion]);
 
+  const currentVal = prefersReducedMotion ? value : count;
   const display =
-    value % 1 !== 0 ? count.toFixed(1) : Math.round(count).toString();
+    value % 1 !== 0 ? currentVal.toFixed(1) : Math.round(currentVal).toString();
 
   return (
     <div ref={ref} className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground mb-1">
@@ -68,7 +74,7 @@ function CountUpNumber({ value, suffix }: { value: number; suffix: string }) {
 
 export function Stats() {
   return (
-    <section className="py-8 sm:py-10 md:py-16 bg-transparent -mt-8 relative z-10">
+    <section aria-label="Key statistics" className="py-8 sm:py-10 md:py-16 bg-transparent -mt-8 relative z-10">
       <div className="container px-3 sm:px-6 lg:px-8 mx-auto">
         <motion.div
           variants={staggerFast}
